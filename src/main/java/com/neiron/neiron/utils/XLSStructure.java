@@ -9,11 +9,33 @@ import java.util.Iterator;
 
 public class XLSStructure {
     Integer code;
-    Integer codeString;
     Integer itemName;
-    Integer itemNameString;
     Integer amount;
-    Integer amountString;
+    Integer beginString;
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public Integer getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(Integer itemName) {
+        this.itemName = itemName;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
 
     XLSStructure(Sheet sheet) {
         init(sheet);
@@ -24,7 +46,6 @@ public class XLSStructure {
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
             if (row != null) {
-                System.out.println("___________________________");
                 Iterator<Cell> cellIterator = row.cellIterator();
                 while (cellIterator.hasNext()) { //todo сделать остановку
                     Cell cell = cellIterator.next();
@@ -33,16 +54,16 @@ public class XLSStructure {
                         System.out.print(value + "--");
                         if (value.toLowerCase().trim().contains("количество") || value.toLowerCase().equalsIgnoreCase("кол-во")) {
                             this.amount = cell.getColumnIndex();
-                            this.amountString = cell.getRowIndex();
+                            this.beginString = cell.getRowIndex();
                         }
                         if (value.toLowerCase().trim().contains("наименование") || value.toLowerCase().equalsIgnoreCase("наим.")) {
                             this.itemName = cell.getColumnIndex();
-                            this.itemNameString = cell.getRowIndex();
+                            this.beginString = cell.getRowIndex();
                         }
 
                         if (value.toLowerCase().trim().contains("артикул") || value.toLowerCase().equalsIgnoreCase("наим.")) {
                             this.code = cell.getColumnIndex();
-                            this.codeString = cell.getRowIndex();
+                            this.beginString = cell.getRowIndex();
                         }
 
                     }
@@ -53,4 +74,11 @@ public class XLSStructure {
         }
     }
 
-} 
+    public Integer getBeginString() {
+        return beginString;
+    }
+
+    public void setBeginString(Integer beginString) {
+        this.beginString = beginString;
+    }
+}

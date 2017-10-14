@@ -17,6 +17,17 @@ public class RequestLine {
     @Column(name = "unparsedLine")
     String unparsedLine;
 
+    @Column(name = "ammount")
+    Integer ammount;
+
+    public Integer getAmmount() {
+        return ammount;
+    }
+
+    public void setAmmount(Integer ammount) {
+        this.ammount = ammount;
+    }
+
     @Column(name = "parsedLine")
     String parsedLine;
 
