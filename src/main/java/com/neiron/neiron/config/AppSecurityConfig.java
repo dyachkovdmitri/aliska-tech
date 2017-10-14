@@ -17,23 +17,25 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     DataSource dataSource;
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
         auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
-        }
+    }
 
-        @Autowired
-        public void configAutentication(AuthenticationManagerBuilder auth) throws Exception{
+    @Autowired
+    public void configAutentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select username,password, enabled from users where username=?").authoritiesByUsernameQuery("select username, role from user_roles where username=?");
-        }
+    }
 
 
-        @Override
-    protected void configure (HttpSecurity http) throws Exception{
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/secure").access("hasRole('ROLE_ADMIN')")
-                .and().formLogin().defaultSuccessUrl("/",false);
-        }
+                .and().formLogin().defaultSuccessUrl("/", false);
+        http.csrf().disable();
+    }
 //
 //            http.authorizeRequests().antMatchers("/secure").access("hasRole('ROLE_ADMIN')")
 //                    .and()

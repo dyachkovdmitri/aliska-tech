@@ -1,24 +1,24 @@
-var ajquery = function () {
-    Ext.onReady(function(){
-        Ext.Ajax.request({
-            url: '/loadfile',
-            success: function(response, options){
-                alert(response.responseText);
-            },
-            failure: function(response, options){
-                alert("Ошибка: " + response.statusText);
-            }
-        });
-    });
-};
+// var ajquery = function () {
+//     Ext.onReady(function () {
+//         Ext.Ajax.request({
+//             url: '/loadfile',
+//             success: function (response, options) {
+//                 alert(response.responseText);
+//             },
+//             failure: function (response, options) {
+//                 alert("Ошибка: " + response.statusText);
+//             }
+//         });
+//     });
+// };
 Ext.define('ALISKA.view.MainPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.mainpanel',
-
     title: 'Алиска',
     //store: 'MainStore',
 
     initComponent: function () {
+        var self = this;
         this.items = [
             {
                 xtype: 'container',
@@ -34,27 +34,18 @@ Ext.define('ALISKA.view.MainPanel', {
                         xtype: 'filefield',
                         id: 'loadFile',
                         buttonOnly: true,
-                        buttonText: 'Загрузить файл .xls',
+                        buttonText: 'Загрузить файл .csv',
                         hideLabel: true,
                         name: 'LoadFile',
-                        tip: 'Загрузить файл .xls',
+                        tip: 'Загрузить файл .csv',
                         listeners: {
-                            render: function(c) {
-                                Ext.create('Ext.tip.ToolTip', {
-                                    target: c.getEl(),
-                                    html: c.tip,
-                                    trackMouse: true
-                                });
-                            },
-                            'change': function(fb){
-                                self.fireEvent('fileupload',fb);
-
-
+                            'change': function (fb) {
+                                self.fireEvent('fileupload', fb);
                             }
                         }
                     }
-
-                ]}];
+                ]
+            }];
         this.callParent(arguments);
     }
-    });
+});

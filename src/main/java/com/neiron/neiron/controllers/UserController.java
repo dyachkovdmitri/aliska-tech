@@ -49,19 +49,18 @@ public class UserController {
 //        model.put("name", "ADMIN");
 //        return new ModelAndView("index", model);
 //    }
-    @RequestMapping(value = "/loadfile/**", method = RequestMethod.POST, produces ="application/json;charset=UTF-8", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @ResponseBody
-    public BaseMsgResponce loadBlacklist(@RequestParam("usersFile") MultipartFile file) {
-        BaseMsgResponce response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
-
-        try {
-            loadFileService.parseAndSaveBlacklist(file);
-        }
-        catch (Exception e) {
-            response.setStatus(ResponceStatus.ERROR);
-            String msg = "При обработке файла произошла ошибка.";
-            response.setMsg(msg);
-        }
-        return response;
-    }
-} 
+//    @RequestMapping(value = "/loadfile/**", method = RequestMethod.POST, produces ="application/json;charset=UTF-8", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    @ResponseBody
+//    public BaseMsgResponce loadBlacklist(@RequestParam("file") MultipartFile file) {
+//        BaseMsgResponce response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
+//        try {
+//            loadFileService.parseAndSaveBlacklist(file);
+//        }
+//        catch (Exception e) {
+//            response.setStatus(ResponceStatus.ERROR);
+//            String msg = "При обработке файла произошла ошибка.";
+//            response.setMsg(msg);
+//        }
+//        return response;
+//    }
+}

@@ -21,7 +21,7 @@ Ext.define('ALISKA.view.Book', {
                 xtype: 'numberfield',
                 name : 'year',
                 fieldLabel: 'Год',
-                minValue: 1,
+                minValue: 1
             }]
         }];
         this.dockedItems=[{
