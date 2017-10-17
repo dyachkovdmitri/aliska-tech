@@ -2,6 +2,7 @@ package com.neiron.neiron.utils.aliska;
 
 import com.neiron.neiron.entities.Item;
 import com.neiron.neiron.entities.RequestLine;
+import com.neiron.neiron.sinonimes.ConnectorSinonimes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,13 +27,8 @@ public class AliskaParser {
         item.setUnparsedLine(unparsedLine);
         item = addWattage(item);
         item = addVoltage(item);
-//        String[] words = unparsedLine.trim().split(" ");
-////        for (int i = 0; i < words.length; i++) {
-//////            item.setConnectorType(dbParser.getConnectorType(words[i]));
-//////            item.setBulbColor(dbParser.getBulbColor(words[i]));
-//////            item.setBulbType(dbParser.getBulbType(words[i]));
-////        }
-        System.out.println(item.getUnparsedLine() +"-|-"+ item.getVoltage() +"-|-"+ item.getWattage());
+        item = addConnector(item);
+        System.out.println(item.getUnparsedLine() +"-|-"+ item.getVoltage() +"-|-"+ item.getWattage()+"-|-"+ item.getConnectorType());
         return item.getUnparsedLine() +"-|-"+ item.getVoltage() +"-|-"+ item.getWattage();
     }
 
@@ -42,5 +38,9 @@ public class AliskaParser {
 
     private Item addVoltage(Item item) {
         return regExpParser.addVoltage(item);
+    }
+
+    private Item addConnector(Item item) {
+        return ConnectorSinonimes.addConnector(item);
     }
 }
