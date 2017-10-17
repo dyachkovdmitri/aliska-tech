@@ -2,6 +2,9 @@ package com.neiron.neiron.utils.aliska;
 
 import com.neiron.neiron.entities.Item;
 import com.neiron.neiron.entities.RequestLine;
+import com.neiron.neiron.sinonimes.BrandSinonimes;
+import com.neiron.neiron.sinonimes.BulbColorSinonimes;
+import com.neiron.neiron.sinonimes.BulbTypeSinonimes;
 import com.neiron.neiron.sinonimes.ConnectorSinonimes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,8 +35,8 @@ public class AliskaParser {
         item = addBulbType(item);
         item = addBrand(item);
 
-        System.out.println(item.getUnparsedLine() +"-|-"+ item.getVoltage() +"-|-"+ item.getWattage()+"-|-"+ item.getConnectorType());
-        return item.getUnparsedLine() +"-|-"+ item.getVoltage() +"-|-"+ item.getWattage();
+        System.out.println(item);
+        return item.toString();
     }
 
     private Item addWattage(Item item) {
@@ -46,5 +49,14 @@ public class AliskaParser {
 
     private Item addConnector(Item item) {
         return ConnectorSinonimes.addConnector(item);
+    }
+    private Item addBulbColor(Item item) {
+        return BulbColorSinonimes.addBulbColor(item);
+    }
+    private Item addBulbType(Item item) {
+        return BulbTypeSinonimes.addBulbType(item);
+    }
+    private Item addBrand(Item item) {
+        return BrandSinonimes.addBrand(item);
     }
 }

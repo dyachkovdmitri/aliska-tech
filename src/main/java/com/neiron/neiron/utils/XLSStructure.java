@@ -51,7 +51,7 @@ public class XLSStructure {
                     Cell cell = cellIterator.next();
                     if (cell != null) {
                         String value = cell.toString();
-                        System.out.print(value + "--");
+                        //System.out.print(value + "--");
                         if (value.toLowerCase().trim().contains("количество") || value.toLowerCase().equalsIgnoreCase("кол-во")) {
                             this.amount = cell.getColumnIndex();
                             this.beginString = cell.getRowIndex();
