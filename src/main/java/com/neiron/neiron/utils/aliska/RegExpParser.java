@@ -1,18 +1,83 @@
 package com.neiron.neiron.utils.aliska;
 
+import com.neiron.neiron.entities.Item;
+import org.springframework.stereotype.Service;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegExpParser {
-    public static Integer getWattage(String word) {
-        Pattern p = Pattern.compile("^\\\\d|\\\\d\\\\d|\\\\d\\\\d\\\\d\\\\d|\\\\d\\\\d\\\\dW|w|Вт|вт|ватт$");
-        Matcher m = p.matcher(word);
-        return Integer.parseInt(word.substring(0,word.length()));
+@Service
+class RegExpParser {
+
+
+    private Integer getWattage(String word) {
+        try {
+            String wordLC = word.toLowerCase();
+            Pattern p = Pattern.compile("^(\\d\\d|\\d|\\d\\d\\d|\\d\\d\\d\\d)(ватт|вт|w)$");
+            Matcher m = p.matcher(wordLC);
+            if (m.matches()) {
+                wordLC = wordLC.replace("ватт", "").replace("вт", "").replace("w", "");
+                return Integer.parseInt(wordLC);
+            } else return null;
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
-    public static Integer getVoltage(String word) {
-        Pattern p = Pattern.compile("^\\\\d|\\\\d\\\\d|\\\\d\\\\d\\\\d\\\\d|\\\\d\\\\d\\\\dV|v|вольт|Вольт$");
-        Matcher m = p.matcher(word);
-        return Integer.parseInt(word.substring(0,word.length()));
+    private Boolean getSeparatedWattage(String word) {
+        return (word.equalsIgnoreCase("ватт")) || (word.equalsIgnoreCase("вт")) || (word.equalsIgnoreCase("w"));
+    }
+
+    private Boolean getSeparatedVoltage(String word) {
+        return (word.equalsIgnoreCase("вольт")) || (word.equalsIgnoreCase("в")) || (word.equalsIgnoreCase("v"));
+    }
+
+    private Integer getVoltage(String word) {
+        try {
+            String wordLC = word.toLowerCase();
+            Pattern p = Pattern.compile("^(\\d\\d|\\d|\\d\\d\\d|\\d\\d\\d\\d)(вольт|в|v)$");
+            Matcher m = p.matcher(wordLC);
+            if (m.matches()) {
+                wordLC = wordLC.replace("вольт", "").replace("в", "").replace("v", "");
+                return Integer.parseInt(wordLC);
+            } else return null;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    Item addWattage(Item item) {
+        String[] words = item.getUnparsedLine().split(" ");
+        Integer wattage = null;
+        for (int i = 0; i < words.length; i++) {
+            wattage = getWattage(words[i]);
+            if (wattage != null) {
+                item.setWattage(wattage);
+            }
+            if (getSeparatedWattage(words[i])) {
+                item.setWattage(Integer.parseInt(words[-1]));
+            }
+        }
+        return item;
+    }
+
+    Item addVoltage(Item item) {
+
+        String[] words = item.getUnparsedLine().split(" ");
+        Integer voltage = null;
+        for (int i = 0; i < words.length; i++) {
+            voltage = getVoltage(words[i]);
+            if (voltage != null) {
+                if (voltage == 0) {
+                    item.setVoltage(Integer.parseInt(words[i - 1]));
+                }
+                item.setVoltage(voltage);
+                return item;
+            }
+            if (getSeparatedVoltage(words[i])) {
+                item.setVoltage(Integer.parseInt(words[i - 1]));
+            }
+        }
+        return item;
     }
 }

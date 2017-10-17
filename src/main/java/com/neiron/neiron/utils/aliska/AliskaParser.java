@@ -15,7 +15,7 @@ public class AliskaParser {
     RegExpParser regExpParser;
 
     public ArrayList<RequestLine> parse(ArrayList<RequestLine> lines) {
-        for(RequestLine requestLine:lines){
+        for (RequestLine requestLine : lines) {
             requestLine.setParsedLine(parseLine(requestLine.getUnparsedLine()));
         }
         return lines;
@@ -23,15 +23,24 @@ public class AliskaParser {
 
     private String parseLine(String unparsedLine) {
         Item item = new Item();
-        String[] words = unparsedLine.trim().split(" ");
-        for(int i = 0;i<words.length;i++)
-        {
-            item.setConnectorType(dbParser.getConnectorType(words[i]));
-            item.setBulbColor(dbParser.getBulbColor(words[i]));
-            item.setBulbType(dbParser.getBulbType(words[i]));
-            item.setWattage(regExpParser.getWattage(words[i]));
-            item.setVoltage(regExpParser.getVoltage(words[i]));
-        }
-        return null;
+        item.setUnparsedLine(unparsedLine);
+        item = addWattage(item);
+        item = addVoltage(item);
+//        String[] words = unparsedLine.trim().split(" ");
+////        for (int i = 0; i < words.length; i++) {
+//////            item.setConnectorType(dbParser.getConnectorType(words[i]));
+//////            item.setBulbColor(dbParser.getBulbColor(words[i]));
+//////            item.setBulbType(dbParser.getBulbType(words[i]));
+////        }
+        System.out.println(item.getUnparsedLine() +"-|-"+ item.getVoltage() +"-|-"+ item.getWattage());
+        return item.getUnparsedLine() +"-|-"+ item.getVoltage() +"-|-"+ item.getWattage();
+    }
+
+    private Item addWattage(Item item) {
+        return regExpParser.addWattage(item);
+    }
+
+    private Item addVoltage(Item item) {
+        return regExpParser.addVoltage(item);
     }
 }

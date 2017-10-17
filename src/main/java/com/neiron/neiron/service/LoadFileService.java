@@ -25,13 +25,16 @@ public class LoadFileService {
     @Autowired
     RequestLineRepo requestLineRepo;
 
+    @Autowired
+    XlsParser xlsParser;
+
 
     @Transactional(rollbackFor = Exception.class)
     public String loadOrder(MultipartFile file) throws Exception {
         CustomerRequest customerRequest = customerRequestRepo.saveAndFlush(new CustomerRequest());
         BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()));
         String line = "";
-        XlsParser.parseXls(file);
+        xlsParser.parseXls(file);
         while ((line = br.readLine()) != null) {
             try {
                 String[] item = new String(line.getBytes(), "UTF-8").split(";");
