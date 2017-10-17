@@ -28,6 +28,10 @@ public class AliskaParser {
         item = addWattage(item);
         item = addVoltage(item);
         item = addConnector(item);
+        item = addBulbColor(item);
+        item = addBulbType(item);
+        item = addBrand(item);
+
         System.out.println(item.getUnparsedLine() +"-|-"+ item.getVoltage() +"-|-"+ item.getWattage()+"-|-"+ item.getConnectorType());
         return item.getUnparsedLine() +"-|-"+ item.getVoltage() +"-|-"+ item.getWattage();
     }
