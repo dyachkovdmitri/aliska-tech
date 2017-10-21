@@ -7,5 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 
-public interface RequestLineRepo  extends JpaRepository<RequestLine, Long>, JpaSpecificationExecutor<Long> {
+import java.util.ArrayList;
+
+public interface RequestLineRepo extends JpaRepository<RequestLine, Long>, JpaSpecificationExecutor<Long> {
+    ArrayList<RequestLine> findByRequestId(Long requestId);
 } 
