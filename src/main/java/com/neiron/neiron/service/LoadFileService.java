@@ -32,7 +32,7 @@ public class LoadFileService {
 
 
     @Transactional(rollbackFor = Exception.class)
-    public ArrayList<RequestLine> loadOrder(MultipartFile file) throws Exception {
+    public Long loadOrder(MultipartFile file) throws Exception {
         return xlsParser.parseXls(file);
     }
 

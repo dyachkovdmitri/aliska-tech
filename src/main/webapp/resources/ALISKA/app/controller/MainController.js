@@ -1,3 +1,4 @@
+var requestOrder = 0;
 Ext.define('ALISKA.controller.MainController', {
     extend: 'Ext.app.Controller',
     views: ['MainPanel','GetOfferPanel', 'AddPrice'],
@@ -35,23 +36,11 @@ Ext.define('ALISKA.controller.MainController', {
         xhr.onload = xhr.onerror = function () {
             if (this.status == 200) {
                 var data = JSON.parse(xhr.responseText);
-                console.log(data);
-               //  Ext.offerNumber = data.id;
-               // Ext.getStore('ItemOfferStore').load();
-            //     Ext.MessageBox.show({
-            //         title: "Загрузка успешна",
-            //         msg: data.msg,
-            //         buttons: Ext.MessageBox.OK,
-            //         icon: Ext.MessageBox.WARNING
-            //     });
-            // } else {
-            //     Ext.MessageBox.hide();
-            //     Ext.MessageBox.show({
-            //         title: 'Произошла ошибка',
-            //         msg: xhr.statusText + ". Код: " + this.status,
-            //         buttons: Ext.MessageBox.OK,
-            //         icon: Ext.MessageBox.WARNING,
-            //     });
+                document.cookie = "customerRequestId="+data.msg;
+                // Ext.getStore('ItemOfferStore').requestOrderId=322;
+                // console.log(Ext.getStore('ItemOfferStore'));
+                // localStorage.setItem('requestOrder', 322);
+                Ext.getStore('ItemOfferStore').load();
             }
         };
 

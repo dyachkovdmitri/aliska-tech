@@ -8,12 +8,11 @@ import com.neiron.neiron.service.RequestLineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 @Controller
@@ -31,8 +30,7 @@ public class CustomerRequestController {
     public BaseMsgResponce loadOrder(@RequestParam("file") MultipartFile file) {
         BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
-            ArrayList<RequestLine> requestLines = loadFileService.loadOrder(file);
-            response.setData(requestLines);
+            response.setMsg(loadFileService.loadOrder(file).toString());
         }
         catch (Exception e) {
             response.setStatus(ResponceStatus.ERROR);
@@ -44,10 +42,11 @@ public class CustomerRequestController {
 
     @RequestMapping(value = "/getOffer", method = RequestMethod.GET, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public BaseMsgResponce getOffer(@RequestParam("requestOrder") Long requestOrder) {
+    public BaseMsgResponce getOffer(@CookieValue(value = "customerRequestId") Long customerRequestId) {
+
         BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
-            ArrayList<RequestLine> requestLines = requestLineService.getRequestLines(requestOrder);
+            ArrayList<RequestLine> requestLines = requestLineService.getRequestLines(customerRequestId);
 
             response.setData(requestLines);
         }
