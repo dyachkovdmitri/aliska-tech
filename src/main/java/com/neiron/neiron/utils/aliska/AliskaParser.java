@@ -34,7 +34,6 @@ public class AliskaParser {
         item = addBulbColor(item);
         item = addBulbType(item);
         item = addBrand(item);
-
         System.out.println(item);
         return item.toString();
     }

@@ -2,6 +2,7 @@ package com.neiron.neiron.controllers;
 
 import com.neiron.neiron.crud.BaseMsgResponce;
 import com.neiron.neiron.crud.ResponceStatus;
+import com.neiron.neiron.entities.RequestLine;
 import com.neiron.neiron.service.LoadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+
 @Controller
 @RequestMapping(value = "customerRequest")
 public class CustomerRequestController {
@@ -20,9 +23,10 @@ public class CustomerRequestController {
     @RequestMapping(value = "/loadfile/**", method = RequestMethod.POST, produces ="application/json;charset=UTF-8", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseBody
     public BaseMsgResponce loadOrder(@RequestParam("file") MultipartFile file) {
-        BaseMsgResponce response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
+        BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
-            loadFileService.loadOrder(file);
+            ArrayList<RequestLine> requestLines = loadFileService.loadOrder(file);
+            response.setData(requestLines);
         }
         catch (Exception e) {
             response.setStatus(ResponceStatus.ERROR);
