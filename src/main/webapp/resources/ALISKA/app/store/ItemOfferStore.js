@@ -1,9 +1,9 @@
-var data = [{
-    "parsedLine": "Вася",
-    "unparsedLine": "Иванов",
-    "ammount": 23
-
-}];
+// var data = [{
+//     "parsedLine": "Вася",
+//     "unparsedLine": "Иванов",
+//     "ammount": 23
+//
+// }];
 //
 // Ext.define('Item', {
 //     extend: 'Ext.data.Model',
@@ -29,14 +29,14 @@ Ext.define('ALISKA.store.ItemOfferStore', {
        // model: 'Item',
         autoLoad: true,
         storeId: 'ItemOfferStore',
-        data: data,
+        //data: data,
         proxy: {
             type: 'ajax',
-            url: 'app/data/books.json',
+            url: 'customerRequest/getOffer?requestOrder=166',
             reader: {
                 type: 'json',
-                root: 'books',
-                successProperty: 'success'
+                root: 'data',
+                successProperty: 'status'
             }
         }
     }

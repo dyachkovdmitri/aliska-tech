@@ -94,14 +94,17 @@ Ext.define('ALISKA.view.GetOfferPanel', {
         }];
         this.columns = [{
             header: 'Запрос',
-            dataIndex: 'parsedLine'
+            dataIndex: 'unparsedLine',
+            flex: 1
         }, {
             header: 'Количество',
-            dataIndex: 'ammount'
+            dataIndex: 'ammount',
+            flex: 1
         },
             {
                 header: 'Распаршено',
-                dataIndex: 'unparsedLine'
+                dataIndex: 'parsedLine',
+                flex: 1
             }];
         console.log(this);
         console.log(arguments);
