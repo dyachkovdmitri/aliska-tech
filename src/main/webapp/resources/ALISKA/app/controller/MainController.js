@@ -1,10 +1,10 @@
 var requestOrder = 0;
 Ext.define('ALISKA.controller.MainController', {
     extend: 'Ext.app.Controller',
-    views: ['MainPanel','GetOfferPanel', 'AddPrice'],
-    stores: ['ItemOfferStore'],
-    models: ['ItemOfferModel'],
-    init: function() {
+    views: ['MainPanel', 'GetOfferPanel', 'AddPrice'],
+    stores: ['ItemOfferStore', 'ItemPriceStore'],
+    models: ['ItemOfferModel', 'ItemPriceModel'],
+    init: function () {
         this.control({
             'getOfferPanel': {
                 fileupload: this.uploadFileAction
@@ -22,7 +22,7 @@ Ext.define('ALISKA.controller.MainController', {
         fb.fileInputEl.dom.value = '';
     },
 
-    uploadFile: function(file) {
+    uploadFile: function (file) {
         var xhr = new XMLHttpRequest();
         // xhr.upload.onprogress = function (event) {
         //     var percent = event.loaded / event.total;
@@ -36,7 +36,7 @@ Ext.define('ALISKA.controller.MainController', {
         xhr.onload = xhr.onerror = function () {
             if (this.status == 200) {
                 var data = JSON.parse(xhr.responseText);
-                document.cookie = "customerRequestId="+data.msg;
+                document.cookie = "customerRequestId=" + data.msg;
                 // Ext.getStore('ItemOfferStore').requestOrderId=322;
                 // console.log(Ext.getStore('ItemOfferStore'));
                 // localStorage.setItem('requestOrder', 322);
