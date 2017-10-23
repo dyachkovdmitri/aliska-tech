@@ -73,7 +73,7 @@
 Ext.define('ALISKA.view.AddPrice', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.addPrice',
-    store: 'ItemOfferStore',
+    store: 'ItemPriceStore',
     //store: store,
     initComponent: function () {
         var self = this;
@@ -96,21 +96,58 @@ Ext.define('ALISKA.view.AddPrice', {
             dataIndex: 'unparsedLine',
             flex: 1
         }, {
-            header: 'Количество на складе',
-            dataIndex: 'ammount',
+            header: 'V',
+            dataIndex: 'voltage',
             flex: 1
         },
             {
-                header: 'Мощность',
+                header: 'W',
                 dataIndex: 'wattage',
+                flex: 1
+            },
+            {
+                header: 'Цоколь',
+                dataIndex: 'connectorType',
+                flex: 1
+            },
+            {
+                header: 'Бренд',
+                dataIndex: 'brand',
                 flex: 1
             },
             {
                 header: 'Мощность',
                 dataIndex: 'voltage',
                 flex: 1
-            }];
+            },
+            {
+                header: 'ТИП1',
+                dataIndex: 'type2',
+                flex: 1
+            },
+            {
+                header: 'ТИП2',
+                dataIndex: 'type1',
+                flex: 1
+            },
+            {
+                header: 'ТИП3',
+                dataIndex: 'type3',
+                flex: 1
+            },
+            {
+                header: 'ТИП4',
+                dataIndex: 'type4',
+                flex: 1
+            },
+            {
+                header: 'ТИП5',
+                dataIndex: 'type5',
+                flex: 1
+            }
+            ];
         this.callParent(arguments);
     }
 
 });
+
