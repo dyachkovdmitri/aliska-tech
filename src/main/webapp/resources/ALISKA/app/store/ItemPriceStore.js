@@ -6,7 +6,7 @@ Ext.define('ALISKA.store.ItemPriceStore', {
         //data: data,
         proxy: {
             type: 'ajax',
-            url: 'customerRequest/getPrice',
+            url: 'item/getPrice',
             reader: {
                 type: 'json',
                 root: 'data',

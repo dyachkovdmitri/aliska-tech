@@ -20,12 +20,20 @@ public class AliskaParser {
 
     public ArrayList<RequestLine> parse(ArrayList<RequestLine> lines) {
         for (RequestLine requestLine : lines) {
-            requestLine.setParsedLine(parseLine(requestLine.getUnparsedLine()));
+            requestLine.setParsedLine(parseLine(requestLine.getUnparsedLine()).toString());
         }
         return lines;
     }
 
-    private String parseLine(String unparsedLine) {
+    public ArrayList<Item> parsePrice(ArrayList<RequestLine> lines) {
+        ArrayList<Item> items = new ArrayList<>();
+        for (RequestLine requestLine : lines) {
+            items.add(parseLine(requestLine.getUnparsedLine()));
+        }
+        return items;
+    }
+
+    private Item parseLine(String unparsedLine) {
         Item item = new Item();
         item.setUnparsedLine(unparsedLine);
         item = addWattage(item);
@@ -35,7 +43,7 @@ public class AliskaParser {
         item = addBulbType(item);
         item = addBrand(item);
         System.out.println(item);
-        return item.toString();
+        return item;
     }
 
     private Item addWattage(Item item) {
@@ -49,12 +57,15 @@ public class AliskaParser {
     private Item addConnector(Item item) {
         return ConnectorSinonimes.addConnector(item);
     }
+
     private Item addBulbColor(Item item) {
         return BulbColorSinonimes.addBulbColor(item);
     }
+
     private Item addBulbType(Item item) {
         return BulbTypeSinonimes.addBulbType(item);
     }
+
     private Item addBrand(Item item) {
         return BrandSinonimes.addBrand(item);
     }
