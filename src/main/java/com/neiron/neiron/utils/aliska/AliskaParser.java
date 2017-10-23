@@ -14,8 +14,6 @@ import java.util.ArrayList;
 @Service
 public class AliskaParser {
     @Autowired
-    DBParser dbParser;
-    @Autowired
     RegExpParser regExpParser;
 
     public ArrayList<RequestLine> parse(ArrayList<RequestLine> lines) {
