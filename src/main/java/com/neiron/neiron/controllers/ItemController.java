@@ -2,16 +2,17 @@ package com.neiron.neiron.controllers;
 
 import com.neiron.neiron.crud.BaseMsgResponce;
 import com.neiron.neiron.crud.ResponceStatus;
+import com.neiron.neiron.entities.Item;
 import com.neiron.neiron.entities.RequestLine;
 import com.neiron.neiron.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+
 @Controller
 @RequestMapping(value = "item/")
 public class ItemController {
@@ -28,6 +29,23 @@ public class ItemController {
         catch (Exception e) {
             response.setStatus(ResponceStatus.ERROR);
             String msg = "При обработке файла произошла ошибка.";
+            response.setMsg(msg);
+        }
+        return response;
+    }
+
+    @RequestMapping(value = "/getPrice", method = RequestMethod.GET, produces ="application/json;charset=UTF-8")
+    @ResponseBody
+    public BaseMsgResponce getOffer(@CookieValue(value = "companyId") Long customerRequestId) {
+
+        BaseMsgResponce<Item> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
+        try {
+            ArrayList<Item> items = itemService.getPrice(customerRequestId);
+            response.setData(items);
+        }
+        catch (Exception e) {
+            response.setStatus(ResponceStatus.ERROR);
+            String msg = e.toString();
             response.setMsg(msg);
         }
         return response;

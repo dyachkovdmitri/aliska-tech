@@ -20,21 +20,22 @@ public class AliskaParser {
 
     public ArrayList<RequestLine> parse(ArrayList<RequestLine> lines) {
         for (RequestLine requestLine : lines) {
-            requestLine.setParsedLine(parseLine(requestLine.getUnparsedLine()).toString());
+            requestLine.setParsedLine(parseLine(null, requestLine.getUnparsedLine()).toString());
         }
         return lines;
     }
 
-    public ArrayList<Item> parsePrice(ArrayList<RequestLine> lines) {
+    public ArrayList<Item> parsePrice(Long companyId, ArrayList<RequestLine> lines) {
         ArrayList<Item> items = new ArrayList<>();
         for (RequestLine requestLine : lines) {
-            items.add(parseLine(requestLine.getUnparsedLine()));
+            items.add(parseLine(companyId, requestLine.getUnparsedLine()));
         }
         return items;
     }
 
-    private Item parseLine(String unparsedLine) {
+    private Item parseLine(Long companyId, String unparsedLine) {
         Item item = new Item();
+        item.setCompanyId(companyId);
         item.setUnparsedLine(unparsedLine);
         item = addWattage(item);
         item = addVoltage(item);

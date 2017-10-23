@@ -30,23 +30,24 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .antMatchers("/**").permitAll()
-//                .antMatchers("/secure").access("hasRole('ROLE_ADMIN')")
-//                .and().formLogin().defaultSuccessUrl("/", false);
-//        http.csrf().disable();
-        //}
         http.authorizeRequests()
-                .antMatchers("/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/**").permitAll()
                 .antMatchers("/secure").access("hasRole('ROLE_ADMIN')")
-                .and()
-                .formLogin().loginPage("/login").failureUrl("/login&Error").usernameParameter("username").passwordParameter("password")
-                .and()
-                .logout().logoutSuccessUrl("/login?logout")
-                .and()
-                .exceptionHandling().accessDeniedPage("/")
-                .and()
-                .csrf();
-
+                .and().formLogin().defaultSuccessUrl("/", false);
+        http.csrf().disable();
     }
+        //}
+//        http.authorizeRequests()
+//                .antMatchers("/**").access("hasRole('ROLE_ADMIN')")
+//                .antMatchers("/secure").access("hasRole('ROLE_ADMIN')")
+//                .and()
+//                .formLogin().loginPage("/login").failureUrl("/login&Error").usernameParameter("username").passwordParameter("password")
+//                .and()
+//                .logout().logoutSuccessUrl("/login?logout")
+//                .and()
+//                .exceptionHandling().accessDeniedPage("/")
+//                .and()
+//                .csrf();
+
+//    }
 } 

@@ -106,8 +106,6 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                 dataIndex: 'parsedLine',
                 flex: 1
             }];
-        console.log(this);
-        console.log(arguments);
         this.callParent(arguments);
     }
 

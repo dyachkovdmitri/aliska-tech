@@ -38,6 +38,9 @@ public class Item {
     @Column(name = "brand")
     Integer brand;
 
+    @Column(name = "companyId")
+    Long companyId;
+
     @Column(name = "seller")
     Integer seller;
 
@@ -49,6 +52,14 @@ public class Item {
 
     @Column(name = "bulbType")
     Integer bulbType;
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
 
     public Long getId() {
         return id;
@@ -77,6 +88,7 @@ public class Item {
     public Integer getType2() {
         return type2;
     }
+
 
     public void setType2(Integer type2) {
         this.type2 = type2;
@@ -204,7 +216,7 @@ public class Item {
         if (bulbType != null) {
             result += "'bulbType':" + "'" + bulbType + "',";
         }
-        result = result.substring(0, result.length()-1);
+        result = result.substring(0, result.length() - 1);
         return result += "}";
     }
 }
