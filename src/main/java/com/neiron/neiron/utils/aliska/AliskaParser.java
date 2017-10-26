@@ -2,10 +2,7 @@ package com.neiron.neiron.utils.aliska;
 
 import com.neiron.neiron.entities.Item;
 import com.neiron.neiron.entities.RequestLine;
-import com.neiron.neiron.sinonimes.BrandSinonimes;
-import com.neiron.neiron.sinonimes.BulbColorSinonimes;
-import com.neiron.neiron.sinonimes.BulbTypeSinonimes;
-import com.neiron.neiron.sinonimes.ConnectorSinonimes;
+import com.neiron.neiron.sinonimes.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +38,14 @@ public class AliskaParser {
         item = addBulbColor(item);
         item = addBulbType(item);
         item = addBrand(item);
+        item = addType5(item);
+        item = addType4(item);
+        item = addType3(item);
+        item = addType2(item);
+        item = addType1(item);
+        item = useTypeTree(item);
+
+
         System.out.println(item);
         return item;
     }
@@ -68,4 +73,29 @@ public class AliskaParser {
     private Item addBrand(Item item) {
         return BrandSinonimes.addBrand(item);
     }
+
+    private Item addType5(Item item) {
+        return Type5Sinonimes.addType5(item);
+    }
+
+    private Item addType4(Item item) {
+        return Type4Sinonimes.addType4(item);
+    }
+
+    private Item addType3(Item item) {
+        return Type3Sinonimes.addType3(item);
+    }
+
+    private Item addType2(Item item) {
+        return Type2Sinonimes.addType2(item);
+    }
+
+    private Item addType1(Item item) {
+        return Type1Sinonimes.addType1(item);
+    }
+
+    private Item useTypeTree(Item item) {
+        return TypeTree.getTypeTree(item);
+    }
+
 }

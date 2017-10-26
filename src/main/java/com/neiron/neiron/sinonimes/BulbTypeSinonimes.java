@@ -33,6 +33,11 @@ public class BulbTypeSinonimes {
         SINONIMES.put("р63", 8);
         SINONIMES.put("r80", 9);
         SINONIMES.put("р80", 9);
+        SINONIMES.put("HPI-T", 10);
+        SINONIMES.put("HQI-T", 10);
+        SINONIMES.put("HPI", 11);
+        SINONIMES.put("HQI-E", 11);//?
+
     }
 
     public static Item addBulbType(Item item) {
