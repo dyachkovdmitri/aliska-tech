@@ -47,36 +47,43 @@ class RegExpParser {
     }
 
     Item addWattage(Item item) {
-        String[] words = item.getUnparsedLine().split(" ");
-        Integer wattage = null;
-        for (int i = 0; i < words.length; i++) {
-            wattage = getWattage(words[i]);
-            if (wattage != null) {
-                item.setWattage(wattage);
+        try {
+            String[] words = item.getWords();
+            Integer wattage = null;
+            for (int i = 0; i < words.length; i++) {
+                wattage = getWattage(words[i]);
+                if (wattage != null) {
+                    item.setWattage(wattage);
+                }
+                if (getSeparatedWattage(words[i])) {
+                    item.setWattage(Integer.parseInt(words[-1]));
+                }
             }
-            if (getSeparatedWattage(words[i])) {
-                item.setWattage(Integer.parseInt(words[-1]));
-            }
+        } catch (Exception e) {
+            item.setWattage(-1);
         }
         return item;
     }
 
     Item addVoltage(Item item) {
-
-        String[] words = item.getUnparsedLine().split(" ");
-        Integer voltage = null;
-        for (int i = 0; i < words.length; i++) {
-            voltage = getVoltage(words[i]);
-            if (voltage != null) {
-                if (voltage == 0) {
+        try {
+            String[] words = item.getWords();
+            Integer voltage = null;
+            for (int i = 0; i < words.length; i++) {
+                voltage = getVoltage(words[i]);
+                if (voltage != null) {
+                    if (voltage == 0) {
+                        item.setVoltage(Integer.parseInt(words[i - 1]));
+                    }
+                    item.setVoltage(voltage);
+                    return item;
+                }
+                if (getSeparatedVoltage(words[i])) {
                     item.setVoltage(Integer.parseInt(words[i - 1]));
                 }
-                item.setVoltage(voltage);
-                return item;
             }
-            if (getSeparatedVoltage(words[i])) {
-                item.setVoltage(Integer.parseInt(words[i - 1]));
-            }
+        } catch (Exception e) {
+            item.setVoltage(-1);
         }
         return item;
     }

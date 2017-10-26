@@ -22,7 +22,7 @@ Ext.define('ALISKA.view.MainPanel', {
                         Ext.create('Ext.TabPanel', {
                         tabBarPosition: 'bottom',
                         layout: 'fit',
-                        width:1000,
+                        width:1900,
                         height:1000,
                         items: tabs
                     })

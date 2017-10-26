@@ -1,9 +1,6 @@
 package com.neiron.neiron.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Item {
@@ -52,6 +49,17 @@ public class Item {
 
     @Column(name = "bulbType")
     Integer bulbType;
+
+    @Transient
+    String[] words;
+
+    public String[] getWords() {
+        return words;
+    }
+
+    public void setWords(String[] words) {
+        this.words = words;
+    }
 
     public Long getCompanyId() {
         return companyId;

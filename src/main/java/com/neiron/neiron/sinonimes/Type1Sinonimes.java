@@ -9,17 +9,18 @@ public class Type1Sinonimes {
 
     static {
         SINONIMES.put("лампа", 1);
+
     }
 
     public static Item addType1(Item item) {
-
-        String[] words = item.getUnparsedLine().split(" ");
+try{
+        String[] words = item.getWords();
         for (int i = 0; i < words.length; i++) {
             if (SINONIMES.get(words[i].toLowerCase()) != null) {
                 item.setType1(SINONIMES.get(words[i].toLowerCase()));
                 return item;
             }
-        }
+        }}catch (Exception e){item.setType1(-1);}
         return item;
     }
 } 
