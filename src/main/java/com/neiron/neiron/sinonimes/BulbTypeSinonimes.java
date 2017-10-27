@@ -57,7 +57,7 @@ public class BulbTypeSinonimes {
         SINONIMES.put("son-t", 13);
 
         SINONIMES.put("hql", 14);
-        SINONIMES.put("ДРЛ", 14);
+        SINONIMES.put("дрл", 14);
         SINONIMES.put("hpl", 14);
         SINONIMES.put("hpl-n", 14);
         SINONIMES.put("pl-s", 15);
@@ -96,7 +96,7 @@ try{
         String[] words = item.getWords();
         for (int i = 0; i < words.length; i++) {
             if (SINONIMES.get(words[i].toLowerCase()) != null) {
-                item.setConnectorType(SINONIMES.get(words[i].toLowerCase()));
+                item.setBulbType(SINONIMES.get(words[i].toLowerCase()));
                 return item;
             }
         }}catch (Exception e){item.setBulbType(-1);}

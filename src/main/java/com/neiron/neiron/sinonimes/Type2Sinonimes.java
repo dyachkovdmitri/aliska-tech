@@ -11,6 +11,7 @@ public class Type2Sinonimes {
         SINONIMES.put("led", 3);
         SINONIMES.put("pled", 3);
         SINONIMES.put("автомобильная", 5);
+        SINONIMES.put("накаливания", 1);
 //        SINONIMES.put("tl-d", 3);
 //        SINONIMES.put("cdm-t", 3);
 //        SINONIMES.put("hqi-t", 3);

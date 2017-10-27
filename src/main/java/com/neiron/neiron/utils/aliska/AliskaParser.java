@@ -3,6 +3,7 @@ package com.neiron.neiron.utils.aliska;
 import com.neiron.neiron.entities.Item;
 import com.neiron.neiron.entities.RequestLine;
 import com.neiron.neiron.sinonimes.*;
+import com.neiron.neiron.standartValues.StandartWattage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,7 +92,7 @@ public class AliskaParser {
             }
 
             if (item.getWattage() == null) {
-                System.out.println(item.getUnparsedLine() + " ----- " + exact);
+              //  System.out.println(item.getUnparsedLine() + " ----- " + exact);
             }
         }
         System.out.println("!!!!!!!!ПРОЦЕНТ РАСПАРШЕННОСТИ!!!!!!!");
@@ -162,6 +163,8 @@ public class AliskaParser {
         if (item.getConnectorType() == null) {
             item = addConnector(item);
         }
+
+        StandartWattage.findStandartWattage(item);
 
         //System.out.println(item);
         return item;
