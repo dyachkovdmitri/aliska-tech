@@ -1,9 +1,6 @@
 package com.neiron.neiron.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class RequestLine {
@@ -12,27 +9,23 @@ public class RequestLine {
     public Long id;
 
     @Column(name = "requestId")
-    Long requestId;
+    private Long requestId;
 
     @Column(name = "unparsedLine")
-    String unparsedLine;
+    private String unparsedLine;
 
     @Column(name = "ammount")
-    Integer ammount;
-
-    public Integer getAmmount() {
-        return ammount;
-    }
-
-    public void setAmmount(Integer ammount) {
-        this.ammount = ammount;
-    }
+    private Integer ammount;
 
     @Column(name = "parsedLine")
-    String parsedLine;
+    private String parsedLine;
 
-    @Column(name = "assortmentId")
-    String assortmentId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "assortmentId")
+    private Item assortmentId;
+
+//    @Column(name = "assortmentId")
+//    private Long assortmentId;
 
     public Long getId() {
         return id;
@@ -66,11 +59,19 @@ public class RequestLine {
         this.parsedLine = parsedLine;
     }
 
-    public String getAssortmentId() {
+    public Item getAssortmentId() {
         return assortmentId;
     }
 
-    public void setAssortmentId(String assortmentId) {
+    public void setAssortmentId(Item assortmentId) {
         this.assortmentId = assortmentId;
+    }
+
+    public Integer getAmmount() {
+        return ammount;
+    }
+
+    public void setAmmount(Integer ammount) {
+        this.ammount = ammount;
     }
 }

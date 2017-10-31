@@ -45,6 +45,8 @@ Ext.define('ALISKA.controller.ItemOfferController', {
         xhr.open("POST", url, true);
         var formData = new FormData();
         formData.append("file", file);
+        console.log(Ext.getCmp("checkboxBrand").getValue());
+        formData.append("brandNotImportant", Ext.getCmp("checkboxBrand").getValue());
         xhr.send(formData);
     }
 });

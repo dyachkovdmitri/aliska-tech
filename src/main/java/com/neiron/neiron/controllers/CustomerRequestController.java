@@ -47,8 +47,6 @@ public class CustomerRequestController {
         BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
             ArrayList<RequestLine> requestLines = requestLineService.getRequestLines(customerRequestId);
-
-
             response.setData(requestLines);
         }
         catch (Exception e) {

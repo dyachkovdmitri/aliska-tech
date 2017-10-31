@@ -91,7 +91,18 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                     self.fireEvent('fileupload', fb);
                 }
             }
-        }];
+        },{
+            xtype:'checkboxfield',
+            boxLabel  : 'БрендНеважен',
+            inputValue: '1',
+            id:'checkboxBrand',
+            change: function () {
+                console.value("checkboxBrand: "+this.value)
+            }
+
+        }
+
+        ];
         this.columns = [{
             header: 'Запрос',
             dataIndex: 'unparsedLine',
@@ -104,6 +115,11 @@ Ext.define('ALISKA.view.GetOfferPanel', {
             {
                 header: 'Распаршено',
                 dataIndex: 'parsedLine',
+                flex: 1
+            },
+            {
+                header: 'Аналог',
+                dataIndex: 'assortmentId.unparsedLine',
                 flex: 1
             }];
         this.callParent(arguments);

@@ -21,7 +21,9 @@ public class AliskaParser {
 
     public ArrayList<RequestLine> parse(ArrayList<RequestLine> lines) {
         for (RequestLine requestLine : lines) {
-            requestLine.setParsedLine(parseLine(null, requestLine.getUnparsedLine()).toString());
+            Item item = parseLine(null, requestLine.getUnparsedLine());
+            requestLine.setParsedLine(item.toString());
+            requestLine.setAssortmentId(searchInPrice.getSimilarItemInPrice(item));
         }
         return lines;
     }
@@ -136,13 +138,10 @@ public class AliskaParser {
         item.setWords(unparsedLine.toLowerCase().replace("/", " ").replace("(", " ").replace(")", " ").split(" "));
         item = firstParse(item);
         item = secondParse(item);
-       if(companyId==null){
-          Long id =  findSimilarItemInPrice(item);
-       }
         return item;
     }
 
-    private Long findSimilarItemInPrice(Item item) {
+    private Item findSimilarItemInPrice(Item item) {
         return searchInPrice.getSimilarItemInPrice(item);
     }
 

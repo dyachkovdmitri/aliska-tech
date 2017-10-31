@@ -50,8 +50,33 @@ public class Item {
     @Column(name = "bulbType")
     Integer bulbType;
 
+    @Column(name = "kelvin")
+    Integer kelvin;
+
+    @Column(name = "lumen")
+    Integer lumen;
+
+    @Column(name = "angle")
+    Integer angle;
+
     @Transient
     String[] words;
+
+    public Integer getKelvin() {
+        return kelvin;
+    }
+
+    public Integer getLumen() {
+        return lumen;
+    }
+
+    public void setLumen(Integer lumen) {
+        this.lumen = lumen;
+    }
+
+    public void setKelvin(Integer kelvin) {
+        this.kelvin = kelvin;
+    }
 
     public String[] getWords() {
         return words;

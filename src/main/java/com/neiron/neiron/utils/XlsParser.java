@@ -33,7 +33,7 @@ public class XlsParser {
     ItemRepo itemRepo;
 
     @Autowired
-    AliskaParser parser;
+    AliskaParser aliskaParser;
 
     public Long parseXlsPrice(MultipartFile file) {
         Company company = new Company();
@@ -73,11 +73,11 @@ public class XlsParser {
 
 
     private ArrayList<Item> parsePrice(Long companyId, ArrayList<RequestLine> lines) {
-        return parser.parsePrice(companyId, lines);
+        return aliskaParser.parsePrice(companyId, lines);
     }
 
     private ArrayList<RequestLine> parse(ArrayList<RequestLine> lines) {
-        return parser.parse(lines);
+        return aliskaParser.parse(lines);
     }
 
     private ArrayList<RequestLine> getRequestLines(Long customerRequestId, MultipartFile file) throws IOException, InvalidFormatException {
