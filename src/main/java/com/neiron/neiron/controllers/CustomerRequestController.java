@@ -27,10 +27,10 @@ public class CustomerRequestController {
 
     @RequestMapping(value = "/loadfile/**", method = RequestMethod.POST, produces ="application/json;charset=UTF-8", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseBody
-    public BaseMsgResponce loadOrder(@RequestParam("file") MultipartFile file) {
+    public BaseMsgResponce loadOrder(@RequestParam("file") MultipartFile file, @RequestParam("brandImportant")Boolean brandImportant) {
         BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
-            response.setMsg(loadFileService.loadOrder(file).toString());
+            response.setMsg(loadFileService.loadOrder(file, brandImportant).toString());
         }
         catch (Exception e) {
             response.setStatus(ResponceStatus.ERROR);

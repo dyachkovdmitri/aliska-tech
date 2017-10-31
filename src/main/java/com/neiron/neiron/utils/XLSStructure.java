@@ -44,24 +44,27 @@ public class XLSStructure {
     private void init(Sheet sheet) {
         Iterator<Row> rowIterator = sheet.rowIterator();
         while (rowIterator.hasNext()) {
+            System.out.println("");
             Row row = rowIterator.next();
             if (row != null) {
                 Iterator<Cell> cellIterator = row.cellIterator();
                 while (cellIterator.hasNext()) { //todo сделать остановку
+                    if(this.amount!=null&&this.beginString!=null&&this.itemName!=null){break;}
                     Cell cell = cellIterator.next();
                     if (cell != null) {
+                        System.out.print(cell+"-");
                         String value = cell.toString();
                         //System.out.print(value + "--");
-                        if (value.toLowerCase().trim().contains("количество") || value.toLowerCase().equalsIgnoreCase("кол-во")) {
+                        if (value.toLowerCase().trim().contains("количество") || value.toLowerCase().contains("кол-во")) {
                             this.amount = cell.getColumnIndex();
                             this.beginString = cell.getRowIndex();
                         }
-                        if (value.toLowerCase().trim().contains("наименование") || value.toLowerCase().equalsIgnoreCase("наим.")) {
+                        if (value.toLowerCase().trim().contains("наименование") || value.toLowerCase().contains("наим.")) {
                             this.itemName = cell.getColumnIndex();
                             this.beginString = cell.getRowIndex();
                         }
 
-                        if (value.toLowerCase().trim().contains("артикул") || value.toLowerCase().equalsIgnoreCase("наим.")) {
+                        if (value.toLowerCase().trim().contains("артикул") || value.toLowerCase().contains("наим.")) {
                             this.code = cell.getColumnIndex();
                             this.beginString = cell.getRowIndex();
                         }

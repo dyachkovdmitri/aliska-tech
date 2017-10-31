@@ -93,7 +93,7 @@ Ext.define('ALISKA.view.GetOfferPanel', {
             }
         },{
             xtype:'checkboxfield',
-            boxLabel  : 'БрендНеважен',
+            boxLabel  : 'БрендВажен',
             inputValue: '1',
             id:'checkboxBrand',
             change: function () {

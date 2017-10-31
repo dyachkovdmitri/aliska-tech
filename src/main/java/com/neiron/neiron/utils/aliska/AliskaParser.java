@@ -19,10 +19,11 @@ public class AliskaParser {
     @Autowired
     SearchInPrice searchInPrice;
 
-    public ArrayList<RequestLine> parse(ArrayList<RequestLine> lines) {
+    public ArrayList<RequestLine> parse(ArrayList<RequestLine> lines, Boolean brandImportant) {
         for (RequestLine requestLine : lines) {
             Item item = parseLine(null, requestLine.getUnparsedLine());
             requestLine.setParsedLine(item.toString());
+            if(!brandImportant){item.setBrand(null);}
             requestLine.setAssortmentId(searchInPrice.getSimilarItemInPrice(item));
         }
         return lines;
@@ -99,7 +100,7 @@ public class AliskaParser {
             }
 
             if (item.getBulbType() == null) {
-                 System.out.println(item.getUnparsedLine() + " ----- " + exact);
+               //  System.out.println(item.getUnparsedLine() + " ----- " + exact);
             }
         }
         System.out.println("!!!!!!!!ПРОЦЕНТ РАСПАРШЕННОСТИ!!!!!!!");

@@ -15,10 +15,10 @@ Ext.define('ALISKA.controller.ItemOfferController', {
     uploadFileAction: function (fb) {
         var self = this;
         var file = fb.fileInputEl.dom.files[0];
-        if (!(/\.(xlsx)$/i).test(file.name)) {
-            Ext.Msg.alert("Неверный формат!", "Возможна загрузка файлов только формата xlsx");
-            return;
-        }
+        // if (!(/\.(xlsx)$/i).test(file.name)) {
+        //     Ext.Msg.alert("Неверный формат!", "Возможна загрузка файлов только формата xlsx");
+        //     return;
+        // }
         self.uploadFile(file);
         fb.fileInputEl.dom.value = '';
     },
@@ -45,8 +45,8 @@ Ext.define('ALISKA.controller.ItemOfferController', {
         xhr.open("POST", url, true);
         var formData = new FormData();
         formData.append("file", file);
-        console.log(Ext.getCmp("checkboxBrand").getValue());
-        formData.append("brandNotImportant", Ext.getCmp("checkboxBrand").getValue());
+        //console.log(Ext.getCmp("checkboxBrand").getValue());
+        formData.append("brandImportant", Ext.getCmp("checkboxBrand").getValue());
         xhr.send(formData);
     }
 });

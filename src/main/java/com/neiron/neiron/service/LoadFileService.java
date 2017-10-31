@@ -32,8 +32,8 @@ public class LoadFileService {
 
 
     @Transactional(rollbackFor = Exception.class)
-    public Long loadOrder(MultipartFile file) throws Exception {
-        return xlsParser.parseXls(file);
+    public Long loadOrder(MultipartFile file, Boolean brandImportant) throws Exception {
+        return xlsParser.parseXls(file, brandImportant);
     }
 
 } 

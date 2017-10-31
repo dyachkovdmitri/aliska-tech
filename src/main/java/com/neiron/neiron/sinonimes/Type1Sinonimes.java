@@ -9,6 +9,8 @@ public class Type1Sinonimes {
 
     static {
         SINONIMES.put("лампа", 1);
+        SINONIMES.put("светильник", 2);
+        SINONIMES.put("прожектор", 2);
 
     }
 

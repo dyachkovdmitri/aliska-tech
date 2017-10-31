@@ -53,7 +53,7 @@ public class XlsParser {
     }
 
 
-    public Long parseXls(MultipartFile file) {
+    public Long parseXls(MultipartFile file, Boolean brandImportant) {
         CustomerRequest customerRequest = new CustomerRequest();
         customerRequest.setStatus(1);
         customerRequest = customerRequestRepo.saveAndFlush(customerRequest);
@@ -63,7 +63,7 @@ public class XlsParser {
             //requestLineRepo.save(requestLines);
             customerRequest.setStatus(2);
             customerRequestRepo.saveAndFlush(customerRequest);
-            requestLines = parse(requestLines);
+            requestLines = parse(requestLines, brandImportant);
             requestLineRepo.save(requestLines);
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,8 +76,8 @@ public class XlsParser {
         return aliskaParser.parsePrice(companyId, lines);
     }
 
-    private ArrayList<RequestLine> parse(ArrayList<RequestLine> lines) {
-        return aliskaParser.parse(lines);
+    private ArrayList<RequestLine> parse(ArrayList<RequestLine> lines, Boolean brandImportant) {
+        return aliskaParser.parse(lines, brandImportant);
     }
 
     private ArrayList<RequestLine> getRequestLines(Long customerRequestId, MultipartFile file) throws IOException, InvalidFormatException {
@@ -88,19 +88,28 @@ public class XlsParser {
         for (int i = 1; i < 30000; i++) {
             Row row = sheet.getRow(structure.getBeginString() + i);
             if (row != null) {
-                String unparsedLine = row.getCell(structure.getItemName()).toString();
-                //System.out.println(unparsedLine);
-                String amountString;
-                Integer ammount;
-                try{
-                    amountString =  row.getCell(structure.getAmount()).toString();
-                ammount = Integer.parseInt(amountString.substring(0, amountString.indexOf(".")));}
-                catch (Exception e){ammount = -1;}
-                RequestLine requestLine = new RequestLine();
-                requestLine.setUnparsedLine(unparsedLine);
-                requestLine.setAmmount(ammount);
-                requestLine.setRequestId(customerRequestId);
-                lines.add(requestLine);
+                String unparsedLine = "Строка не понята";
+                try {
+                    unparsedLine = row.getCell(structure.getItemName()).toString();
+
+                    //System.out.println(unparsedLine);
+                    String amountString;
+                    Integer ammount;
+                    try {
+                        amountString = row.getCell(structure.getAmount()).toString();
+                        ammount = Integer.parseInt(amountString.substring(0, amountString.indexOf(".")));
+                    } catch (Exception e) {
+                        ammount = -1;
+                    }
+                    RequestLine requestLine = new RequestLine();
+                    requestLine.setUnparsedLine(unparsedLine);
+                    requestLine.setAmmount(ammount);
+                    requestLine.setRequestId(customerRequestId);
+                    if (unparsedLine.length() > 3) {
+                        lines.add(requestLine);
+                    }
+                } catch (Exception ignored) {
+                }
             } else {
                 return lines;
             }

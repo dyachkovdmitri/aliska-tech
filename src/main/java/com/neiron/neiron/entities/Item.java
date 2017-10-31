@@ -1,5 +1,7 @@
 package com.neiron.neiron.entities;
 
+import com.neiron.neiron.config.ParserConfigs;
+
 import javax.persistence.*;
 
 @Entity
@@ -251,5 +253,93 @@ public class Item {
         }
         result = result.substring(0, result.length() - 1);
         return result += "}";
+    }
+
+    public Integer compareWith(Item item){
+        Integer index = 0;
+        if (this.getType1() != null&&this.getType1().equals(item.getType1())) {
+            index++;
+        }
+        if (this.getType2() != null&&this.getType2().equals(item.getType2())) {
+            index++;
+        }
+        if (this.getType3() != null&&this.getType3().equals(item.getType3())) {
+            index++;
+        }
+        if (this.getType4() != null&&this.getType4().equals(item.getType4())) {
+            index++;
+        }
+        if (this.getType5() != null&&this.getType5().equals(item.getType5())) {
+            index++;
+        }
+        if (this.getWattage() != null&&this.getWattage().equals(item.getWattage())) {
+            index++;
+        }
+        if (this.getVoltage() != null&&this.getVoltage().equals(item.getVoltage())) {
+            index++;
+        }
+        if (this.getConnectorType() != null&&this.getConnectorType().equals(item.getConnectorType())) {
+            index++;
+        }
+        if (this.getBulbColor() != null&&this.getBulbColor().equals(item.getBulbColor())) {
+            index++;
+        }
+        if (this.getBulbType() != null&&this.getBulbType().equals(item.getBulbType())) {
+            index++;
+        }
+        if (this.getBrand() != null&&this.getBrand().equals(item.getBrand())) {
+            index++;
+        }
+        if (this.getLumen() != null&&this.getLumen().equals(item.getLumen())) {
+            index++;
+        }
+        if (this.getKelvin() != null&&this.getKelvin().equals(item.getKelvin())) {
+            index++;
+        }
+        return index;
+    }
+
+    public Integer getAccuracy(){
+        Integer index = 0;
+        if (this.getType1() != null) {
+            index++;
+        }
+        if (this.getType2() != null) {
+            index++;
+        }
+        if (this.getType3() != null) {
+            index++;
+        }
+        if (this.getType4() != null) {
+            index++;
+        }
+        if (this.getType5() != null) {
+            index++;
+        }
+        if (this.getWattage() != null) {
+            index++;
+        }
+        if (this.getVoltage() != null) {
+            index++;
+        }
+        if (this.getConnectorType() != null) {
+            index++;
+        }
+        if (this.getBulbColor() != null) {
+            index++;
+        }
+        if (this.getBulbType() != null) {
+            index++;
+        }
+        if (this.getBrand() != null) {
+            index++;
+        }
+        if (this.getLumen() != null) {
+            index++;
+        }
+        if (this.getKelvin() != null) {
+            index++;
+        }
+        return index;
     }
 }

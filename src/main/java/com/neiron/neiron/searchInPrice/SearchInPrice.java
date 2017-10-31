@@ -14,6 +14,9 @@ public class SearchInPrice {
     ItemRepo itemRepo;
 
     public Item getSimilarItemInPrice(Item item) {
+        if (item.getAccuracy() < ParserConfigs.minAccuracy) {
+            return null;
+        }
         ArrayList<Item> items = getAllAnalogs(item);
         Item resultItem = null;
         Integer maxIndex = 0;
@@ -24,6 +27,7 @@ public class SearchInPrice {
                 resultItem = item1;
             }
         }
+        System.out.println(item + ",  INDEX = " + maxIndex + ", Количество найденных слов : " + items.size());
         return resultItem;
 
     }
@@ -45,49 +49,8 @@ public class SearchInPrice {
     }
 
     private Integer compareItems(Item priceItem, Item requestItem) {
-        Integer index = 0;
-        if (priceItem.getType1() != null) {
-            index++;
-        }
-        if (priceItem.getType2() != null) {
-            index++;
-        }
-        if (priceItem.getType3() != null) {
-            index++;
-        }
-        if (priceItem.getType4() != null) {
-            index++;
-        }
-        if (priceItem.getType5() != null) {
-            index++;
-        }
-        if (priceItem.getWattage() != null) {
-            index++;
-        }
-        if (priceItem.getVoltage() != null) {
-            index++;
-        }
-        if (priceItem.getConnectorType() != null) {
-            index++;
-        }
-        if (priceItem.getBulbColor() != null) {
-            index++;
-        }
-        if (priceItem.getBulbType() != null) {
-            index++;
-        }
-        if (priceItem.getBrand() != null) {
-            index++;
-        }
-        if (priceItem.getLumen() != null) {
-            index++;
-        }
-        if (priceItem.getKelvin() != null) {
-            index++;
-        }
         Integer wordsIndex = compareWords(priceItem, requestItem.getWords());
-
-        return index + wordsIndex;
+        return priceItem.compareWith(requestItem) + wordsIndex;
     }
 
     private Integer compareWords(Item priceItem, String[] requestWords) {
