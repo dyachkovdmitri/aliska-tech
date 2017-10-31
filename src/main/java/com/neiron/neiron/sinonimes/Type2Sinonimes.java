@@ -10,6 +10,7 @@ public class Type2Sinonimes {
     static {
         SINONIMES.put("led", 3);
         SINONIMES.put("pled", 3);
+        SINONIMES.put("светодиодная", 3);
         SINONIMES.put("автомобильная", 5);
         SINONIMES.put("накаливания", 1);
 //        SINONIMES.put("tl-d", 3);

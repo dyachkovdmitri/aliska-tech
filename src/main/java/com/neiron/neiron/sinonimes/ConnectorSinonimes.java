@@ -16,6 +16,7 @@ public class ConnectorSinonimes {
         SINONIMES.put("е40", 3);
         SINONIMES.put("g13", 4);
         SINONIMES.put("tl-d", 4);
+        SINONIMES.put("lfl", 4);
         SINONIMES.put("г13", 4);
         SINONIMES.put("b15d", 5);
         SINONIMES.put("в15d", 5);

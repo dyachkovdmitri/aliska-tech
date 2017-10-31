@@ -1,7 +1,10 @@
 package com.neiron.neiron.utils.aliska;
 
+import com.neiron.neiron.betweenAttributes.Type4Attribute;
 import com.neiron.neiron.entities.Item;
 import com.neiron.neiron.entities.RequestLine;
+import com.neiron.neiron.repos.ItemRepo;
+import com.neiron.neiron.searchInPrice.SearchInPrice;
 import com.neiron.neiron.sinonimes.*;
 import com.neiron.neiron.standartValues.StandartWattage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,8 @@ import java.util.ArrayList;
 public class AliskaParser {
     @Autowired
     RegExpParser regExpParser;
+    @Autowired
+    SearchInPrice searchInPrice;
 
     public ArrayList<RequestLine> parse(ArrayList<RequestLine> lines) {
         for (RequestLine requestLine : lines) {
@@ -91,8 +96,8 @@ public class AliskaParser {
                 exact++;
             }
 
-            if (item.getWattage() == null) {
-              //  System.out.println(item.getUnparsedLine() + " ----- " + exact);
+            if (item.getBulbType() == null) {
+                 System.out.println(item.getUnparsedLine() + " ----- " + exact);
             }
         }
         System.out.println("!!!!!!!!ПРОЦЕНТ РАСПАРШЕННОСТИ!!!!!!!");
@@ -114,12 +119,12 @@ public class AliskaParser {
 //        System.out.println("countType3: "+ countType3);
 //        System.out.println("countType2: "+ countType2);
 //        System.out.println("countType1: "+ countType1);
-        System.out.println("countBulbType: "+ countBulbType);
-       // System.out.println("countBrand: "+ countBrand);
+        System.out.println("countBulbType: " + countBulbType);
+        // System.out.println("countBrand: "+ countBrand);
         System.out.println("countConnectorType: " + countConnectorType);
-        System.out.println("countWattage: "+ countWattage);
-        System.out.println("countVoltage: "+ countVoltage);
-        System.out.println("Общий: "+ items.size());
+        System.out.println("countWattage: " + countWattage);
+        System.out.println("countVoltage: " + countVoltage);
+        System.out.println("Общий: " + items.size());
     }
 
     private Item parseLine(Long companyId, String unparsedLine) {
@@ -131,8 +136,14 @@ public class AliskaParser {
         item.setWords(unparsedLine.toLowerCase().replace("/", " ").replace("(", " ").replace(")", " ").split(" "));
         item = firstParse(item);
         item = secondParse(item);
-        //System.out.println(item);
+       if(companyId==null){
+          Long id =  findSimilarItemInPrice(item);
+       }
         return item;
+    }
+
+    private Long findSimilarItemInPrice(Item item) {
+        return searchInPrice.getSimilarItemInPrice(item);
     }
 
     private Item firstParse(Item item) {
@@ -148,7 +159,12 @@ public class AliskaParser {
         item = addType2(item);
         item = addType1(item);
         item = useTypeTree(item);
-        //System.out.println(item);
+        item = useDependenciesBetweenAttributes(item);
+        return item;
+    }
+
+    private Item useDependenciesBetweenAttributes(Item item) {
+        Type4Attribute.findType4ByAnotherAttributes(item);
         return item;
     }
 
@@ -157,14 +173,17 @@ public class AliskaParser {
         if (item.getWattage() == null) {
             item = addWattage(item);
         }
+
         if (item.getVoltage() == null) {
             item = addVoltage(item);
         }
         if (item.getConnectorType() == null) {
             item = addConnector(item);
         }
+        if (item.getWattage() == null) {
+            item = StandartWattage.findStandartWattage(item);
+        }
 
-        StandartWattage.findStandartWattage(item);
 
         //System.out.println(item);
         return item;

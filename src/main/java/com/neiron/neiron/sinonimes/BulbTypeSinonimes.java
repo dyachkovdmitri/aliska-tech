@@ -11,18 +11,28 @@ public class BulbTypeSinonimes {
         SINONIMES.put("a55", 1);
         SINONIMES.put("груша", 1);
         SINONIMES.put("грушевидная", 1);
-        SINONIMES.put("a55", 1);
+        SINONIMES.put("а55", 1);
+        SINONIMES.put("a", 1);
+        SINONIMES.put("а", 1);
         SINONIMES.put("b35", 2);
         SINONIMES.put("б35", 2);
+        SINONIMES.put("б", 1);
+        SINONIMES.put("b", 1);
         SINONIMES.put("свеча", 2);
+        SINONIMES.put("св", 2);
+        SINONIMES.put("candle", 2);
         SINONIMES.put("дс", 2);
         SINONIMES.put("дcмт", 2);
         SINONIMES.put("свечка", 2);
         SINONIMES.put("свечевидная", 2);
+        SINONIMES.put("дсмл", 3);
         SINONIMES.put("p45", 3);
         SINONIMES.put("п45", 3);
         SINONIMES.put("шарик", 3);
         SINONIMES.put("дш", 3);
+        SINONIMES.put("дшмт", 3);
+        SINONIMES.put("дшмл", 3);
+
         //SINONIMES.put("шар", 3);
         SINONIMES.put("par38", 4);
         SINONIMES.put("пар38", 4);
@@ -33,6 +43,7 @@ public class BulbTypeSinonimes {
         SINONIMES.put("гриб", 6);
         SINONIMES.put("r50", 7);
         SINONIMES.put("р50", 7);
+        //SINONIMES.put("зк40", 7);
         SINONIMES.put("nr50", 7);
         SINONIMES.put("r63", 8);
         SINONIMES.put("nr63", 8);
@@ -40,11 +51,12 @@ public class BulbTypeSinonimes {
         SINONIMES.put("r80", 9);
         SINONIMES.put("nr80", 9);
         SINONIMES.put("р80", 9);
-        SINONIMES.put("HPI-T", 10);
-        SINONIMES.put("HQI-T", 10);
-        SINONIMES.put("HPI", 11);
-        SINONIMES.put("HQI-E", 11);
-        SINONIMES.put("HQI-E", 11);//?
+        SINONIMES.put("hpi-t", 10);
+        SINONIMES.put("hqi-t", 10);
+        SINONIMES.put("hpi", 11);
+        SINONIMES.put("hpi-e", 11);
+        SINONIMES.put("hqi-e", 11);
+
 
         SINONIMES.put("hwl", 12);
         SINONIMES.put("ml", 12);
@@ -63,20 +75,38 @@ public class BulbTypeSinonimes {
         SINONIMES.put("pl-s", 15);
         SINONIMES.put("pl-c", 16);
         SINONIMES.put("pl-l", 17);
-        SINONIMES.put("TWIST", 18);
-        SINONIMES.put("TORNADO", 18);
-        SINONIMES.put("MR16", 19);
-        SINONIMES.put("MR11", 20);
+        SINONIMES.put("twist", 18);
+        SINONIMES.put("tornado", 18);
+        SINONIMES.put("mr16", 19);
+        SINONIMES.put("мр16", 19);
+        SINONIMES.put("mr11", 20);
+        SINONIMES.put("мр11", 20);
         SINONIMES.put("ple-c", 21);
         SINONIMES.put("cdm-t", 22);
         SINONIMES.put("hci-t", 22);
         SINONIMES.put("mhn-td", 23);
+        SINONIMES.put("mqi-ts", 23);
         SINONIMES.put("cdm-td", 23);
         SINONIMES.put("mhw-td", 23);
-        //SINONIMES.put("hqi-ts", 23);
+        SINONIMES.put("cdm-tc", 24);
+        SINONIMES.put("cdm-r111", 25);
+        SINONIMES.put("tl5", 26);
+        SINONIMES.put("fh", 26);
+        SINONIMES.put("fq", 26);
+        SINONIMES.put("ft4", 26);
+        SINONIMES.put("ft5", 26);
+        SINONIMES.put("tl-d", 27);
+        SINONIMES.put("fl", 27);
+        SINONIMES.put("lfl", 27);
+        SINONIMES.put("l", 27);
+
+
+
+        //SINONIMES.put("кг", 23);
+        //
         //SINONIMES.put("CONCENTRA", 99);
         //SINONIMES.put("дсмл", 99);
-        //SINONIMES.put("cdm-tc", 21);/
+
 ////SINONIMES.put("cdm-r991", 99);
         //SINONIMES.put("ДРИ", 99);
 //        SINONIMES.put("HALOLINE", 99);

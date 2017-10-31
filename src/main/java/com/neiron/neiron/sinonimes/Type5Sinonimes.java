@@ -10,7 +10,10 @@ public class Type5Sinonimes {
     static {
         SINONIMES.put("клл", 1);
         SINONIMES.put("tl-d", 2);
-        SINONIMES.put("DULUX", 1);
+        SINONIMES.put("dulucx", 1);
+        SINONIMES.put("компакт.", 1);
+        SINONIMES.put("компакт", 1);
+        SINONIMES.put("компактная", 1);
 
     }
 

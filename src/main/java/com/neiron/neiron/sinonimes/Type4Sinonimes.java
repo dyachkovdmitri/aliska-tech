@@ -15,7 +15,9 @@ public class Type4Sinonimes {
 //        SINONIMES.put("галоген", 2);
 //        SINONIMES.put("клл", 3);
 //        SINONIMES.put("tl-d", 4);
-        SINONIMES.put("дрл", 2);
+        SINONIMES.put("дрл", 1);
+        SINONIMES.put("днат",3);
+
 //        SINONIMES.put("cdm-t", 5);
 //        SINONIMES.put("hqi-t", 6);
 //        SINONIMES.put("nav-t", 7);

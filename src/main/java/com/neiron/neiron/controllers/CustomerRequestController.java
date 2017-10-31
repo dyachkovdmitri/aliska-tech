@@ -48,6 +48,7 @@ public class CustomerRequestController {
         try {
             ArrayList<RequestLine> requestLines = requestLineService.getRequestLines(customerRequestId);
 
+
             response.setData(requestLines);
         }
         catch (Exception e) {

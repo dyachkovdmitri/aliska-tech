@@ -19,6 +19,14 @@ public class StandartWattage {
         standartWattages.put("connectorType=18", "20, 20, 40");//g5
         standartWattages.put("connectorType=11", "35, 70, 150");//rx7s
         standartWattages.put("connectorType=1, type2=1", "25, 40, 60, 75"); //лампы накаливания
+        standartWattages.put("connectorType=1, type2=1", "25, 40, 60, 75"); //лампы накаливания
+        standartWattages.put("type4=1", "160, 125, 400, 700, 1000"); //дрл
+        standartWattages.put("type4=3", "70, 150, 250, 400"); //днат
+        standartWattages.put("type3=4", "250, 400, 700, 1000"); //дри
+        standartWattages.put("connectorType=12", "500, 1000, 1500, 1000");
+        standartWattages.put("type5=1, connectorType=1", "11, 15, 18, 20, 25");//клл
+        standartWattages.put("type5=1, connectorType=2", "11, 15, 18, 20, 25");//клл
+
     }
 
     public static Item findStandartWattage(Item item) {
