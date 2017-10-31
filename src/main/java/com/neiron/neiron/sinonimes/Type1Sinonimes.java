@@ -15,14 +15,17 @@ public class Type1Sinonimes {
     }
 
     public static Item addType1(Item item) {
-try{
-        String[] words = item.getWords();
-        for (int i = 0; i < words.length; i++) {
-            if (SINONIMES.get(words[i].toLowerCase()) != null) {
-                item.setType1(SINONIMES.get(words[i].toLowerCase()));
-                return item;
+        try {
+            String[] words = item.getWords();
+            for (int i = 0; i < words.length; i++) {
+                if (SINONIMES.get(words[i].toLowerCase()) != null) {
+                    item.setType1(SINONIMES.get(words[i].toLowerCase()));
+                    return item;
+                }
             }
-        }}catch (Exception e){item.setType1(-1);}
+        } catch (Exception e) {
+            item.setType1(-1);
+        }
         return item;
     }
 } 
