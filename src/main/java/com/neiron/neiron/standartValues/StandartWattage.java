@@ -18,8 +18,8 @@ public class StandartWattage {
         standartWattages.put("connectorType=10", "35, 70, 150"); //g12
         standartWattages.put("connectorType=18", "20, 40");//g5
         standartWattages.put("connectorType=11", "35, 70, 150");//rx7s
-        standartWattages.put("connectorType=1, type2=1", "25, 40, 60, 75"); //лампы накаливания
-        standartWattages.put("connectorType=1, type2=1", "25, 40, 60, 75"); //лампы накаливания
+        standartWattages.put("connectorType=1", "25, 40, 60, 75");
+        standartWattages.put("connectorType=2", "25, 40, 60");//лампы накаливания
         standartWattages.put("type4=1", "160, 125, 400, 250, 700, 1000"); //дрл
         standartWattages.put("bulbType=14", "160, 250, 125, 400, 700, 1000");
         standartWattages.put("type4=3", "70, 150, 250, 400"); //днат

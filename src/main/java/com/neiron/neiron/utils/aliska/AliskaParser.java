@@ -186,7 +186,7 @@ public class AliskaParser {
     }
 
     private Item secondParse(Item item) {
-        item.setWords(item.getUnparsedLine().replace("-", " ").replace("/", " ").replace("(", " ").replace(")", " ").replace(",", " ").split(" "));
+        item.setWords(item.getUnparsedLine().replace("-", " ").replace("/", " ").replace("(", " ").replace(")", " ").replace(",", " ").replace(".", " ").split(" "));
         if (item.getWattage() == null) {
             item = addWattage(item);
         }
