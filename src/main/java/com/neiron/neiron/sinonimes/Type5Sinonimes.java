@@ -13,6 +13,15 @@ public class Type5Sinonimes {
         SINONIMES.put("dulucx", 1);
         SINONIMES.put("компакт.", 1);
         SINONIMES.put("компакт", 1);
+        SINONIMES.put("efs", 1);
+        SINONIMES.put("efh", 1);
+        SINONIMES.put("4u", 1);
+        SINONIMES.put("3u", 1);
+        SINONIMES.put("1u", 1);
+        SINONIMES.put("2u", 1);
+        SINONIMES.put("spc", 1);
+        SINONIMES.put("кэл-s", 1);
+
         SINONIMES.put("компактная", 1);
 
     }

@@ -44,7 +44,7 @@ public class XLSStructure {
     private void init(Sheet sheet) {
         Iterator<Row> rowIterator = sheet.rowIterator();
         while (rowIterator.hasNext()) {
-            System.out.println("");
+           // System.out.println("");
             Row row = rowIterator.next();
             if (row != null) {
                 Iterator<Cell> cellIterator = row.cellIterator();
@@ -52,7 +52,7 @@ public class XLSStructure {
                     if(this.amount!=null&&this.beginString!=null&&this.itemName!=null){break;}
                     Cell cell = cellIterator.next();
                     if (cell != null) {
-                        System.out.print(cell+"-");
+                        //System.out.print(cell+"-");
                         String value = cell.toString();
                         //System.out.print(value + "--");
                         if (value.toLowerCase().trim().contains("количество") || value.toLowerCase().contains("кол-во")) {

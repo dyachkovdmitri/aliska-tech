@@ -23,6 +23,7 @@ public class BulbTypeSinonimes {
         SINONIMES.put("candle", 2);
         SINONIMES.put("дс", 2);
         SINONIMES.put("дcмт", 2);
+        SINONIMES.put("дсмт", 2);
         SINONIMES.put("свечка", 2);
         SINONIMES.put("свечевидная", 2);
         SINONIMES.put("дсмл", 3);
@@ -42,13 +43,20 @@ public class BulbTypeSinonimes {
         SINONIMES.put("е50", 6);
         SINONIMES.put("гриб", 6);
         SINONIMES.put("r50", 7);
+        SINONIMES.put("40r50", 7);
+        SINONIMES.put("60r50", 7);
         SINONIMES.put("р50", 7);
         //SINONIMES.put("зк40", 7);
         SINONIMES.put("nr50", 7);
         SINONIMES.put("r63", 8);
+        SINONIMES.put("40r63", 8);
+        SINONIMES.put("60r63", 8);
         SINONIMES.put("nr63", 8);
         SINONIMES.put("р63", 8);
         SINONIMES.put("r80", 9);
+        SINONIMES.put("r80", 9);
+        SINONIMES.put("r80", 9);
+        SINONIMES.put("60r80", 9);
         SINONIMES.put("nr80", 9);
         SINONIMES.put("р80", 9);
         SINONIMES.put("hpi-t", 10);
@@ -66,7 +74,9 @@ public class BulbTypeSinonimes {
 
         SINONIMES.put("днат", 13);
         SINONIMES.put("nav-t", 13);
+        SINONIMES.put("nav", 13);
         SINONIMES.put("son-t", 13);
+        SINONIMES.put("plantastar", 13);
 
         SINONIMES.put("hql", 14);
         SINONIMES.put("дрл", 14);
@@ -96,9 +106,37 @@ public class BulbTypeSinonimes {
         SINONIMES.put("ft4", 26);
         SINONIMES.put("ft5", 26);
         SINONIMES.put("tl-d", 27);
+        SINONIMES.put("tld", 27);
+        SINONIMES.put("l36w", 27);
+        SINONIMES.put("l18w", 27);
+        SINONIMES.put("l58w", 27);
+        SINONIMES.put("лб", 27);
+        SINONIMES.put("лд", 27);
         SINONIMES.put("fl", 27);
         SINONIMES.put("lfl", 27);
         SINONIMES.put("l", 27);
+//        SINONIMES.put("3u", 28);
+//        SINONIMES.put("4u", 28);
+        SINONIMES.put("64760", 29); //1500вт
+        SINONIMES.put("j-78", 29);
+        SINONIMES.put("r7s", 29);
+        SINONIMES.put("j-118", 29);
+        SINONIMES.put("j-189", 29); //1500вт
+        SINONIMES.put("j-254", 29);
+        SINONIMES.put("j78", 29);
+        SINONIMES.put("j118", 29);
+        SINONIMES.put("j189", 29); //1500вт
+        SINONIMES.put("j254", 29);
+        SINONIMES.put("64740", 29);//1000вт
+        SINONIMES.put("64702", 29);
+        SINONIMES.put("64695", 29);
+        SINONIMES.put("64696", 29);
+        SINONIMES.put("64701", 29);
+        SINONIMES.put("кг", 29);
+        SINONIMES.put("r39", 30);
+        SINONIMES.put("25r39", 30);
+        SINONIMES.put("р39", 30);
+
 
 
 

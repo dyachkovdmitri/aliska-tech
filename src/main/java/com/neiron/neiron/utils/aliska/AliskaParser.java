@@ -1,6 +1,6 @@
 package com.neiron.neiron.utils.aliska;
 
-import com.neiron.neiron.betweenAttributes.Type4Attribute;
+import com.neiron.neiron.betweenAttributes.*;
 import com.neiron.neiron.entities.Item;
 import com.neiron.neiron.entities.RequestLine;
 import com.neiron.neiron.repos.ItemRepo;
@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+import static com.neiron.neiron.sinonimes.KelvinSinonimes.addKelvin;
+
 @Service
 public class AliskaParser {
     @Autowired
@@ -20,12 +22,19 @@ public class AliskaParser {
     SearchInPrice searchInPrice;
 
     public ArrayList<RequestLine> parse(ArrayList<RequestLine> lines, Boolean brandImportant) {
+        Float count = 0f;
         for (RequestLine requestLine : lines) {
             Item item = parseLine(null, requestLine.getUnparsedLine());
             requestLine.setParsedLine(item.toString());
-            if(!brandImportant){item.setBrand(null);}
+            if (!brandImportant) {
+                item.setBrand(null);
+            }
             requestLine.setAssortmentId(searchInPrice.getSimilarItemInPrice(item));
+            if (requestLine.getAssortmentId() != null) {
+                count++;
+            }
         }
+        System.out.println("FINDED: " + count / lines.size());
         return lines;
     }
 
@@ -34,12 +43,18 @@ public class AliskaParser {
         for (RequestLine requestLine : lines) {
             items.add(parseLine(companyId, requestLine.getUnparsedLine()));
         }
-  //      outputExactOfParsing(items);
+        outputExactOfParsing(items);
         return items;
 
     }
 
-//    private void outputExactOfParsing(ArrayList<Item> items) {
+    private void outputExactOfParsing(ArrayList<Item> items) {
+        Float count = 0f;
+        for (int i = 0; i < items.size(); i++) {
+            count += items.get(i).getAccuracy();
+        }
+        System.out.println("AVERAGE-ACCURACY=" + count / items.size());
+    }
 //
 //        Integer count = 0;
 //        Integer countVoltage = 0;
@@ -142,10 +157,6 @@ public class AliskaParser {
         return item;
     }
 
-    private Item findSimilarItemInPrice(Item item) {
-        return searchInPrice.getSimilarItemInPrice(item);
-    }
-
     private Item firstParse(Item item) {
         item = addWattage(item);
         item = addVoltage(item);
@@ -157,7 +168,8 @@ public class AliskaParser {
         item = addType4(item);
         item = addType3(item);
         item = addType2(item);
-        item = addType1(item);
+        item = addType1(item); //todo делать статические импорты
+        item = addKelvin(item);
         item = useTypeTree(item);
         item = useDependenciesBetweenAttributes(item);
         return item;
@@ -165,11 +177,16 @@ public class AliskaParser {
 
     private Item useDependenciesBetweenAttributes(Item item) {
         Type4Attribute.findType4ByAnotherAttributes(item);
+        Type5Attribute.findType5ByAnotherAttributes(item);
+        Type3Attribute.findType3ByAnotherAttributes(item);
+        Type2Attribute.findType2ByAnotherAttributes(item);
+        BulbTypeAttribute.findBulbTypeByAnotherAttributes(item);
+        ConnectorTypeAttribute.findConnectorTypeByAnotherAttributes(item);
         return item;
     }
 
     private Item secondParse(Item item) {
-        item.setWords(item.getUnparsedLine().replace("-", " ").replace("/", " ").replace("(", " ").replace(")", " ").split(" "));
+        item.setWords(item.getUnparsedLine().replace("-", " ").replace("/", " ").replace("(", " ").replace(")", " ").replace(",", " ").split(" "));
         if (item.getWattage() == null) {
             item = addWattage(item);
         }
@@ -177,15 +194,37 @@ public class AliskaParser {
         if (item.getVoltage() == null) {
             item = addVoltage(item);
         }
+        if (item.getType5() == null) {
+            item = addType5(item);
+        }
+        if (item.getType4() == null) {
+            item = addType4(item);
+        }
+        if (item.getType3() == null) {
+            item = addType3(item);
+        }
+        if (item.getType2() == null) {
+            item = addType2(item);
+        }
+        if (item.getType1() == null) {
+            item = addType1(item);
+        }
         if (item.getConnectorType() == null) {
             item = addConnector(item);
+        }
+
+        if (item.getBulbType() == null) {
+            item = addBulbType(item);
         }
         if (item.getWattage() == null) {
             item = StandartWattage.findStandartWattage(item);
         }
+        if (item.getKelvin() == null) {
+            item = addKelvin(item);
+        }
+        item = useTypeTree(item);
+        item = useDependenciesBetweenAttributes(item);
 
-
-        //System.out.println(item);
         return item;
     }
 

@@ -8,31 +8,18 @@ import com.neiron.neiron.entities.Item;
 
 import java.util.HashMap;
 
-public class Type3Attribute {
+public class Type2Attribute{
+
     public final static HashMap<String, Integer> dependencies = new HashMap<>();
 
     static {
-        dependencies.put("connectorType=9", 1); //галоген
-        dependencies.put("connectorType=12", 1); //галоген
-        dependencies.put("connectorType=14", 1); //галоген
-        dependencies.put("connectorType=19", 1); //галоген
-        dependencies.put("connectorType=20", 1); //галоген
-        dependencies.put("connectorType=21", 1); //галоген
-        dependencies.put("connectorType=30", 1); //галоген
-        dependencies.put("bulbType=19", 1); //галоген
-        dependencies.put("bulbType=20", 1); //галоген
-        dependencies.put("bulbType=29", 1); //галоген
-        //dependencies.put("bulbType=29", 1); //галоген
+        dependencies.put("bulbColor=1", 1); //накал
+        dependencies.put("bulbColor=2", 1); //накал
+      }
 
-
-
-
-
-    }
-
-    public static Item findType3ByAnotherAttributes(Item item) {
-        if (item.getType3() == null) {
-            item.setType3(findStandartWattages(item));
+    public static Item findType2ByAnotherAttributes(Item item) {
+        if (item.getType2() == null) {
+            item.setType2(findStandartWattages(item));
         }
         return item;
     }

@@ -27,7 +27,7 @@ public class SearchInPrice {
                 resultItem = item1;
             }
         }
-        System.out.println(item + ",  INDEX = " + maxIndex + ", Количество найденных слов : " + items.size());
+        //System.out.println(item + ",  INDEX = " + maxIndex + ", Количество найденных слов : " + items.size());
         return resultItem;
 
     }

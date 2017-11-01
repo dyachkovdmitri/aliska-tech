@@ -14,13 +14,18 @@ public class Type5Attribute {
 
     static {
         standartWattages.put("bulbType=14", 1); //g13=
-        standartWattages.put("bulbType=13", 3);
+        //dependencies.put("BulbTypeAttribute=13", 3); //днат
+        standartWattages.put("bulbType=28", 2);//клл
 
     }
+
     public static Item findType5ByAnotherAttributes(Item item) {
-        item.setType5(findStandartWattages(item));
+        if (item.getType5() == null) {
+            item.setType5(findStandartWattages(item));
+        }
         return item;
     }
+
     private static Integer findStandartWattages(Item item) {
         for (HashMap.Entry entry : standartWattages.entrySet()) {
             String key = entry.getKey().toString();

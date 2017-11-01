@@ -48,13 +48,17 @@ public class ConnectorSinonimes {
         SINONIMES.put("gx24q-4", 27);
         SINONIMES.put("g24d-2", 28);
         SINONIMES.put("g24d-1", 29);
-        SINONIMES.put("gy6.35", 31);
+        SINONIMES.put("gy6.35", 30);
         SINONIMES.put("g10q", 31);
         SINONIMES.put("tl-e", 31);
         SINONIMES.put("gx53", 32);
         SINONIMES.put("k12S", 33);
         SINONIMES.put("g8.5", 34);
         SINONIMES.put("gx8.5", 35);
+        SINONIMES.put("g24q-1", 36);
+        SINONIMES.put("g24q-2", 37);
+        SINONIMES.put("g24q-3", 38);
+        SINONIMES.put("gx24q", 39);
 
         SINONIMES.put("baz15d", 101);
         SINONIMES.put("sv8.5", 102);

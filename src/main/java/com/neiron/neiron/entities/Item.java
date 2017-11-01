@@ -211,46 +211,49 @@ public class Item {
 
     @Override
     public String toString() {
-        String result = "{";
-        if (unparsedLine != null) {
-            result += "'unparsedLine':" + "'" + unparsedLine + "',";
-        }
-        if (type1 != null) {
-            result += "'type1':" + "'" + type1 + "',";
-        }
-        if (type2 != null) {
-            result += "'type2':" + "'" + type2 + "',";
-        }
-        if (type3 != null) {
-            result += "'type3':" + "'" + type3 + "',";
-        }
-        if (type4 != null) {
-            result += "'type4':" + "'" + type4 + "',";
-        }
-        if (type5 != null) {
-            result += "'type5':" + "'" + type5 + "',";
-        }
-        if (wattage != null) {
-            result += "'wattage':" + "'" + wattage + "',";
-        }
-        if (voltage != null) {
-            result += "'voltage':" + "'" + voltage + "',";
-        }
-        if (brand != null) {
-            result += "'brand':" + "'" + brand + "',";
-        }
-        if (seller != null) {
-            result += "'seller':" + "'" + seller + "',";
-        }
-        if (connectorType != null) {
-            result += "'connectorType':" + "'" + connectorType + "',";
-        }
-        if (bulbColor != null) {
-            result += "'bulbColor':" + "'" + bulbColor + "',";
-        }
-        if (bulbType != null) {
-            result += "'bulbType':" + "'" + bulbType + "',";
-        }
+        String result = "!"+this.getAccuracy()+"! {";
+//        if (unparsedLine != null) {
+//            result += "'unparsedLine':" + "'" + unparsedLine + "',";
+//        }
+//        if (type1 != null) {
+//            result += "'type1':" + "'" + type1 + "',";
+//        }
+//        if (type2 != null) {
+//            result += "'type2':" + "'" + type2 + "',";
+//        }
+//        if (type3 != null) {
+//            result += "'type3':" + "'" + type3 + "',";
+//        }
+//        if (type4 != null) {
+//            result += "'type4':" + "'" + type4 + "',";
+//        }
+//        if (type5 != null) {
+//            result += "'type5':" + "'" + type5 + "',";
+//        }
+//        if (wattage != null) {
+//            result += "'wattage':" + "'" + wattage + "',";
+//        }
+//        if (voltage != null) {
+//            result += "'voltage':" + "'" + voltage + "',";
+//        }
+//        if (brand != null) {
+//            result += "'brand':" + "'" + brand + "',";
+//        }
+//        if (seller != null) {
+//            result += "'seller':" + "'" + seller + "',";
+//        }
+//        if (connectorType != null) {
+//            result += "'connectorType':" + "'" + connectorType + "',";
+//        }
+//        if (bulbColor != null) {
+//            result += "'bulbColor':" + "'" + bulbColor + "',";
+//        }
+//        if (bulbType != null) {
+//            result += "'bulbType':" + "'" + bulbType + "',";
+//        }
+//        if (kelvin != null) {
+//            result += "'kelvin':" + "'" + kelvin + "',";
+//        }
         result = result.substring(0, result.length() - 1);
         return result += "}";
     }

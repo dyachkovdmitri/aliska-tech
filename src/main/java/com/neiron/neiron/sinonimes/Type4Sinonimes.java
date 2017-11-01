@@ -16,6 +16,11 @@ public class Type4Sinonimes {
 //        SINONIMES.put("клл", 3);
 //        SINONIMES.put("tl-d", 4);
         SINONIMES.put("дрл", 1);
+        SINONIMES.put("люм.", 2);
+        SINONIMES.put("люм", 2);
+        SINONIMES.put("люминисцентная", 2);
+        SINONIMES.put("люменесцентная", 2);
+        SINONIMES.put("люминесцентная", 2);
         SINONIMES.put("днат",3);
 
 //        SINONIMES.put("cdm-t", 5);

@@ -14,10 +14,10 @@ Ext.define('ALISKA.controller.ItemPriceController', {
     uploadPriceAction: function (fb) {
         var self = this;
         var file = fb.fileInputEl.dom.files[0];
-        if (!(/\.(xlsx)$/i).test(file.name)) {
-            Ext.Msg.alert("Неверный формат!", "Возможна загрузка файлов только формата xlsx");
-            return;
-        }
+        // if (!(/\.(xlsx)$/i).test(file.name)) {
+        //     Ext.Msg.alert("Неверный формат!", "Возможна загрузка файлов только формата xlsx");
+        //     return;
+        // }
         self.uploadPrice(file);
         fb.fileInputEl.dom.value = '';
     },

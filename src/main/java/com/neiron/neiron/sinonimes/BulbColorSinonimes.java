@@ -17,7 +17,6 @@ public class BulbColorSinonimes {
         SINONIMES.put("дcмт", 2);
         SINONIMES.put("мат.", 2);
         SINONIMES.put("мат", 2);
-        SINONIMES.put("tuv", 3);
     }
 
     public static Item addBulbColor(Item item) {

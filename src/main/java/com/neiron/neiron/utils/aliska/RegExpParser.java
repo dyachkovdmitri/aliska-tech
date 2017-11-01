@@ -66,6 +66,14 @@ class RegExpParser {
     }
 
     Item addVoltage(Item item) {
+        item = addVoltage2(item);
+        if(item.getVoltage()!=null&&item.getVoltage()>200&&item.getVoltage()<260){
+            item.setVoltage(220);
+        }
+        return item;
+    }
+
+    Item addVoltage2(Item item) {
         try {
             String[] words = item.getWords();
             Integer voltage = null;

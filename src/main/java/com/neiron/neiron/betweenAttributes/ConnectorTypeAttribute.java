@@ -8,36 +8,21 @@ import com.neiron.neiron.entities.Item;
 
 import java.util.HashMap;
 
-public class Type3Attribute {
+public class ConnectorTypeAttribute {
     public final static HashMap<String, Integer> dependencies = new HashMap<>();
 
     static {
-        dependencies.put("connectorType=9", 1); //галоген
-        dependencies.put("connectorType=12", 1); //галоген
-        dependencies.put("connectorType=14", 1); //галоген
-        dependencies.put("connectorType=19", 1); //галоген
-        dependencies.put("connectorType=20", 1); //галоген
-        dependencies.put("connectorType=21", 1); //галоген
-        dependencies.put("connectorType=30", 1); //галоген
-        dependencies.put("bulbType=19", 1); //галоген
-        dependencies.put("bulbType=20", 1); //галоген
-        dependencies.put("bulbType=29", 1); //галоген
-        //dependencies.put("bulbType=29", 1); //галоген
-
-
-
-
+        dependencies.put("bulbType=27", 4);//g13
+        dependencies.put("bulbType=29", 12);//r7s
+//        dependencies.put("bulbType=13", 3);
 
     }
-
-    public static Item findType3ByAnotherAttributes(Item item) {
-        if (item.getType3() == null) {
-            item.setType3(findStandartWattages(item));
-        }
+    public static Item findConnectorTypeByAnotherAttributes(Item item) {
+        if(item.getConnectorType()==null){
+        item.setConnectorType(useDependencies(item));}
         return item;
     }
-
-    private static Integer findStandartWattages(Item item) {
+    private static Integer useDependencies(Item item) {
         for (HashMap.Entry entry : dependencies.entrySet()) {
             String key = entry.getKey().toString();
             String[] attributes = key.split(", ");
@@ -66,4 +51,4 @@ public class Type3Attribute {
             return jElement.getAsString();
         } else return "dsavbgt43";
     }
-} 
+}
