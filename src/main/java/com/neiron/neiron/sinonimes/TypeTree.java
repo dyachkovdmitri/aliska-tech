@@ -48,6 +48,61 @@ public class TypeTree {
         } catch (Exception e) {
             item.setType1(-1);
         }
+
+        item = addZeros(item);
+        return item;
+    }
+
+    private static Item addZeros(Item item) {
+        if (item.getType1() != null) {
+            for (int i = 0; i < typesTree.length; i++) {
+                Integer[] row = typesTree[i];
+                if (row[0].equals(item.getType1()) && row[1].equals(0)) {
+                    item.setType5(0);
+                    item.setType4(0);
+                    item.setType3(0);
+                    item.setType2(0);
+                    return item;
+                }
+
+            }
+        }
+
+        if (item.getType2() != null) {
+            for (int i = 0; i < typesTree.length; i++) {
+                Integer[] row = typesTree[i];
+                if (row[1].equals(item.getType2()) && row[2].equals(0)) {
+                    item.setType5(0);
+                    item.setType4(0);
+                    item.setType3(0);
+                    return item;
+                }
+
+            }
+        }
+
+        if (item.getType3() != null) {
+            for (int i = 0; i < typesTree.length; i++) {
+                Integer[] row = typesTree[i];
+                if (row[2].equals(item.getType3()) && row[3].equals(0)) {
+                    item.setType5(0);
+                    item.setType4(0);
+                    return item;
+                }
+
+            }
+        }
+
+        if (item.getType4() != null) {
+            for (int i = 0; i < typesTree.length; i++) {
+                Integer[] row = typesTree[i];
+                if (row[3].equals(item.getType4()) && row[4].equals(0)) {
+                    item.setType5(0);
+                    return item;
+                }
+
+            }
+        }
         return item;
     }
 }

@@ -103,7 +103,13 @@ Ext.define('ALISKA.view.GetOfferPanel', {
         }
 
         ];
-        this.columns = [{
+        this.columns = [
+            {
+                header: 'п/п',
+                dataIndex: 'orderNumber',
+                width: 30
+            },
+            {
             header: 'Запрос',
             dataIndex: 'unparsedLine',
             width: 200

@@ -52,7 +52,7 @@ public class ConnectorSinonimes {
         SINONIMES.put("g10q", 31);
         SINONIMES.put("tl-e", 31);
         SINONIMES.put("gx53", 32);
-        SINONIMES.put("k12S", 33);
+        SINONIMES.put("k12s", 33);
         SINONIMES.put("g8.5", 34);
         SINONIMES.put("gx8.5", 35);
         SINONIMES.put("g24q-1", 36);

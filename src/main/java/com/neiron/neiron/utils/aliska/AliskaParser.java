@@ -23,13 +23,16 @@ public class AliskaParser {
 
     public ArrayList<RequestLine> parse(ArrayList<RequestLine> lines, Boolean brandImportant) {
         Float count = 0f;
+        Long i =0l;
         for (RequestLine requestLine : lines) {
+            i++;
             Item item = parseLine(null, requestLine.getUnparsedLine());
             requestLine.setParsedLine(item.toString());
             if (!brandImportant) {
                 item.setBrand(null);
             }
             requestLine.setAssortmentId(searchInPrice.getSimilarItemInPrice(item));
+            requestLine.setOrderNumber(i);
             if (requestLine.getAssortmentId() != null) {
                 count++;
             }
@@ -172,6 +175,8 @@ public class AliskaParser {
         item = addKelvin(item);
         item = useTypeTree(item);
         item = useDependenciesBetweenAttributes(item);
+//        item = useTypeTree(item);
+//        item = useDependenciesBetweenAttributes(item);
         return item;
     }
 
@@ -224,7 +229,8 @@ public class AliskaParser {
         }
         item = useTypeTree(item);
         item = useDependenciesBetweenAttributes(item);
-
+//        item = useTypeTree(item);
+//        item = useDependenciesBetweenAttributes(item);
         return item;
     }
 

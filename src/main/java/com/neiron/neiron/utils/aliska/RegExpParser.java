@@ -20,7 +20,8 @@ class RegExpParser {
                 return Integer.parseInt(wordLC);
             } else return null;
         } catch (Exception e) {
-            return -1;
+            System.out.println("WARTAGE ERROR2"+word);
+            return null;
         }
     }
 
@@ -42,7 +43,9 @@ class RegExpParser {
                 return Integer.parseInt(wordLC);
             } else return null;
         } catch (Exception e) {
-            return -1;
+            System.out.println("VOLTAGE ERROR2"+ word);
+            return null;
+
         }
     }
 
@@ -56,11 +59,12 @@ class RegExpParser {
                     item.setWattage(wattage);
                 }
                 if (getSeparatedWattage(words[i])) {
-                    item.setWattage(Integer.parseInt(words[-1]));
+                    item.setWattage(Integer.parseInt(words[i-1].replace("-", "").replace("/", "").replace("(", "").replace(")", "").replace(",", "").replace(".", "")));
                 }
             }
         } catch (Exception e) {
-            item.setWattage(-1);
+            item.setWattage(null);
+            System.out.println("VATTAGE ERROR"+ item.getUnparsedLine());
         }
         return item;
     }
@@ -87,11 +91,12 @@ class RegExpParser {
                     return item;
                 }
                 if (getSeparatedVoltage(words[i])) {
-                    item.setVoltage(Integer.parseInt(words[i - 1]));
+                    item.setVoltage(Integer.parseInt(words[i - 1].replace("-", "").replace("/", "").replace("(", "").replace(")", "").replace(",", "").replace(".", "")));
                 }
             }
         } catch (Exception e) {
-            item.setVoltage(-1);
+            item.setVoltage(null);
+            System.out.println("VOLTAGE ERROR" + item.getUnparsedLine());
         }
         return item;
     }

@@ -211,24 +211,28 @@ public class Item {
 
     @Override
     public String toString() {
-        String result = "!"+this.getAccuracy()+"! {";
+        String result = "!" + this.getAccuracy() + "! {";
 //        if (unparsedLine != null) {
 //            result += "'unparsedLine':" + "'" + unparsedLine + "',";
 //        }
-        if (type1 != null) {
-            result += "'type1':" + "'" + type1 + "',";
-        }
-        if (type2 != null) {
-            result += "'type2':" + "'" + type2 + "',";
-        }
-        if (type3 != null) {
-            result += "'type3':" + "'" + type3 + "',";
-        }
-        if (type4 != null) {
-            result += "'type4':" + "'" + type4 + "',";
-        }
-        if (type5 != null) {
-            result += "'type5':" + "'" + type5 + "',";
+        if (type1 != null && type2 != null && type3 != null && type4 != null && type5 != null) {
+            result += " Type Detected, ";
+        } else {
+            if (type1 != null) {
+                result += "'type1':" + "'" + type1 + "',";
+            }
+            if (type2 != null) {
+                result += "'type2':" + "'" + type2 + "',";
+            }
+            if (type3 != null) {
+                result += "'type3':" + "'" + type3 + "',";
+            }
+            if (type4 != null) {
+                result += "'type4':" + "'" + type4 + "',";
+            }
+            if (type5 != null) {
+                result += "'type5':" + "'" + type5 + "',";
+            }
         }
         if (wattage != null) {
             result += "'wattage':" + "'" + wattage + "',";
@@ -258,67 +262,68 @@ public class Item {
         return result += "}";
     }
 
-    public Integer compareWith(Item item){
+    public Integer compareWith(Item item) {
         Integer index = 0;
-        if (this.getType1() != null&&this.getType1().equals(item.getType1())) {
+        if (this.getType1() != null && this.getType1().equals(item.getType1())) {
             index++;
         }
-        if (this.getType2() != null&&this.getType2().equals(item.getType2())) {
+        if (this.getType2() != null && this.getType2().equals(item.getType2())) {
             index++;
         }
-        if (this.getType3() != null&&this.getType3().equals(item.getType3())) {
+        if (this.getType3() != null && this.getType3().equals(item.getType3())) {
             index++;
         }
-        if (this.getType4() != null&&this.getType4().equals(item.getType4())) {
+        if (this.getType4() != null && this.getType4().equals(item.getType4())) {
             index++;
         }
-        if (this.getType5() != null&&this.getType5().equals(item.getType5())) {
+        if (this.getType5() != null && this.getType5().equals(item.getType5())) {
             index++;
         }
-        if (this.getWattage() != null&&this.getWattage().equals(item.getWattage())) {
+
+        if (this.getWattage() != null && this.getWattage().equals(item.getWattage())) {
             index++;
         }
-        if (this.getVoltage() != null&&this.getVoltage().equals(item.getVoltage())) {
+        if (this.getVoltage() != null && this.getVoltage().equals(item.getVoltage())) {
             index++;
         }
-        if (this.getConnectorType() != null&&this.getConnectorType().equals(item.getConnectorType())) {
+        if (this.getConnectorType() != null && this.getConnectorType().equals(item.getConnectorType())) {
             index++;
         }
-        if (this.getBulbColor() != null&&this.getBulbColor().equals(item.getBulbColor())) {
+        if (this.getBulbColor() != null && this.getBulbColor().equals(item.getBulbColor())) {
             index++;
         }
-        if (this.getBulbType() != null&&this.getBulbType().equals(item.getBulbType())) {
+        if (this.getBulbType() != null && this.getBulbType().equals(item.getBulbType())) {
             index++;
         }
-        if (this.getBrand() != null&&this.getBrand().equals(item.getBrand())) {
+        if (this.getBrand() != null && this.getBrand().equals(item.getBrand())) {
             index++;
         }
-        if (this.getLumen() != null&&this.getLumen().equals(item.getLumen())) {
+        if (this.getLumen() != null && this.getLumen().equals(item.getLumen())) {
             index++;
         }
-        if (this.getKelvin() != null&&this.getKelvin().equals(item.getKelvin())) {
+        if (this.getKelvin() != null && this.getKelvin().equals(item.getKelvin())) {
             index++;
         }
         return index;
     }
 
-    public Integer getAccuracy(){
+    public Integer getAccuracy() {
         Integer index = 0;
         if (this.getType1() != null) {
             index++;
         }
-        if (this.getType2() != null) {
-            index++;
-        }
-        if (this.getType3() != null) {
-            index++;
-        }
-        if (this.getType4() != null) {
-            index++;
-        }
-        if (this.getType5() != null) {
-            index++;
-        }
+//        if (this.getType2() != null) {
+//            index++;
+//        }
+//        if (this.getType3() != null) {
+//            index++;
+//        }
+//        if (this.getType4() != null) {
+//            index++;
+//        }
+//        if (this.getType5() != null) {
+//            index++;
+//        }
         if (this.getWattage() != null) {
             index++;
         }

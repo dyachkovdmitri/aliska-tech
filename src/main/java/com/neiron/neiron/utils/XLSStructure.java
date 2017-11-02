@@ -57,16 +57,16 @@ public class XLSStructure {
                         //System.out.print(value + "--");
                         if (value.toLowerCase().trim().contains("количество") || value.toLowerCase().contains("кол-во")) {
                             this.amount = cell.getColumnIndex();
-                            this.beginString = cell.getRowIndex();
+                           // this.beginString = cell.getRowIndex();
                         }
-                        if (value.toLowerCase().trim().contains("наименование") || value.toLowerCase().contains("наим.")) {
+                        if (value.toLowerCase().trim().contains("наименование") || value.toLowerCase().contains("наим.") || value.toLowerCase().contains("номенклатура")) {
                             this.itemName = cell.getColumnIndex();
                             this.beginString = cell.getRowIndex();
                         }
 
                         if (value.toLowerCase().trim().contains("артикул") || value.toLowerCase().contains("наим.")) {
                             this.code = cell.getColumnIndex();
-                            this.beginString = cell.getRowIndex();
+                            //this.beginString = cell.getRowIndex();
                         }
 
                     }

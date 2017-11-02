@@ -11,6 +11,9 @@ public class RequestLine {
     @Column(name = "requestId")
     private Long requestId;
 
+    @Column(name = "orderNumber")
+    private Long orderNumber;
+
     @Column(name = "unparsedLine")
     private String unparsedLine;
 
@@ -73,5 +76,13 @@ public class RequestLine {
 
     public void setAmmount(Integer ammount) {
         this.ammount = ammount;
+    }
+
+    public Long getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Long orderNumber) {
+        this.orderNumber = orderNumber;
     }
 }

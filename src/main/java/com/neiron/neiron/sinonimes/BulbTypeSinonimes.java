@@ -137,6 +137,7 @@ public class BulbTypeSinonimes {
         SINONIMES.put("25r39", 30);
         SINONIMES.put("р39", 30);
         SINONIMES.put("75r95", 31);
+        SINONIMES.put("hqi-ts", 32);
 
 
 
