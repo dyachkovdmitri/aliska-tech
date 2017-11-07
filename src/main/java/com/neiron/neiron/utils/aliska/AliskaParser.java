@@ -154,7 +154,7 @@ public class AliskaParser {
         item.setCompanyId(companyId);
 
         item.setUnparsedLine(unparsedLine);
-        item.setWords(unparsedLine.toLowerCase().replace("/", " ").replace("(", " ").replace(")", " ").split(" "));
+        item.setWords(unparsedLine.toLowerCase().replace("/", " ").replace("\"", " ").replace("(", " ").replace(")", " ").split(" "));
         item = firstParse(item);
         item = secondParse(item);
         return item;

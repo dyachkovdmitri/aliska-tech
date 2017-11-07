@@ -77,8 +77,14 @@ public class BulbTypeSinonimes {
         SINONIMES.put("nav", 13);
         SINONIMES.put("son-t", 13);
         SINONIMES.put("plantastar", 13);
+        SINONIMES.put("натр.", 13);
+        SINONIMES.put("натриевая", 13);
 
         SINONIMES.put("hql", 14);
+        SINONIMES.put("ртутная", 14);
+        SINONIMES.put("ртут.", 14);
+        SINONIMES.put("ртутн.", 14);
+        SINONIMES.put("дрл", 14);
         SINONIMES.put("дрл", 14);
         SINONIMES.put("hpl", 14);
         SINONIMES.put("hpl-n", 14);
@@ -137,7 +143,8 @@ public class BulbTypeSinonimes {
         SINONIMES.put("25r39", 30);
         SINONIMES.put("р39", 30);
         SINONIMES.put("75r95", 31);
-        SINONIMES.put("hqi-ts", 32);
+        SINONIMES.put("ц", 32);
+        //SINONIMES.put("hqi-ts", 32);
 
 
 
@@ -160,6 +167,7 @@ public class BulbTypeSinonimes {
 //        SINONIMES.put("FT5", 99);
 
     }
+
 
     public static Item addBulbType(Item item) {
 try{

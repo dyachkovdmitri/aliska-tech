@@ -211,34 +211,13 @@ public class Item {
 
     @Override
     public String toString() {
-        String result = "!" + this.getAccuracy() + "! {";
-//        if (unparsedLine != null) {
-//            result += "'unparsedLine':" + "'" + unparsedLine + "',";
-//        }
-        if (type1 != null && type2 != null && type3 != null && type4 != null && type5 != null) {
-            result += " Type Detected, ";
-        } else {
-            if (type1 != null) {
-                result += "'type1':" + "'" + type1 + "',";
-            }
-            if (type2 != null) {
-                result += "'type2':" + "'" + type2 + "',";
-            }
-            if (type3 != null) {
-                result += "'type3':" + "'" + type3 + "',";
-            }
-            if (type4 != null) {
-                result += "'type4':" + "'" + type4 + "',";
-            }
-            if (type5 != null) {
-                result += "'type5':" + "'" + type5 + "',";
-            }
-        }
+        String result = "!" + this.getAccuracy() + "! ";
+        result += wordType() + type5+""+type4+""+type3+""+type2+""+type1+" ";
         if (wattage != null) {
-            result += "'wattage':" + "'" + wattage + "',";
+            result += wattage + "w ";
         }
         if (voltage != null) {
-            result += "'voltage':" + "'" + voltage + "',";
+            result += voltage + "v ";
         }
         if (brand != null) {
             result += "'brand':" + "'" + brand + "',";
@@ -260,6 +239,27 @@ public class Item {
         }
         result = result.substring(0, result.length() - 1);
         return result += "}";
+    }
+
+    private String wordType() {
+        if (type5 != null && type5.equals(1)) return "TLD";
+        if (type5 != null && type5.equals(2)) return "КЛЛ";
+        if (type4 != null && type4.equals(1)) return "РТУТЬ";
+        if (type4 != null && type4.equals(2)) return "ЛЮМ";
+        if (type4 != null && type4.equals(3)) return "НАТРИЙ";
+        if (type4 != null && type4.equals(5)) return "МЕТАЛЛОГАЛОГЕН";
+        if (type4 != null && type4.equals(6)) return "МЕТАЛЛОГАЛОГЕН";
+        if (type3 != null && type3.equals(1)) return "ГАЛОГЕН";
+        if (type3 != null && type3.equals(4)) return "МЕТАЛЛОГАЛОГЕН";
+        if (type3 != null && type3.equals(3)) return "НАТРИЙ";
+        if (type3 != null && type3.equals(5)) return "КСЕНОН";
+        if (type2 != null && type2.equals(1)) return "НАКАЛ";
+        if (type2 != null && type2.equals(3)) return "LED";
+        if (type2 != null && type2.equals(4)) return "СПЕЦ";
+        if (type2 != null && type2.equals(5)) return "АВТО";
+        if (type1 != null && type1.equals(1)) return "ЛАМПА";
+        if (type1 != null && type1.equals(2)) return "СВЕТИЛЬНИК";
+        else return "";
     }
 
     public Integer compareWith(Item item) {

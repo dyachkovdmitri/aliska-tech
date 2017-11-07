@@ -8,21 +8,22 @@ public class Type5Sinonimes {
     public final static HashMap<String, Integer> SINONIMES = new HashMap<>();
 
     static {
-        SINONIMES.put("клл", 1);
-        SINONIMES.put("tl-d", 2);
-        SINONIMES.put("dulucx", 1);
-        SINONIMES.put("компакт.", 1);
-        SINONIMES.put("компакт", 1);
-        SINONIMES.put("efs", 1);
-        SINONIMES.put("efh", 1);
-        SINONIMES.put("4u", 1);
-        SINONIMES.put("3u", 1);
-        SINONIMES.put("1u", 1);
-        SINONIMES.put("2u", 1);
-        SINONIMES.put("spc", 1);
-        SINONIMES.put("кэл-s", 1);
+        SINONIMES.put("клл", 2);
+        SINONIMES.put("tl-d", 1);
 
-        SINONIMES.put("компактная", 1);
+        SINONIMES.put("dulux", 2);
+        SINONIMES.put("компакт.", 2);
+        SINONIMES.put("компакт", 2);
+        SINONIMES.put("efs", 2);
+        SINONIMES.put("efh", 2);
+        SINONIMES.put("4u", 2);
+        SINONIMES.put("3u", 2);
+        SINONIMES.put("1u", 2);
+        SINONIMES.put("2u", 2);
+        SINONIMES.put("spc", 2);
+        SINONIMES.put("кэл-s", 2);
+
+        SINONIMES.put("компактная", 2);
 
     }
 

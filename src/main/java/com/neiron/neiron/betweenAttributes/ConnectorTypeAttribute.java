@@ -16,6 +16,7 @@ public class ConnectorTypeAttribute {
         dependencies.put("bulbType=29", 12);//r7s
         dependencies.put("bulbType=7", 2);//r7s
         dependencies.put("bulbType=8", 1);//r7s
+        dependencies.put("bulbType=9", 1);//r7s
 //        dependencies.put("bulbType=13", 3);
 
     }

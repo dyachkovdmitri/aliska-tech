@@ -13,7 +13,7 @@ public class Type5Attribute {
     public final static HashMap<String, Integer> standartWattages = new HashMap<>();
 
     static {
-        standartWattages.put("bulbType=14", 1); //g13=
+        // //
         //dependencies.put("BulbTypeAttribute=13", 3); //днат
         standartWattages.put("bulbType=28", 2);//клл
 

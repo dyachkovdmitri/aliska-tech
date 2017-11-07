@@ -26,22 +26,22 @@ public class TypeTree {
     public static Item getTypeTree(Item item) {
         try {
             for (Integer[] aTypesTree : typesTree) {
-                if (Objects.equals(aTypesTree[4], item.getType5())) {
+                if (Objects.equals(aTypesTree[4], item.getType5())&&!item.getType5().equals(0)) {
                     item.setType4(aTypesTree[3]);
                     item.setType3(aTypesTree[2]);
                     item.setType2(aTypesTree[1]);
                     item.setType1(aTypesTree[0]);
                 }
-                if (Objects.equals(aTypesTree[3], item.getType4())) {
+                if (Objects.equals(aTypesTree[3], item.getType4())&&!item.getType4().equals(0)) {
                     item.setType3(aTypesTree[2]);
                     item.setType2(aTypesTree[1]);
                     item.setType1(aTypesTree[0]);
                 }
-                if (Objects.equals(aTypesTree[2], item.getType3())) {
+                if (Objects.equals(aTypesTree[2], item.getType3())&&!item.getType3().equals(0)) {
                     item.setType2(aTypesTree[1]);
                     item.setType1(aTypesTree[0]);
                 }
-                if (Objects.equals(aTypesTree[1], item.getType2())) {
+                if (Objects.equals(aTypesTree[1], item.getType2())&&!item.getType2().equals(0)) {
                     item.setType1(aTypesTree[0]);
                 }
             }
@@ -49,7 +49,7 @@ public class TypeTree {
             item.setType1(-1);
         }
 
-        item = addZeros(item);
+       // item = addZeros(item);
         return item;
     }
 

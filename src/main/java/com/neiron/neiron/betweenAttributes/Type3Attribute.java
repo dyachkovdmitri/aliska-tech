@@ -15,15 +15,20 @@ public class Type3Attribute {
         dependencies.put("connectorType=9", 1); //галоген
         dependencies.put("connectorType=12", 1); //галоген
         dependencies.put("connectorType=14", 1); //галоген
-        dependencies.put("connectorType=19", 1); //галоген
-        dependencies.put("connectorType=20", 1); //галоген
-        dependencies.put("connectorType=21", 1); //галоген
+        //dependencies.put("connectorType=19", 1); //галоген
+        //dependencies.put("connectorType=20", 1); //галоген
+        //dependencies.put("connectorType=21", 1); //галоген
         dependencies.put("connectorType=30", 1); //галоген
         dependencies.put("bulbType=19", 1); //галоген
         dependencies.put("bulbType=20", 1); //галоген
         dependencies.put("bulbType=29", 1); //галоген
         //dependencies.put("bulbType=29", 1); //галоген
-
+        dependencies.put("bulbType=23", 4); //металлоглоген
+        dependencies.put("bulbType=10", 4); //металлоглоген
+        dependencies.put("bulbType=11", 4); //металлоглоген
+        dependencies.put("bulbType=24", 4); //металлоглоген
+        dependencies.put("bulbType=22", 4); //металлоглоген
+        dependencies.put("connectorType=11", 4); //металлоглоген
 
 
 

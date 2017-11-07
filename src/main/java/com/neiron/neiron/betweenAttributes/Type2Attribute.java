@@ -13,8 +13,8 @@ public class Type2Attribute{
     public final static HashMap<String, Integer> dependencies = new HashMap<>();
 
     static {
-        dependencies.put("bulbColor=1", 1); //накал
-        dependencies.put("bulbColor=2", 1); //накал
+        /*dependencies.put("bulbColor=1", 1); //накал
+        dependencies.put("bulbColor=2", 1); //накал*/
       }
 
     public static Item findType2ByAnotherAttributes(Item item) {

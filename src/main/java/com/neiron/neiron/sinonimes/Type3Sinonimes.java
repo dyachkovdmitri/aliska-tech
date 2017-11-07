@@ -8,7 +8,12 @@ public class Type3Sinonimes {
     public final static HashMap<String, Integer> SINONIMES = new HashMap<>();
 
     static {
-          SINONIMES.put("дри", 4);
+        SINONIMES.put("дри", 4);
+        SINONIMES.put("галогенная", 1);
+        SINONIMES.put("галоген", 1);
+        SINONIMES.put("галоген.", 1);
+        SINONIMES.put("гал.", 1);
+
 //        SINONIMES.put("", 1);
 //        SINONIMES.put("галоген.", 2);
 //        SINONIMES.put("галоген", 2);

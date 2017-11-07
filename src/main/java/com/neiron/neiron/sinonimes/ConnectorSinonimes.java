@@ -82,6 +82,12 @@ public class ConnectorSinonimes {
         SINONIMES.put("b22d", 118);
         SINONIMES.put("в22d", 118);
         SINONIMES.put("bay15d",119);
+        SINONIMES.put("1x9.5d",120);
+        SINONIMES.put("1x9,5d",120);
+        SINONIMES.put("1х9.5d",120);
+        SINONIMES.put("1х9,5d",120);
+        SINONIMES.put("p24d",121);
+        SINONIMES.put("b9s",122);
 
 
     }

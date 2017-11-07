@@ -15,7 +15,7 @@ public class Type4Attribute {
     static {
         dependencies.put("bulbType=14", 1); //g13=
         dependencies.put("bulbType=13", 3);
-        dependencies.put("connectorType=14", 2); //2=ртутные
+        //dependencies.put("connectorType=14", 2); //2=ртутные
         dependencies.put("connectorType=4", 2); //2=ртутные
         dependencies.put("connectorType=16", 2); //2=ртутные
         dependencies.put("connectorType=17", 2); //2=ртутные

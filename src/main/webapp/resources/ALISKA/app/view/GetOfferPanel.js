@@ -82,7 +82,7 @@ Ext.define('ALISKA.view.GetOfferPanel', {
             id: 'loadFile21',
             margin: '10 10 10 10',
             buttonOnly: true,
-            padding: 10,
+            padding: 15,
             buttonText: 'Загрузить заявку',
             hideLabel: true,
             name: 'LoadFile',
@@ -91,16 +91,48 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                     self.fireEvent('fileupload', fb);
                 }
             }
-        },{
-            xtype:'checkboxfield',
-            boxLabel  : 'БрендВажен',
-            inputValue: '1',
-            id:'checkboxBrand',
-            change: function () {
-                console.value("checkboxBrand: "+this.value)
-            }
+        }, {
+            xtype: 'button',
+            text: 'Пересчитать заново'
+        },
+            {
+                xtype: 'combobox',
+                fieldLabel: 'Скачать приложение',
+                padding: 15,
+                labelWidth: 45,
+                width: 200
+            },
+            {
+                xtype: 'checkboxfield',
+                boxLabel: 'БрендВажен',
+                padding: 15,
+                inputValue: '1',
+                id: 'checkboxBrand',
+                change: function () {
+                    console.value("checkboxBrand: " + this.value)
+                }
+            },
+            {
+                xtype: 'numberfield',
+                fieldLabel: 'Точность',
+                value: 3,
+                maxValue: 7,
+                minValue: 0,
+                padding: 15,
+                labelWidth: 60,
+                width: 110,
+                //width: 100,
+                id: 'accuracySearch'
 
-        }
+            },
+            {
+                xtype: 'combobox',
+                fieldLabel: 'Прайс',
+                padding: 15,
+                labelWidth: 45,
+                width: 200
+            },
+
 
         ];
         this.columns = [
@@ -110,14 +142,14 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                 width: 30
             },
             {
-            header: 'Запрос',
-            dataIndex: 'unparsedLine',
-            width: 200
-        }, {
-            header: 'Количество',
-            dataIndex: 'ammount',
-            width: "30px"
-        },
+                header: 'Запрос',
+                dataIndex: 'unparsedLine',
+                width: 200
+            }, {
+                header: 'Количество',
+                dataIndex: 'ammount',
+                width: "30px"
+            },
             {
                 header: 'Распаршено',
                 dataIndex: 'parsedLine',
