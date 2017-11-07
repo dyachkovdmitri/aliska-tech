@@ -94,13 +94,12 @@ Ext.define('ALISKA.view.GetOfferPanel', {
         }, {
             xtype: 'button',
             text: 'Пересчитать заново'
+
         },
             {
-                xtype: 'combobox',
-                fieldLabel: 'Скачать приложение',
-                padding: 15,
-                labelWidth: 45,
-                width: 200
+                xtype: 'button',
+                text: 'Скачать ТКП'
+
             },
             {
                 xtype: 'checkboxfield',
