@@ -74,6 +74,7 @@ Ext.define('ALISKA.view.GetOfferPanel', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.getOfferPanel',
     store: 'ItemOfferStore',
+
     //store: store,
     initComponent: function () {
         var self = this;
@@ -93,7 +94,8 @@ Ext.define('ALISKA.view.GetOfferPanel', {
             }
         }, {
             xtype: 'button',
-            text: 'Пересчитать заново'
+            text: 'Пересчитать заново',
+
 
         },
             {
@@ -130,10 +132,16 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                 padding: 15,
                 labelWidth: 45,
                 width: 200
-            },
+            }
 
 
         ];
+
+        this.plugins = [{
+            ptype:'rowediting',
+            clicksToEdit: 1
+        }];
+
         this.columns = [
             {
                 header: 'п/п',
@@ -143,7 +151,11 @@ Ext.define('ALISKA.view.GetOfferPanel', {
             {
                 header: 'Запрос',
                 dataIndex: 'unparsedLine',
-                width: 200
+                width: 200,
+                editor: {
+                    xtype: 'textfield',
+                    allowBlank: false
+                }
             }, {
                 header: 'Количество',
                 dataIndex: 'ammount',
@@ -161,5 +173,6 @@ Ext.define('ALISKA.view.GetOfferPanel', {
             }];
         this.callParent(arguments);
     }
+
 
 });

@@ -12,18 +12,45 @@ Ext.define('ALISKA.view.MainPanel', {
             {
                 xtype: 'container',
                 layout: {
-                    type: 'hbox',
+                    type: 'vbox',
                     align: 'stretch'
                 },
                 margin: '10 10 10 10',
                 combineErrors: true,
                 defaultType: 'textareafield',
                 items: [
-                        Ext.create('Ext.TabPanel', {
+                    {
+                        xtype: 'container',
+                        bodyPadding: 10,
+                        layout: {
+                            type: 'hbox',
+                            align: 'stretch'
+                        },
+                        items: [
+                            {
+                                xtype: 'image',
+                                src: 'https://www.extremetech.com/wp-content/uploads/2015/09/sat-ai-head-640x353.jpg',
+                                mode : 'image',
+                                region: 'west',
+                                padding:10,
+                                width: 100,
+                                height: 100,
+                                style:"border-radius: 30px"
+                            }
+                            , {
+                                xtype: 'textareafield',
+                                padding:10,
+                                preventScrollbars:true,
+                                value:' - Привет!  Я - Алиска.  Я - обучающаяся нейронная сеть. Я делаю счета на лампы. Для этого мне нужен прайс в формате XLS или XLSX или используй уже имеющийся.\r\n  ' +
+                                'Ты можешь больше узнать обо мне в разделе FAQ.\r\n  А пока просто нажми "ЗАГРУЗИТЬ ЗАЯВКУ" и посмотри что получится!\r\n ',
+                                width: 900
+                            }]
+                    },
+                    Ext.create('Ext.TabPanel', {
                         tabBarPosition: 'bottom',
                         layout: 'fit',
-                        width:1900,
-                        height:1000,
+                        width: 1900,
+                        height: 1000,
                         items: tabs
                     })
                 ]
