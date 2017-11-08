@@ -94,9 +94,7 @@ Ext.define('ALISKA.view.GetOfferPanel', {
             }
         }, {
             xtype: 'button',
-            text: 'Пересчитать заново',
-
-
+            text: 'Пересчитать заново'
         },
             {
                 xtype: 'button',

@@ -32,7 +32,7 @@ public class UserController {
     ModelAndView index() {
         System.out.println(userRolesRepo.findAll());
         Map<String, String> model = new HashMap<>();
-        model.put("name", "NIKTO");
+        model.put("name", "");
         return new ModelAndView("index", model);
     }
 //

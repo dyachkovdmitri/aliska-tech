@@ -11,6 +11,7 @@ public class RequestLine {
     @Column(name = "requestId")
     private Long requestId;
 
+
     @Column(name = "orderNumber")
     private Long orderNumber;
 

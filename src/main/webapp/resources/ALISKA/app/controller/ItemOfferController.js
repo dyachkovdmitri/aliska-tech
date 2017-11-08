@@ -38,6 +38,17 @@ Ext.define('ALISKA.controller.ItemOfferController', {
             if (this.status == 200) {
                 var data = JSON.parse(xhr.responseText);
                 document.cookie = "customerRequestId=" + data.msg;
+                var makeId = function () {
+                    var text = "";
+                    var possible = "0123456789";
+                    for (var i = 0; i < 6; i++)
+                        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+                    return text;
+                };
+                if (!document.cookie.includes("customerAliskaId")) {
+                    document.cookie = "customerAliskaId=" + makeId();
+                }
                 Ext.getStore('ItemOfferStore').load();
             }
         };
@@ -47,6 +58,8 @@ Ext.define('ALISKA.controller.ItemOfferController', {
         formData.append("file", file);
         //console.log(Ext.getCmp("checkboxBrand").getValue());
         formData.append("brandImportant", Ext.getCmp("checkboxBrand").getValue());
+        formData.append("accuracy", Ext.getCmp("accuracyNumber").getValue());
+        formData.append("priceItemId", Ext.getCmp("priceItemId").getValue());
         xhr.send(formData);
     }
 });

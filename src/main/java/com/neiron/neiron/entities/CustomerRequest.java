@@ -14,6 +14,9 @@ public class CustomerRequest {
     @Column(name = "dateRequest")
     Long dateRequest;
 
+    @Column(name = "customerAliskaId")
+    Long customerAliskaId;
+
     public Integer getStatus() {
         return status;
     }
@@ -33,6 +36,14 @@ public class CustomerRequest {
 
     public Long getId() {
         return id;
+    }
+
+    public Long getCustomerAliskaId() {
+        return customerAliskaId;
+    }
+
+    public void setCustomerAliskaId(Long customerAliskaId) {
+        this.customerAliskaId = customerAliskaId;
     }
 
     public void setId(Long id) {
