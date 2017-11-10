@@ -5,27 +5,50 @@ Ext.define('ALISKA.view.AddPrice', {
     //store: store,
     initComponent: function () {
         var self = this;
-        this.tbar = [{
-            xtype: 'filefield',
-            id: 'uploadPrice',
-            margin: '10 10 10 10',
-            buttonOnly: true,
-            padding: 10,
-            buttonText: 'Загрузить свой прайс',
-            hideLabel: true,
-            listeners: {
-                'change': function (fb) {
-                    self.fireEvent('fileupload', fb);
-                }
+        this.tbar = [
+            {
+                xtype: 'container',
+                style:"border:1px double gray",
+                padding:4,
+                layout: {
+                    type: 'vbox',
+                    align: 'stretch'
+                },
+                items: [
+                    {
+                        xtype: 'textfield',
+                        fieldLabel:'Имя прайса',
+                        labelWidth: 40,
+                        width: 140
+                    },
+                    {
+                        xtype: 'checkbox',
+                        boxLabel: 'виденВсем',
+                        id: 'allVisible'
+                    }, {
+                        xtype: 'filefield',
+                        id: 'uploadPrice',
+                        //margin: '0 10 10 10',
+                        buttonOnly: true,
+                        padding: 5,
+                        buttonText: 'Загрузить новый прайс',
+                        hideLabel: true,
+                        listeners: {
+                            'change': function (fb) {
+                                self.fireEvent('fileupload', fb);
+                            }
+                        }
+                    }]
             }
-        },
+
+            ,
             {
                 xtype: 'button',
                 text: 'Обновить'
             },
             {
                 xtype: 'combobox',
-                fieldLabel: 'Прайс',
+                fieldLabel: 'Прайсы',
                 padding: 15,
                 labelWidth: 45,
                 width: 200
