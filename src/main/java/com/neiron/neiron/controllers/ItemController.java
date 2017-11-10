@@ -2,9 +2,13 @@ package com.neiron.neiron.controllers;
 
 import com.neiron.neiron.crud.BaseMsgResponce;
 import com.neiron.neiron.crud.ResponceStatus;
+import com.neiron.neiron.entities.Customer;
 import com.neiron.neiron.entities.Item;
+import com.neiron.neiron.entities.Price;
 import com.neiron.neiron.entities.RequestLine;
+import com.neiron.neiron.service.CustomerService;
 import com.neiron.neiron.service.ItemService;
+import com.neiron.neiron.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -18,13 +22,19 @@ import java.util.ArrayList;
 public class ItemController {
     @Autowired
     ItemService itemService;
+    @Autowired
+    PriceService priceService;
+    @Autowired
+    CustomerService customerService;
 
     @RequestMapping(value = "/loadfile/**", method = RequestMethod.POST, produces ="application/json;charset=UTF-8", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseBody
-    public BaseMsgResponce loadOrder(@RequestParam("file") MultipartFile file) {
+    public BaseMsgResponce loadOrder(@RequestParam("file") MultipartFile file,@RequestParam(value="priceName", required=false)String priceName, @RequestParam(value="allVisible", required=false)Boolean allVisible, @CookieValue(value = "customerAliskaId", required=false) Long customerAliskaId) {
         BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
-            response.setMsg(itemService.loadPrice(file).toString());
+            Customer customer = customerService.createOrUpdateCustomer(customerAliskaId);
+            Price price = priceService.createNewPrice(priceName,allVisible, customerAliskaId);
+            response.setMsg(itemService.loadPrice(file, price.getId()).toString());
         }
         catch (Exception e) {
             response.setStatus(ResponceStatus.ERROR);

@@ -25,33 +25,26 @@ Ext.define('ALISKA.controller.ItemOfferController', {
 
     uploadFile: function (file) {
         var xhr = new XMLHttpRequest();
-        // xhr.upload.onprogress = function (event) {
-        //     var percent = event.loaded / event.total;
-        //     if (event.loaded < event.total) {
-        //         Ext.MessageBox.updateProgress(percent, Math.round(percent * 100) + '% обработано');
-        //     } else {
-        //         Ext.MessageBox.wait("Обработка...", 'Загрузка CSV');
-        //     }
-        // };
         var url = "customerRequest/loadfile/";
         xhr.onload = xhr.onerror = function () {
             if (this.status == 200) {
                 var data = JSON.parse(xhr.responseText);
                 document.cookie = "customerRequestId=" + data.msg;
-                var makeId = function () {
-                    var text = "";
-                    var possible = "0123456789";
-                    for (var i = 0; i < 6; i++)
-                        text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-                    return text;
-                };
-                if (!document.cookie.includes("customerAliskaId")) {
-                    document.cookie = "customerAliskaId=" + makeId();
-                }
                 Ext.getStore('ItemOfferStore').load();
             }
         };
+        var makeId = function () {
+            var text = "";
+            var possible = "0123456789";
+            for (var i = 0; i < 6; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        };
+        if (!document.cookie.includes("customerAliskaId")) {
+            document.cookie = "customerAliskaId=" + makeId();
+        }
 
         xhr.open("POST", url, true);
         var formData = new FormData();

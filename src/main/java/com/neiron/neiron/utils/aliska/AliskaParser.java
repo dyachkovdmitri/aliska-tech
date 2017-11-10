@@ -3,7 +3,6 @@ package com.neiron.neiron.utils.aliska;
 import com.neiron.neiron.betweenAttributes.*;
 import com.neiron.neiron.entities.Item;
 import com.neiron.neiron.entities.RequestLine;
-import com.neiron.neiron.repos.ItemRepo;
 import com.neiron.neiron.searchInPrice.SearchInPrice;
 import com.neiron.neiron.sinonimes.*;
 import com.neiron.neiron.standartValues.StandartWattage;
@@ -41,10 +40,10 @@ public class AliskaParser {
         return lines;
     }
 
-    public ArrayList<Item> parsePrice(Long companyId, ArrayList<RequestLine> lines) {
+    public ArrayList<Item> parsePrice(Long priceId, ArrayList<RequestLine> lines) {
         ArrayList<Item> items = new ArrayList<>();
         for (RequestLine requestLine : lines) {
-            items.add(parseLine(companyId, requestLine.getUnparsedLine()));
+            items.add(parseLine(priceId, requestLine.getUnparsedLine()));
         }
         outputExactOfParsing(items);
         return items;
@@ -151,7 +150,7 @@ public class AliskaParser {
     private Item parseLine(Long companyId, String unparsedLine) {
         // if(unparsedLine.equals("")){System.out.print("Ошибка! ");}
         Item item = new Item();
-        item.setCompanyId(companyId);
+        item.setPriceId(companyId);
 
         item.setUnparsedLine(unparsedLine);
         item.setWords(unparsedLine.toLowerCase().replace("/", " ").replace("\"", " ").replace("(", " ").replace(")", " ").split(" "));

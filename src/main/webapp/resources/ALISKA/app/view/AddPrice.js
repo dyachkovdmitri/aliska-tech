@@ -5,11 +5,13 @@ Ext.define('ALISKA.view.AddPrice', {
     //store: store,
     initComponent: function () {
         var self = this;
+
+        //this.title = "Твой первый прайс";
         this.tbar = [
             {
                 xtype: 'container',
-                style:"border:1px double gray",
-                padding:4,
+                style: "border:1px double gray",
+                padding: 4,
                 layout: {
                     type: 'vbox',
                     align: 'stretch'
@@ -17,7 +19,7 @@ Ext.define('ALISKA.view.AddPrice', {
                 items: [
                     {
                         xtype: 'textfield',
-                        fieldLabel:'Имя прайса',
+                        fieldLabel: 'Имя прайса',
                         labelWidth: 40,
                         width: 140
                     },
@@ -48,10 +50,31 @@ Ext.define('ALISKA.view.AddPrice', {
             },
             {
                 xtype: 'combobox',
-                fieldLabel: 'Прайсы',
+                fieldLabel: 'Прайс',
                 padding: 15,
                 labelWidth: 45,
-                width: 200
+                width: 200,
+                displayField: 'priceName',
+                editable: false,
+                store: Ext.getStore('PriceStore')
+
+                //
+                //
+                //     new Ext.data.SimpleStore({
+                //     //model: "ALISKA.model.PriceModel",
+                //     autoLoad: true,
+                //     //data: data,
+                //     proxy: {
+                //         type: 'ajax',
+                //         url: 'price/getAvailable',
+                //         reader: {
+                //             type: 'json',
+                //             root: 'data',
+                //             successProperty: 'status'
+                //         }
+                //     },
+                //     fields: ['id', 'priceName']
+                // })
             }
         ];
         this.columns = [{
@@ -109,6 +132,7 @@ Ext.define('ALISKA.view.AddPrice', {
                 flex: 1
             }
         ];
+        console.log(Ext.getStore('PriceStore'));
         this.callParent(arguments);
     }
 

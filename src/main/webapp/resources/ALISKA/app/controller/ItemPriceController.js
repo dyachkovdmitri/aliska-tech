@@ -1,8 +1,8 @@
 Ext.define('ALISKA.controller.ItemPriceController', {
     extend: 'Ext.app.Controller',
     views: ['AddPrice'],
-    stores: ['ItemPriceStore'],
-    models: ['ItemPriceModel'],
+    stores: ['ItemPriceStore','PriceStore'],
+    models: ['ItemPriceModel','PriceModel'],
     init: function () {
         this.control({
             'addPrice': {
@@ -24,14 +24,6 @@ Ext.define('ALISKA.controller.ItemPriceController', {
 
     uploadPrice: function (file) {
         var xhr = new XMLHttpRequest();
-        // xhr.upload.onprogress = function (event) {
-        //     var percent = event.loaded / event.total;
-        //     if (event.loaded < event.total) {
-        //         Ext.MessageBox.updateProgress(percent, Math.round(percent * 100) + '% обработано');
-        //     } else {
-        //         Ext.MessageBox.wait("Обработка...", 'Загрузка CSV');
-        //     }
-        // };
         var url ="item/loadfile/";
         xhr.onload = xhr.onerror = function () {
             if (this.status == 200) {
@@ -40,6 +32,18 @@ Ext.define('ALISKA.controller.ItemPriceController', {
                 Ext.getStore('ItemOfferStore').load();
             }
         };
+        var makeId = function () {
+            var text = "";
+            var possible = "0123456789";
+            for (var i = 0; i < 6; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        };
+
+        if (!document.cookie.includes("customerAliskaId")) {
+            document.cookie = "customerAliskaId=" + makeId();
+        }
 
         xhr.open("POST", url, true);
         var formData = new FormData();

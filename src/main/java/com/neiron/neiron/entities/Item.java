@@ -37,8 +37,8 @@ public class Item {
     @Column(name = "brand")
     Integer brand;
 
-    @Column(name = "companyId")
-    Long companyId;
+    @Column(name = "priceId")
+    Long priceId;
 
     @Column(name = "seller")
     Integer seller;
@@ -64,6 +64,22 @@ public class Item {
     @Transient
     String[] words;
 
+    public Long getPriceId() {
+        return priceId;
+    }
+
+    public void setPriceId(Long priceId) {
+        this.priceId = priceId;
+    }
+
+    public Integer getAngle() {
+        return angle;
+    }
+
+    public void setAngle(Integer angle) {
+        this.angle = angle;
+    }
+
     public Integer getKelvin() {
         return kelvin;
     }
@@ -86,14 +102,6 @@ public class Item {
 
     public void setWords(String[] words) {
         this.words = words;
-    }
-
-    public Long getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
     }
 
     public Long getId() {

@@ -4,7 +4,7 @@ import com.neiron.neiron.entities.Company;
 import com.neiron.neiron.entities.CustomerRequest;
 import com.neiron.neiron.entities.Item;
 import com.neiron.neiron.entities.RequestLine;
-import com.neiron.neiron.repos.CompanyRepo;
+
 import com.neiron.neiron.repos.CustomerRequestRepo;
 import com.neiron.neiron.repos.ItemRepo;
 import com.neiron.neiron.repos.RequestLineRepo;
@@ -26,8 +26,6 @@ public class XlsParser {
     @Autowired
     RequestLineRepo requestLineRepo;
 
-    @Autowired
-    CompanyRepo companyRepo;
 
     @Autowired
     ItemRepo itemRepo;
@@ -35,22 +33,19 @@ public class XlsParser {
     @Autowired
     AliskaParser aliskaParser;
 
-    public Long parseXlsPrice(MultipartFile file) {
-        Company company = new Company();
-        company.setCompanyName("ПервоеИмя");
-        company = companyRepo.saveAndFlush(company);
-        ArrayList<RequestLine> requestLines = null;
-        ArrayList<Item> items = null;
-        try {
-            requestLines = getRequestLines(null, file);
-            //requestLineRepo.save(requestLines);
-            items = parsePrice(company.getId(), requestLines);
-            itemRepo.save(items);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return company.getId();
-    }
+//    public Long parseXlsPrice(MultipartFile file, Long priceId) {
+//        ArrayList<RequestLine> requestLines = null;
+//        ArrayList<Item> items = null;
+//        try {
+//            requestLines = getRequestLines(null, file);
+//            //requestLineRepo.save(requestLines);
+//            items = parsePrice(priceId, requestLines);
+//            itemRepo.save(items);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return company.getId();
+//    }
 
 
     public Long parseXls(MultipartFile file, Boolean brandImportant) {
@@ -72,15 +67,15 @@ public class XlsParser {
     }
 
 
-    private ArrayList<Item> parsePrice(Long companyId, ArrayList<RequestLine> lines) {
-        return aliskaParser.parsePrice(companyId, lines);
-    }
+//    public ArrayList<Item> parsePrice(Long companyId, ArrayList<RequestLine> lines) {
+//        return aliskaParser.parsePrice(companyId, lines);
+//    }
 
     private ArrayList<RequestLine> parse(ArrayList<RequestLine> lines, Boolean brandImportant) {
         return aliskaParser.parse(lines, brandImportant);
     }
 
-    private ArrayList<RequestLine> getRequestLines(Long customerRequestId, MultipartFile file) throws IOException, InvalidFormatException {
+    public ArrayList<RequestLine> getRequestLines(Long customerRequestId, MultipartFile file) throws IOException, InvalidFormatException {
         Workbook workbook = WorkbookFactory.create(file.getInputStream());
         Sheet sheet = workbook.getSheetAt(0);
         XLSStructure structure = new XLSStructure(sheet);

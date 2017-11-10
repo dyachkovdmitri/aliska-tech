@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public interface ItemRepo extends CrudRepository<Item, Long> {
 
 
-    ArrayList<Item> findByCompanyId(Long companyId);
+    ArrayList<Item> findByPriceId(Long priceId);
 @Query("select i from Item i WHERE " +
         "(:type1 is null OR i.type1 = :type1) and" +
         "(:type2 is null OR i.type2 = :type2) and" +
