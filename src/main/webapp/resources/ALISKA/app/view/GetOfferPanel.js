@@ -101,6 +101,8 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                 text: 'Скачать ТКП'
 
             },
+
+
             {
                 xtype: 'checkboxfield',
                 boxLabel: 'БрендВажен',
@@ -118,16 +120,15 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                 maxValue: 7,
                 minValue: 0,
                 padding: 15,
+                id:'accuracyNumber',
                 labelWidth: 60,
-                width: 110,
-                //width: 100,
-                id: 'accuracySearch'
-
+                width: 110
             },
             {
                 xtype: 'combobox',
                 fieldLabel: 'Прайс',
                 padding: 15,
+                id:'priceItemId',
                 labelWidth: 45,
                 width: 200
             }
