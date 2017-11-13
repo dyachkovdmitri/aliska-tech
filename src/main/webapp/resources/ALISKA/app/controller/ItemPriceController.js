@@ -1,35 +1,33 @@
 Ext.define('ALISKA.controller.ItemPriceController', {
     extend: 'Ext.app.Controller',
-    views: ['AddPrice'],
-    stores: ['ItemPriceStore','PriceStore'],
-    models: ['ItemPriceModel','PriceModel'],
+    views: ['AddPrice', 'PricePanel'],
+    stores: ['ItemPriceStore'],
+    models: ['ItemPriceModel'],
     init: function () {
         this.control({
-            'addPrice': {
+            'pricePanel': {
                 fileupload: this.uploadPriceAction
             }
+
         });
     },
 
     uploadPriceAction: function (fb) {
         var self = this;
         var file = fb.fileInputEl.dom.files[0];
-        // if (!(/\.(xlsx)$/i).test(file.name)) {
-        //     Ext.Msg.alert("Неверный формат!", "Возможна загрузка файлов только формата xlsx");
-        //     return;
-        // }
         self.uploadPrice(file);
         fb.fileInputEl.dom.value = '';
     },
 
     uploadPrice: function (file) {
         var xhr = new XMLHttpRequest();
-        var url ="item/loadfile/";
+        var url = "item/loadfile/";
         xhr.onload = xhr.onerror = function () {
             if (this.status == 200) {
                 var data = JSON.parse(xhr.responseText);
-                document.cookie ="companyId=" + data.msg;
-                Ext.getStore('ItemOfferStore').load();
+                document.cookie = "priceId="+data.msg;
+                console.log(xhr.responseText);
+                Ext.getStore('ItemPriceStore').load();
             }
         };
         var makeId = function () {

@@ -1,6 +1,6 @@
 var tabs = [
     {title: 'Запрос цены', xtype: 'getOfferPanel'},
-    {title: 'Мои прайс-листы', xtype: 'addPrice'}
+    {title: 'Мои прайс-листы', xtype: 'pricePanel'}
 ];
 Ext.define('ALISKA.view.MainPanel', {
     extend: 'Ext.panel.Panel',

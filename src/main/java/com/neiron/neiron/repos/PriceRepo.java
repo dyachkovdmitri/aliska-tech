@@ -10,4 +10,5 @@ import java.util.ArrayList;
 
 public interface PriceRepo extends JpaRepository<Price, Long>, JpaSpecificationExecutor<Long> {
     ArrayList<Price> getByCustomerAliskaId(Long customerAliskaId);
+    ArrayList<Price>  findByCustomerAliskaIdAndId (Long customerAliskaId, Long Id);
 } 

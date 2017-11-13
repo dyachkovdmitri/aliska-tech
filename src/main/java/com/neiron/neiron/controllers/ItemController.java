@@ -46,11 +46,11 @@ public class ItemController {
 
     @RequestMapping(value = "/getPrice", method = RequestMethod.GET, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public BaseMsgResponce getOffer(@CookieValue(value = "companyId") Long customerRequestId) {
+    public BaseMsgResponce getOffer(@CookieValue(value = "customerAliskaId")Long customerAliskaId, @CookieValue(value = "priceId", required = false)  Long priceId) {
 
         BaseMsgResponce<Item> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
-            ArrayList<Item> items = itemService.getPrice(customerRequestId);
+            ArrayList<Item> items = itemService.getPrice(customerAliskaId, priceId);
             response.setData(items);
         }
         catch (Exception e) {

@@ -13,6 +13,7 @@ Ext.define('ALISKA.controller.ItemOfferController', {
     },
 
     uploadFileAction: function (fb) {
+        console.log("afd2");
         var self = this;
         var file = fb.fileInputEl.dom.files[0];
         // if (!(/\.(xlsx)$/i).test(file.name)) {
