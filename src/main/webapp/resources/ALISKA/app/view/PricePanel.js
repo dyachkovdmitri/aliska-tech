@@ -87,8 +87,8 @@ Ext.define('ALISKA.view.PricePanel', {
                         valueField: 'id',
                         listeners:{
                         'select': function(value, record){
-                            document.cookie = "priceId=" + record;
-                            Ext.getStore('ItemOfferStore').load();
+                            document.cookie = "priceId=" + record[0].data.id;
+                            Ext.getStore('ItemPriceStore').load();
                             console.log(record);}
                     }
                     })
