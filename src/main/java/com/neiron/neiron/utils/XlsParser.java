@@ -79,7 +79,7 @@ public class XlsParser {
         Sheet sheet = workbook.getSheetAt(0);
         XLSStructure structure = new XLSStructure(sheet);
         ArrayList<RequestLine> lines = new ArrayList<>();
-        for (int i = 1; i < 30000; i++) {
+        for (int i = 1; i < 10000; i++) {
             Row row = sheet.getRow(structure.getBeginString() + i);
             if (row != null) {
                 String unparsedLine = "Строка не понята";
@@ -88,15 +88,21 @@ public class XlsParser {
 
                     //System.out.println(unparsedLine);
                     String amountString;
-                    Integer ammount;
+                    String priceString;
+                    int ammount;
+                    long price;
                     try {
                         amountString = row.getCell(structure.getAmount()).toString();
-                        ammount = Integer.parseInt(amountString.substring(0, amountString.indexOf(".")));
+                        priceString = row.getCell(structure.getPrice()).toString();
+                        ammount = (int)row.getCell(structure.getAmount()).getNumericCellValue(); //Integer.parseInt(amountString.substring(0, amountString.indexOf(".")));
+                        price = (long)row.getCell(structure.getPrice()).getNumericCellValue(); //todo 111
                     } catch (Exception e) {
-                        ammount = -1;
+                        ammount = 0;
+                        price = 0l;
                     }
                     RequestLine requestLine = new RequestLine();
                     requestLine.setUnparsedLine(unparsedLine);
+                    requestLine.setPrice(price);
                     requestLine.setAmmount(ammount);
                     requestLine.setRequestId(customerRequestId);
                     if (unparsedLine.length() > 3) {

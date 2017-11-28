@@ -12,6 +12,7 @@ public class XLSStructure {
     Integer itemName;
     Integer amount;
     Integer beginString;
+    Integer price;
 
     public Integer getCode() {
         return code;
@@ -19,6 +20,14 @@ public class XLSStructure {
 
     public void setCode(Integer code) {
         this.code = code;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public Integer getItemName() {
@@ -49,7 +58,7 @@ public class XLSStructure {
             if (row != null) {
                 Iterator<Cell> cellIterator = row.cellIterator();
                 while (cellIterator.hasNext()) { //todo сделать остановку
-                    if(this.amount!=null&&this.beginString!=null&&this.itemName!=null){break;}
+                    if(this.amount!=null&&this.beginString!=null&&this.itemName!=null&&this.price!=null){break;}
                     Cell cell = cellIterator.next();
                     if (cell != null) {
                         //System.out.print(cell+"-");
@@ -66,6 +75,10 @@ public class XLSStructure {
 
                         if (value.toLowerCase().trim().contains("артикул") || value.toLowerCase().contains("наим.")) {
                             this.code = cell.getColumnIndex();
+                            //this.beginString = cell.getRowIndex();
+                        }
+                        if (value.toLowerCase().trim().contains("цена") || value.toLowerCase().contains("стоимость")) {
+                            this.price = cell.getColumnIndex();
                             //this.beginString = cell.getRowIndex();
                         }
 
