@@ -1,5 +1,6 @@
 package com.neiron.neiron.service;
 
+import com.neiron.neiron.crud.BaseMsgResponce;
 import com.neiron.neiron.entities.CustomerRequest;
 import com.neiron.neiron.entities.RequestLine;
 import com.neiron.neiron.repos.CustomerRequestRepo;
@@ -32,7 +33,7 @@ public class LoadFileService {
 
 
     @Transactional(rollbackFor = Exception.class)
-    public Long loadOrder(MultipartFile file, Boolean brandImportant) throws Exception {
+    public BaseMsgResponce loadOrder(MultipartFile file, Boolean brandImportant) throws Exception {
         return xlsParser.parseXls(file, brandImportant);
     }
 

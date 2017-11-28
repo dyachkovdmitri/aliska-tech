@@ -40,6 +40,7 @@ public class ItemController {
             response.setStatus(ResponceStatus.ERROR);
             String msg = "При обработке файла произошла ошибка.";
             response.setMsg(msg);
+            response.setAliskaMonolog("Чо за грязь ты мне прислал!? Я ничо не поняла! Над колокной с намиенование напиши \"наименование\"! Над колонкой с количеством которое тебе надо напиши \"кол-во\"! может тогда я пойму! Но это неточно...");
         }
         return response;
     }

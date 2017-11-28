@@ -40,6 +40,7 @@ Ext.define('ALISKA.view.MainPanel', {
                             , {
                                 xtype: 'textareafield',
                                 padding:10,
+                                id:"aliskaMonolog",
                                 style:"border-radius: 5px",
                                 preventScrollbars:true,
                                 value:' - Привет!  Я - Алиска.  Я - обучающаяся нейронная сеть. Я делаю счета на лампы.\r\n  ' +

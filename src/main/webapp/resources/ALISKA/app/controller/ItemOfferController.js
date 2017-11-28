@@ -25,13 +25,14 @@ Ext.define('ALISKA.controller.ItemOfferController', {
     },
 
     uploadFile: function (file) {
+        Ext.getCmp('aliskaMonolog').setValue("Ничего себе какой длинный! Заказ! Уже работаю! Ждите...");
         var xhr = new XMLHttpRequest();
         var url = "customerRequest/loadfile/";
         xhr.onload = xhr.onerror = function () {
             if (this.status == 200) {
                 var data = JSON.parse(xhr.responseText);
                 document.cookie = "customerRequestId=" + data.msg;
-
+                Ext.getCmp('aliskaMonolog').setValue("Фухх! Готово! " + data.aliskaMonolog);
                 Ext.getStore('ItemOfferStore').load();
             }
         };

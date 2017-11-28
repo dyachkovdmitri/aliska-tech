@@ -1,5 +1,7 @@
 package com.neiron.neiron.utils;
 
+import com.neiron.neiron.crud.BaseMsgResponce;
+import com.neiron.neiron.crud.ListComment;
 import com.neiron.neiron.entities.Company;
 import com.neiron.neiron.entities.CustomerRequest;
 import com.neiron.neiron.entities.Item;
@@ -48,22 +50,46 @@ public class XlsParser {
 //    }
 
 
-    public Long parseXls(MultipartFile file, Boolean brandImportant) {
+    public BaseMsgResponce parseXls(MultipartFile file, Boolean brandImportant) {
+        long time = System.currentTimeMillis();
+        BaseMsgResponce responce = new BaseMsgResponce();
+        String aliskaMonolog = "";
         CustomerRequest customerRequest = new CustomerRequest();
         customerRequest.setStatus(1);
         customerRequest = customerRequestRepo.saveAndFlush(customerRequest);
         ArrayList<RequestLine> requestLines = null;
         try {
             requestLines = getRequestLines(customerRequest.getId(), file);
+
+            if (requestLines.size() == 1) {
+                aliskaMonolog += "Фуух! Готово! В заявке найдено " + requestLines.size() + " строкa";
+            } else {
+                aliskaMonolog += "Фуух! Готово! В заявке найдено " + requestLines.size() + " строк";
+            }
             //requestLineRepo.save(requestLines);
             customerRequest.setStatus(2);
             customerRequestRepo.saveAndFlush(customerRequest);
-            requestLines = parse(requestLines, brandImportant);
+            ListComment<RequestLine> lc = parse(requestLines, brandImportant);
+            requestLines = lc.getData();
+            Double count = 0D;
+            for (RequestLine requestLine : requestLines) {
+                if (requestLine.getAssortmentId() != null) {
+                    count++;
+                }
+            }
+            aliskaMonolog+= " Я смогла найти аналоги " + count.toString().substring(0,count.toString().length()-2) + " строкам ";
+            aliskaMonolog+= " Это " + ((Double)(count*100/requestLines.size())).toString().substring(0,3) + "%!";
+            aliskaMonolog+= lc.getAliskaMonolog();
+            aliskaMonolog+= " Я потратила " + (System.currentTimeMillis()-time) + " мс своего ценного времени на обсчет!";
+            aliskaMonolog+= " Это " + ((Long)((System.currentTimeMillis()-time)/requestLines.size())) + " мс на одно наименование! ";
+
             requestLineRepo.save(requestLines);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return customerRequest.getId();
+        responce.setMsg(customerRequest.getId().toString());
+        responce.setAliskaMonolog(aliskaMonolog);
+        return responce;
     }
 
 
@@ -71,7 +97,8 @@ public class XlsParser {
 //        return aliskaParser.parsePrice(companyId, lines);
 //    }
 
-    private ArrayList<RequestLine> parse(ArrayList<RequestLine> lines, Boolean brandImportant) {
+    private ListComment<RequestLine> parse(ArrayList<RequestLine> lines, Boolean brandImportant) {
+
         return aliskaParser.parse(lines, brandImportant);
     }
 

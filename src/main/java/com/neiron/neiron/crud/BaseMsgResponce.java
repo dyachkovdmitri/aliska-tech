@@ -9,6 +9,15 @@ import java.util.ArrayList;
 public class BaseMsgResponce<E> extends BaseResponce {
     private String msg;
     private ArrayList<E> data;
+    private String aliskaMonolog;
+
+    public String getAliskaMonolog() {
+        return aliskaMonolog;
+    }
+
+    public void setAliskaMonolog(String aliskaMonolog) {
+        this.aliskaMonolog = aliskaMonolog;
+    }
 
     public String getMsg() {
         return msg;

@@ -30,7 +30,7 @@ public class CustomerRequestController {
     public BaseMsgResponce loadOrder(@RequestParam("file") MultipartFile file, @RequestParam("brandImportant")Boolean brandImportant) {
         BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
-            response.setMsg(loadFileService.loadOrder(file, brandImportant).toString());
+           return loadFileService.loadOrder(file, brandImportant);
         }
         catch (Exception e) {
             response.setStatus(ResponceStatus.ERROR);
@@ -46,6 +46,7 @@ public class CustomerRequestController {
 
         BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
+            Integer count=0;
             ArrayList<RequestLine> requestLines = requestLineService.getRequestLines(customerRequestId);
             response.setData(requestLines);
         }

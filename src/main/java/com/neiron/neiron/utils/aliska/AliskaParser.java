@@ -1,11 +1,13 @@
 package com.neiron.neiron.utils.aliska;
 
 import com.neiron.neiron.betweenAttributes.*;
+import com.neiron.neiron.crud.ListComment;
 import com.neiron.neiron.entities.Item;
 import com.neiron.neiron.entities.RequestLine;
 import com.neiron.neiron.searchInPrice.SearchInPrice;
 import com.neiron.neiron.sinonimes.*;
 import com.neiron.neiron.standartValues.StandartWattage;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +22,9 @@ public class AliskaParser {
     @Autowired
     SearchInPrice searchInPrice;
 
-    public ArrayList<RequestLine> parse(ArrayList<RequestLine> lines, Boolean brandImportant) {
-        Float count = 0f;
-        Long i =0l;
+    public ListComment<RequestLine> parse(ArrayList<RequestLine> lines, Boolean brandImportant) {
+        Float accuracy = 0f;
+        Long i = 0l;
         for (RequestLine requestLine : lines) {
             i++;
             Item item = parseLine(null, requestLine.getUnparsedLine());
@@ -30,14 +32,20 @@ public class AliskaParser {
             if (!brandImportant) {
                 item.setBrand(null);
             }
+            accuracy += item.getAccuracy();
             requestLine.setAssortmentId(searchInPrice.getSimilarItemInPrice(item));
             requestLine.setOrderNumber(i);
-            if (requestLine.getAssortmentId() != null) {
-                count++;
-            }
+
         }
-        System.out.println("FINDED: " + count / lines.size());
-        return lines;
+        ListComment<RequestLine> result = new ListComment<>();
+        result.setData(lines);
+        try {
+            result.addAliskaMonolog("Средняя точность при парсинге строк составила " + ((Float) (accuracy / lines.size())).toString().substring(0, 3) + ".");
+        } catch (Exception e) {
+            result.addAliskaMonolog("Средняя точность при парсинге строк составила " + accuracy / lines.size() + ".");
+        }
+
+        return result;
     }
 
     public ArrayList<Item> parsePrice(Long priceId, ArrayList<RequestLine> lines) {

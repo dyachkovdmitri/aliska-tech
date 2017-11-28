@@ -1,14 +1,10 @@
 package com.neiron.neiron.repos;
 
 import com.neiron.neiron.entities.Item;
-import com.neiron.neiron.entities.RequestLine;
-import com.neiron.neiron.entities.Test;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 
 public interface ItemRepo extends CrudRepository<Item, Long> {
