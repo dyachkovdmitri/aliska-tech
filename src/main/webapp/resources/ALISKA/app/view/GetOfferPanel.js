@@ -147,7 +147,7 @@ Ext.define('ALISKA.view.GetOfferPanel', {
             {
                 header: 'Запрос',
                 dataIndex: 'unparsedLine',
-                width: 200,
+                width: 450,
                 editor: {
                     xtype: 'textfield',
                     allowBlank: false
@@ -155,18 +155,29 @@ Ext.define('ALISKA.view.GetOfferPanel', {
             }, {
                 header: 'Количество',
                 dataIndex: 'ammount',
-                width: "30px"
-            },
-            {
-                header: 'Распаршено',
-                dataIndex: 'parsedLine',
-                flex: 1
+                width: 40
             },
             {
                 header: 'Аналог',
                 dataIndex: 'assortmentId.unparsedLine',
+                width: 450
+            },
+            {
+                header: 'Цена',
+                dataIndex: 'assortmentId.price',
+                width: 70
+            },
+            {
+                header: 'Сумма',
+                dataIndex: 'sum',
+                width: 70
+            },
+            {
+                header: 'Комментарии',
+                dataIndex: 'parsedLine',
                 flex: 1
-            }];
+            }
+            ];
         this.callParent(arguments);
     }
 

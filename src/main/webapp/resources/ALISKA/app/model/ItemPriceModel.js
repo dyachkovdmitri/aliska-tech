@@ -46,6 +46,10 @@ Ext.define('ALISKA.model.ItemPriceModel', {
             type: 'string'
         },
         {
+            name: 'price',
+            type: 'int'
+        },
+        {
             name: 'wattage',
             type: 'int'
         }, {

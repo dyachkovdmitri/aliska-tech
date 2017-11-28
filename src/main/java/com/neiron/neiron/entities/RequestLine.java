@@ -28,8 +28,38 @@ public class RequestLine {
     @JoinColumn(name = "assortmentId")
     private Item assortmentId;
 
-//    @Column(name = "assortmentId")
-//    private Long assortmentId;
+    @Transient
+    Long price;
+
+    @Transient
+    Long sum;
+
+    @Transient
+    Long accuracy;
+
+    public Long getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(Long accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public Long getSum() {
+        return sum;
+    }
+
+    public void setSum(Long sum) {
+        this.sum = sum;
+    }
 
     public Long getId() {
         return id;

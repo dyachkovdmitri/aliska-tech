@@ -22,6 +22,14 @@ Ext.define('ALISKA.model.ItemOfferModel', {
         {
             name: 'assortmentId.unparsedLine',
             type: 'string'
+        },
+        {
+            name: 'assortmentId.price',
+            type: 'int'
+        },
+        {
+            name: 'sum',
+            type: 'int'
         }
     ]
 });

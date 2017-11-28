@@ -13,6 +13,12 @@ public class Item {
     @Column(name = "unparsedLine")
     String unparsedLine;
 
+    @Column(name = "price")
+    Long price;
+
+    @Column(name = "ammount")
+    Long ammount;
+
     @Column(name = "type1")
     Integer type1;
 
@@ -63,6 +69,22 @@ public class Item {
 
     @Transient
     String[] words;
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public Long getAmmount() {
+        return ammount;
+    }
+
+    public void setAmmount(Long ammount) {
+        this.ammount = ammount;
+    }
 
     public Long getPriceId() {
         return priceId;
