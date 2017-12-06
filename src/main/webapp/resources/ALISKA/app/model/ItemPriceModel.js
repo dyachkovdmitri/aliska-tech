@@ -14,6 +14,14 @@ Ext.define('ALISKA.model.ItemPriceModel', {
             type: 'int'
         },
         {
+            name: 'ammount',
+            type: 'int'
+        },
+        {
+            name: 'price',
+            type: 'int'
+        },
+        {
             name: 'companyId',
             type: 'int'
         },

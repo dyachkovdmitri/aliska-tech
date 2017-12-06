@@ -12,6 +12,38 @@ public class Customer {
     String name;
     @Column(name = "ammount")
     Integer ammount;
+    @Column(name = "random")
+    String random;
+    @Column(name = "checked")
+    Boolean checked;
+    @Column(name = "aliskaMonolog")
+    String aliskaMonolog;
+
+
+
+    public String getRandom() {
+        return random;
+    }
+
+    public String getAliskaMonolog() {
+        return aliskaMonolog;
+    }
+
+    public void setAliskaMonolog(String aliskaMonolog) {
+        this.aliskaMonolog = aliskaMonolog;
+    }
+
+    public void setRandom(String random) {
+        this.random = random;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
 
     public Long getId() {
         return id;
@@ -35,5 +67,15 @@ public class Customer {
 
     public void setAmmount(Integer ammount) {
         this.ammount = ammount;
+    }
+
+
+    @Override
+    public String toString() {
+        return name+","+ammount;
+    }
+
+    public void addAliskaMonolog(String monolog) {
+        this.setAliskaMonolog(this.getAliskaMonolog()+monolog);
     }
 }

@@ -1,6 +1,8 @@
 package com.neiron.neiron.crud;
 
-public class BaseResponce {
+import javax.servlet.http.HttpServletResponse;
+
+public class BaseResponce  {
     private ResponceStatus status;
     public static final BaseResponce OK = new BaseResponce(ResponceStatus.OK);
     public static final BaseResponce ERROR = new BaseResponce(ResponceStatus.ERROR);

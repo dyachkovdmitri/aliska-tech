@@ -32,7 +32,7 @@ public class SearchInPrice {
 
     }
 
-    private ArrayList<Item> getAllAnalogs(Item item) {
+    public ArrayList<Item> getAllAnalogs(Item item) {
         return itemRepo.getItemByAttributes(
                 item.getType1(),
                 item.getType2(),
@@ -44,11 +44,11 @@ public class SearchInPrice {
                 item.getConnectorType(),
                 item.getBulbColor(),
                 item.getBulbType(),
-                item.getBrand());
-
+                item.getBrand(),
+                item.getKelvin());
     }
 
-    private Integer compareItems(Item priceItem, Item requestItem) {
+    public Integer compareItems(Item priceItem, Item requestItem) {
         Integer wordsIndex = compareWords(priceItem, requestItem.getWords());
         return priceItem.compareWith(requestItem) + wordsIndex;
     }

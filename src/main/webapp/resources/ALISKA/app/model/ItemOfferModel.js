@@ -8,6 +8,10 @@ Ext.define('ALISKA.model.ItemOfferModel', {
             type: 'int'
         },
         {
+            name: 'accuracy',
+            type: 'int'
+        },
+        {
             name: 'parsedLine',
             type: 'string'
         },

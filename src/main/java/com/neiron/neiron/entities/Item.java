@@ -271,7 +271,7 @@ public class Item {
         return result += "}";
     }
 
-    private String wordType() {
+    public String wordType() {
         if (type5 != null && type5.equals(1)) return "TLD";
         if (type5 != null && type5.equals(2)) return "КЛЛ";
         if (type4 != null && type4.equals(1)) return "РТУТЬ";

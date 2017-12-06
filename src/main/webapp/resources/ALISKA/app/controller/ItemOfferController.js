@@ -32,7 +32,8 @@ Ext.define('ALISKA.controller.ItemOfferController', {
             if (this.status == 200) {
                 var data = JSON.parse(xhr.responseText);
                 document.cookie = "customerRequestId=" + data.msg;
-                Ext.getCmp('aliskaMonolog').setValue("Фухх! Готово! " + data.aliskaMonolog);
+                //Ext.getCmp('aliskaMonolog').setValue("Фухх! Готово! " + data.aliskaMonolog);
+                Ext.speak();
                 Ext.getStore('ItemOfferStore').load();
             }
         };

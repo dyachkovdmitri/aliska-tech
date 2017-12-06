@@ -23,7 +23,8 @@ public interface ItemRepo extends CrudRepository<Item, Long> {
         "(:connectorType is null OR i.connectorType = :connectorType) and" +
         "(:bulbColor is null OR i.bulbColor = :bulbColor) and" +
         "(:bulbType is null OR i.bulbType = :bulbType) and" +
-        "(:brand is null OR i.brand = :brand)")
+        "(:brand is null OR i.brand = :brand) and "+
+        "(:kelvin is null OR i.kelvin = :kelvin)")
     ArrayList<Item> getItemByAttributes(@Param("type1")Integer type1,
                                         @Param("type2")Integer type2,
                                         @Param("type3")Integer type3,
@@ -34,7 +35,8 @@ public interface ItemRepo extends CrudRepository<Item, Long> {
                                         @Param("connectorType")Integer connectorType,
                                         @Param("bulbColor")Integer bulbColor,
                                         @Param("bulbType") Integer bulbType,
-                                        @Param("brand") Integer brand);
+                                        @Param("brand") Integer brand,
+                                        @Param("kelvin") Integer kelvin);
    // select * from item i where (CASE WHEN 1 is null THEN true ELSE i.connector_type = 1 END)
 
 }

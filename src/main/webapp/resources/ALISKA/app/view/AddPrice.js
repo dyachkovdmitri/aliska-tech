@@ -1,6 +1,7 @@
 Ext.define('ALISKA.view.AddPrice', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.addPrice',
+    height:700,
     store: 'ItemPriceStore',
     initComponent: function () {
 
@@ -8,7 +9,19 @@ Ext.define('ALISKA.view.AddPrice', {
             header: 'Наименование',
             dataIndex: 'unparsedLine',
             flex: 1
-        }, {
+        },
+            {
+                header: 'Цена',
+                dataIndex: 'price',
+                flex: 1
+            },
+            {
+                header: 'Количество',
+                dataIndex: 'ammount',
+                flex: 1
+            },
+
+            {
             header: 'V',
             dataIndex: 'voltage',
             flex: 1

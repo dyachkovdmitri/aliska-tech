@@ -117,7 +117,7 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                 maxValue: 7,
                 minValue: 0,
                 padding: 15,
-                id:'accuracyNumber',
+                id: 'accuracyNumber',
                 labelWidth: 60,
                 width: 110
             },
@@ -125,7 +125,7 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                 xtype: 'combobox',
                 fieldLabel: 'Прайс',
                 padding: 15,
-                id:'priceItemId',
+                id: 'priceItemId',
                 labelWidth: 45,
                 width: 200
             }
@@ -134,11 +134,28 @@ Ext.define('ALISKA.view.GetOfferPanel', {
         ];
 
         this.plugins = [{
-            ptype:'rowediting',
+            ptype: 'rowediting',
             clicksToEdit: 1
         }];
 
         this.columns = [
+
+            {
+                header: ' ',
+                dataIndex: 'accuracy',
+                width: 10,
+                renderer: function (value, metaData, record, row, col, store, gridView) {
+                    if (value < 3) {
+                        metaData.style = 'background:red;';
+                    } else if (value == 3) {
+                        metaData.style = 'background:yellow;';
+                    }
+                    else if (value > 3) {
+                        metaData.style = 'background:green;';
+                    } // background color of pink, font color of red, and font-weight of bold//color:#D10000;font-weight:bold;
+                    return value;
+                }
+            },
             {
                 header: 'п/п',
                 dataIndex: 'orderNumber',
@@ -152,10 +169,6 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                     xtype: 'textfield',
                     allowBlank: false
                 }
-            }, {
-                header: 'Количество',
-                dataIndex: 'ammount',
-                width: 40
             },
             {
                 header: 'Аналог',
@@ -163,21 +176,29 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                 width: 450
             },
             {
+                header: 'Количество',
+                dataIndex: 'ammount',
+                width: 70,
+                renderer: function (value){return value+" шт."}
+            },
+            {
                 header: 'Цена',
                 dataIndex: 'assortmentId.price',
-                width: 70
+                width: 70,
+                renderer: function (value){return value+" р."}
             },
             {
                 header: 'Сумма',
                 dataIndex: 'sum',
-                width: 70
+                width: 70,
+                renderer: function (value){return value+" р."}
             },
             {
                 header: 'Комментарии',
                 dataIndex: 'parsedLine',
                 flex: 1
             }
-            ];
+        ];
         this.callParent(arguments);
     }
 

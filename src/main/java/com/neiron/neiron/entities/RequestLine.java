@@ -34,14 +34,14 @@ public class RequestLine {
     @Transient
     Long sum;
 
-    @Transient
-    Long accuracy;
+    @Column(name = "accuracy")
+    Integer accuracy;
 
-    public Long getAccuracy() {
+    public Integer getAccuracy() {
         return accuracy;
     }
 
-    public void setAccuracy(Long accuracy) {
+    public void setAccuracy(Integer accuracy) {
         this.accuracy = accuracy;
     }
 

@@ -8,6 +8,7 @@ import com.neiron.neiron.entities.Price;
 import com.neiron.neiron.entities.RequestLine;
 import com.neiron.neiron.service.CustomerService;
 import com.neiron.neiron.service.ItemService;
+import com.neiron.neiron.service.LoadFileService;
 import com.neiron.neiron.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -26,6 +27,8 @@ public class ItemController {
     PriceService priceService;
     @Autowired
     CustomerService customerService;
+    @Autowired
+    LoadFileService loadFileService;
 
     @RequestMapping(value = "/loadfile/**", method = RequestMethod.POST, produces ="application/json;charset=UTF-8", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseBody
@@ -44,6 +47,22 @@ public class ItemController {
         }
         return response;
     }
+
+//    @RequestMapping(value = "/checkWord/**", method = RequestMethod.POST, produces ="application/json;charset=UTF-8")
+//    @ResponseBody
+//    public BaseMsgResponce checkWord(@RequestParam("word") String word) {
+//        BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
+//        try {
+//            response.setAliskaMonolog(loadFileService.checkWord(word));
+//        }
+//        catch (Exception e) {
+//            response.setStatus(ResponceStatus.ERROR);
+//            String msg = "При обработке файла произошла ошибка.";
+//            response.setMsg(msg);
+//            response.setAliskaMonolog("Чо за грязь ты мне прислал!? Я ничо не поняла! Над колокной с намиенование напиши \"наименование\"! Над колонкой с количеством которое тебе надо напиши \"кол-во\"! может тогда я пойму! Но это неточно...");
+//        }
+//        return response;
+//    }
 
     @RequestMapping(value = "/getPrice", method = RequestMethod.GET, produces ="application/json;charset=UTF-8")
     @ResponseBody

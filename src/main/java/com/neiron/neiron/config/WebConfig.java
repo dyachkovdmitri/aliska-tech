@@ -5,6 +5,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
@@ -56,6 +59,25 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
         driverManagerDataSource.setPassword("postgres");
         return driverManagerDataSource;
     }
+
+//    @Bean
+//    public JavaMailSender getJavaMailSender() {
+//        JavaMailSender mailSender = new JavaMailSenderImpl();
+//        mailSender.setHost("smtp.gmail.com");
+//        mailSender.setPort(587);
+//
+//        mailSender.setUsername("my.gmail@gmail.com");
+//        mailSender.setPassword("password");
+//
+//        Properties props;
+//        props = mailSender.getJavaMailProperties();
+//        props.put("mail.transport.protocol", "smtp");
+//        props.put("mail.smtp.auth", "true");
+//        props.put("mail.smtp.starttls.enable", "true");
+//        props.put("mail.debug", "true");
+//
+//        return mailSender;
+//    }
 
 //    @Bean //Creates our EntityManagerFactory
 //    public AbstractEntityManagerFactoryBean entityManagerFactory(DataSource dataSource){

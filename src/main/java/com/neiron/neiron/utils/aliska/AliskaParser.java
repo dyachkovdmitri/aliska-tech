@@ -29,6 +29,7 @@ public class AliskaParser {
             i++;
             Item item = parseLine(null, requestLine.getUnparsedLine());
             requestLine.setParsedLine(item.toString());
+            requestLine.setAccuracy(item.getAccuracy());
             if (!brandImportant) {
                 item.setBrand(null);
             }
@@ -40,9 +41,9 @@ public class AliskaParser {
         ListComment<RequestLine> result = new ListComment<>();
         result.setData(lines);
         try {
-            result.addAliskaMonolog("Средняя точность при парсинге строк составила " + ((Float) (accuracy / lines.size())).toString().substring(0, 3) + ".");
+            result.addAliskaMonolog(" Средняя точность при парсинге строк составила " + ((Float) (accuracy / lines.size())).toString().substring(0, 3) + ".");
         } catch (Exception e) {
-            result.addAliskaMonolog("Средняя точность при парсинге строк составила " + accuracy / lines.size() + ".");
+            result.addAliskaMonolog(" Средняя точность при парсинге строк составила " + accuracy / lines.size() + ".");
         }
 
         return result;
@@ -51,7 +52,10 @@ public class AliskaParser {
     public ArrayList<Item> parsePrice(Long priceId, ArrayList<RequestLine> lines) {
         ArrayList<Item> items = new ArrayList<>();
         for (RequestLine requestLine : lines) {
-            items.add(parseLine(priceId, requestLine.getUnparsedLine()));
+            Item item = parseLine(priceId, requestLine.getUnparsedLine());
+            item.setPrice(requestLine.getPrice());
+            item.setAmmount((long)requestLine.getAmmount());
+            items.add(item);
         }
         outputExactOfParsing(items);
         return items;
@@ -155,7 +159,7 @@ public class AliskaParser {
 //        System.out.println("Общий: " + items.size());
 //    }
 
-    private Item parseLine(Long companyId, String unparsedLine) {
+    public Item parseLine(Long companyId, String unparsedLine) {
         // if(unparsedLine.equals("")){System.out.print("Ошибка! ");}
         Item item = new Item();
         item.setPriceId(companyId);

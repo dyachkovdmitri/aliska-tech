@@ -32,6 +32,12 @@ public class BaseMsgResponce<E> extends BaseResponce {
         this.msg = msg;
     }
 
+    public void setData(E data) {
+        ArrayList<E> datas = new ArrayList<>();
+        datas.add(data);
+        this.data = datas;
+    }
+
     public ArrayList<E> getData() {
         return data;
     }

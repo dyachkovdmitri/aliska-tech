@@ -16,15 +16,32 @@ public class CustomerService {
     CustomerRepo customerRepo;
 
     public Customer createOrUpdateCustomer(Long customerAliskaId) {
-        Customer customer = customerRepo.findById(customerAliskaId);
-        if (customer == null) {
+        Customer customer;
+        if (customerAliskaId != null) {
+            customer = customerRepo.findById(customerAliskaId);
+            customer.setAmmount(customer.getAmmount() + 1);
+        } else {
             customer = new Customer();
             customer.setAmmount(1);
-            customer.setId(customerAliskaId);
+            customer.setId((long)(Math.random() * Long.MAX_VALUE));
             customer.setName(createCustomerName());
-        } else customer.setAmmount(customer.getAmmount() + 1);
+            customer.setAliskaMonolog("- Привет! Я - Алиска. Я - обучающаяся нейронная сеть. Я делаю счета на лампы. Ты можешь больше узнать обо мне в разделе FAQ. А пока просто нажми ЗАГРУЗИТЬ ЗАЯВКУ и посмотри что получится!");
+            customer.addAliskaMonolog("</br> - Пока ты не зарегался, я буду называть тебя " + customer.getName() + "!");
+        }
         return customerRepo.saveAndFlush(customer);
     }
+
+    public Customer getMe(Long customerAliskaId) {
+        return customerRepo.findById(customerAliskaId);
+    }
+
+    public Customer addMonolog(String monolog, Long customerAliskaId) {
+        Customer customer = customerRepo.findById(customerAliskaId);
+        String oldMonolog = customer.getAliskaMonolog();
+        customer.setAliskaMonolog(oldMonolog + "<br/>" + monolog);
+        return customerRepo.saveAndFlush(customer);
+    }
+
 
     private String createCustomerName() {
         String[] names = new String[]{"папик", "няшка", "бигБэн", "скорострел", "пусик", "лапа", "зайка", "мерседес", "бмв", "лапа", "насяльника"};

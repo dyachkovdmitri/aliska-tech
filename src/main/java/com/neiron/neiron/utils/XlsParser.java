@@ -79,7 +79,7 @@ public class XlsParser {
         Sheet sheet = workbook.getSheetAt(0);
         XLSStructure structure = new XLSStructure(sheet);
         ArrayList<RequestLine> lines = new ArrayList<>();
-        for (int i = 1; i < 10000; i++) {
+        for (int i = 1; i < 5000; i++) {
             Row row = sheet.getRow(structure.getBeginString() + i);
             if (row != null) {
                 String unparsedLine = "Строка не понята";
