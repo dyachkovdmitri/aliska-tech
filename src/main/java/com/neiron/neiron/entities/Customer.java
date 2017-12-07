@@ -18,8 +18,17 @@ public class Customer {
     Boolean checked;
     @Column(name = "aliskaMonolog")
     String aliskaMonolog;
+    @Column(name = "email")
+    String email;
 
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getRandom() {
         return random;
@@ -77,5 +86,11 @@ public class Customer {
 
     public void addAliskaMonolog(String monolog) {
         this.setAliskaMonolog(this.getAliskaMonolog()+monolog);
+    }
+
+    public void addAliskaMonolog(Boolean Aliska, String monolog) {
+        if(Aliska){
+        this.setAliskaMonolog(this.getAliskaMonolog()+"<div><i>Алиска: </i><b>"+monolog+"</b></div>");} else
+        {this.setAliskaMonolog(this.getAliskaMonolog()+"<div><i>Я: </i>"+monolog+" </div>");}
     }
 }

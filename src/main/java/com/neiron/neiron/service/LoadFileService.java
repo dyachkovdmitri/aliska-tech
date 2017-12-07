@@ -97,7 +97,7 @@ public class LoadFileService {
                 if(i>6){result+="...";break;}
             }
             customer.addAliskaMonolog("<div> <br/> Я:"+ word+"</div>");
-            customer.addAliskaMonolog("<div><br/> <b>Алиска:"+ result+"<b></div>");
+            customer.addAliskaMonolog("<div><br/> <b>Алиска:"+ result+"</b></div>");
             customerRepo.saveAndFlush(customer);
             return result;
 

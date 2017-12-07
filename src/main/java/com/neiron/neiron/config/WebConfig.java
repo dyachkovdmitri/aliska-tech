@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -58,6 +59,20 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
         driverManagerDataSource.setUsername("postgres");
         driverManagerDataSource.setPassword("postgres");
         return driverManagerDataSource;
+    }
+
+    @Bean
+    MailSender mailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);//587
+        mailSender.setUsername("dyachkovdmitri@gmail.com");
+        mailSender.setPassword("Shikaka1");
+        Properties prop = new Properties();
+        prop.setProperty("mail.smtp.auth", "true");
+        prop.setProperty("mail.smtp.starttls.enable", "true");
+        mailSender.setJavaMailProperties(prop);
+        return mailSender;
     }
 
 //    @Bean

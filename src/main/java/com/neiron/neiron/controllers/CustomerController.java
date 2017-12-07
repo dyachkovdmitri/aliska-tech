@@ -20,11 +20,12 @@ public class CustomerController {
     @RequestMapping(value = "/getCookie", method = RequestMethod.GET)
     @ResponseBody
     public BaseMsgResponce getMe2(@CookieValue(value = "customerAliskaId", required = false) Long customerAliskaId) {
-        BaseMsgResponce<Customer> response = new BaseMsgResponce(ResponceStatus.OK, customerAliskaId.toString());
+
+        BaseMsgResponce<Customer> response;
         if (customerAliskaId == null) {
             Customer customer = customerService.createOrUpdateCustomer(null);
-            response.setMsg(customer.getId().toString());
-        }
+            response = new BaseMsgResponce(ResponceStatus.OK, customer.getId().toString());
+        } else response = new BaseMsgResponce(ResponceStatus.OK, customerAliskaId.toString());
         return response;
     }
 
@@ -33,11 +34,11 @@ public class CustomerController {
     public BaseMsgResponce getMe(@CookieValue(value = "customerAliskaId") Long customerAliskaId) {
 
         BaseMsgResponce<Customer> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
+
         if (customerAliskaId == null) {
             Customer customer = customerService.createOrUpdateCustomer(null);
             response.setAliskaMonolog(customer.getAliskaMonolog());
             response.setMsg(customer.toString());
-
         } else {
             try {
                 Customer customer = customerService.getMe(customerAliskaId);

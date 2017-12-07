@@ -1,9 +1,13 @@
 package com.neiron.neiron.service;
 
+import com.neiron.neiron.entities.Customer;
+import com.neiron.neiron.repos.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.mail.*;
 import javax.mail.internet.AddressException;
@@ -14,43 +18,34 @@ import java.util.Properties;
 
 @Service
 public class RegService {
-    static final String ENCODING = "UTF-8";
+    @Autowired
+    MailSender mailSender;
 
-    public String registerNewCustomer(String word) throws MessagingException {
-        try {
-            word = "hi_dmitro@rambler.ru";
-            String smtpHost = "smtp.gmail.com";
-            String login = "dyachkovdmitri@gmail.com";
-            String password = "Shikaka1";
-            String smtpPort = "587";
-            Authenticator auth = new MyAuthEmail(login, password);
 
-            Properties props = System.getProperties();
-            props.put("mail.transport.protocol", "smtp");
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.debug", "true");
-            props.put("mail.smtp.port", smtpPort);
-            props.put("mail.smtp.host", smtpHost);
-            props.put("mail.mime.charset", ENCODING);
+    @Autowired
+    CustomerRepo customerRepo;
 
-//            Properties props = System.getProperties();
-//            props.put("mail.pop3.port", popPort);
-//            props.put("mail.pop3.host", smtpHost);
-//            //props.put("mail.smtp.auth", "true");
-//            props.put("mail.mime.charset", ENCODING);
-            Session session = Session.getDefaultInstance(props, auth);
 
-            Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress("d@d.ru"));
-            msg.setRecipient(Message.RecipientType.TO, new InternetAddress(word.trim()));
-            msg.setSubject("sdf");
-            msg.setText("sdf");
-            Transport.send(msg);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public String registerNewCustomer(String word, Long customerAliskaId) {
+        Customer customer = customerRepo.findById(customerAliskaId);
+        word = word.trim();
+        try{
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom("aliska@d.ru");
+        mailMessage.setTo("hi_dmitro@rambler.ru");
+        mailMessage.setSubject("Привет, "+customer.getName()+", это Алиска! Приятно познакомиться! Если я не узнаю тебя, введи этот номер в окно диалога в следующий раз : " +customer.getId());
+        mailMessage.setText("Привет");
+        mailSender.send(mailMessage);
+            customer.setEmail(word);
+            customer.addAliskaMonolog("<div> "+word+"</div>");
+            customer.addAliskaMonolog("<div> Приятно познакомиться! На "+word+" я отправила уникальный номер. В следующий раз, если я тебя не узнаю просто введи его сюда. Или снова напиши свою почту и я отправлю тебе его снова.</div>");
+            customerRepo.saveAndFlush(customer);
+        } catch (Exception e){
+            customer.addAliskaMonolog("<div>На "+word+" не удалось отправить письмо</div>");
+            customerRepo.saveAndFlush(customer);
         }
-        return "dsf";
+        return "жопа";
 
     }
 }
+

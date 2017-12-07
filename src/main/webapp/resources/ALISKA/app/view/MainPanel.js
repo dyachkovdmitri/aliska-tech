@@ -38,18 +38,24 @@ Ext.define('ALISKA.view.MainPanel', {
                             //     height: 100,
                             //     style: "border-radius: 30px"
                             // }
-                            , {
-                                xtype: 'displayfield',
+                            {xtype: 'panel',
+                                width: 630,
                                 padding: 10,
-                                height: 600,
-                                border: true,
-                                width: 600,
-                                id: "aliskaMonolog",
-                                style: "border-radius: 5px",
-                                // preventScrollbars: true,
-                                value: ' - Привет!  Я - Алиска.  Я - обучающаяся нейронная сеть. Я делаю счета на лампы.\r\n  ' +
-                                'Ты можешь больше узнать обо мне в разделе FAQ.\r\n \r\n  А пока просто нажми "ЗАГРУЗИТЬ ЗАЯВКУ" и посмотри что получится!',
-                            },
+                                autoScroll:true,
+                                height:800,
+                                items:[
+                                    {
+                                        xtype: 'displayfield',
+                                        padding: 10,
+                                        border: true,
+                                        width: 500,
+                                        id: "aliskaMonolog",
+                                        //style: "border-radius: 5px",
+                                        // preventScrollbars: true,
+                                        value: ' - Привет!  Я - Алиска.  Я - обучающаяся нейронная сеть. Я делаю счета на лампы.\r\n  ' +
+                                        'Ты можешь больше узнать обо мне в разделе FAQ.\r\n \r\n  А пока просто нажми "ЗАГРУЗИТЬ ЗАЯВКУ" и посмотри что получится!',
+                                    },]},
+
                             {
                                 xtype: 'container',
                                 width: 500,
@@ -82,7 +88,7 @@ Ext.define('ALISKA.view.MainPanel', {
                                                         url: '/customer/getCookie',
                                                         async: false,
                                                         success: function (response, options) {
-                                                            document.cookie= "customerAliskaId="+JSON.parse(response.responseText).msg;
+                                                            document.cookie = "customerAliskaId=" + JSON.parse(response.responseText).msg;
                                                         }
                                                     })
                                                 }
@@ -113,50 +119,61 @@ Ext.define('ALISKA.view.MainPanel', {
                                         },
                                         preventScrollbars: true,
                                         value: '',
-                                        enableKeyEvents:true,
+                                        enableKeyEvents: true,
                                         flex: 1,
                                         listeners: {
-                                            'keypress': function(field,event){
-                                                if (event.getKey() == event.ENTER&&field.value.length > 3){
+                                            'keypress': function (field, event) {
+                                                if (event.getKey() == event.ENTER && field.value.length > 3) {
                                                     console.log(document.cookie);
                                                     console.log(field);
-                                                            Ext.Ajax.request({
-                                                                url: '/monolog/checkWord',
-                                                                params: {
-                                                                    word: field.value
-                                                                },
-                                                                success: function (response, options) {
-                                                                    Ext.speak();
-                                                                    // var aliskaMonolog = JSON.parse(response.responseText).aliskaMonolog;
-                                                                    // Ext.getCmp('aliskaMonolog').setValue(aliskaMonolog);
-                                                                },
-                                                                failure: function (response, options) {
-                                                                    console.log(response);
-                                                                }
-                                                            })
+                                                    Ext.Ajax.request({
+                                                        url: '/monolog/checkWord',
+                                                        params: {
+                                                            word: field.value
+                                                        },
+                                                        success: function (response, options) {
+                                                            Ext.speak();
+                                                            // var aliskaMonolog = JSON.parse(response.responseText).aliskaMonolog;
+                                                            // Ext.getCmp('aliskaMonolog').setValue(aliskaMonolog);
+                                                        },
+                                                        failure: function (response, options) {
+                                                            console.log(response);
+                                                        }
+                                                    })
                                                 }
-                                            // 'change': function (first, value) {
-                                            //     if (value.length > 3)
-                                            //         Ext.Ajax.request({
-                                            //             url: '/monolog/checkWord',
-                                            //             params: {
-                                            //                 word: value
-                                            //             },
-                                            //             success: function (response, options) {
-                                            //                 Ext.speak();
-                                            //                 var aliskaMonolog = JSON.parse(response.responseText).aliskaMonolog;
-                                            //                 Ext.getCmp('aliskaMonolog').setValue(aliskaMonolog);
-                                            //             },
-                                            //             failure: function (response, options) {
-                                            //                 console.log(response);
-                                            //             }
-                                            //         })
-                                            // }
+                                                // 'change': function (first, value) {
+                                                //     if (value.length > 3)
+                                                //         Ext.Ajax.request({
+                                                //             url: '/monolog/checkWord',
+                                                //             params: {
+                                                //                 word: value
+                                                //             },
+                                                //             success: function (response, options) {
+                                                //                 Ext.speak();
+                                                //                 var aliskaMonolog = JSON.parse(response.responseText).aliskaMonolog;
+                                                //                 Ext.getCmp('aliskaMonolog').setValue(aliskaMonolog);
+                                                //             },
+                                                //             failure: function (response, options) {
+                                                //                 console.log(response);
+                                                //             }
+                                                //         })
+                                                // }
+                                            }
+
+
                                         }
-
-
-
-                                    }}]
+                                    }]
+                            },
+                            {
+                                xtype: 'button',
+                                text: 'выйти',
+                                width: 30,
+                                handler:
+                                    function () {
+                                        var date = new Date(0);
+                                        document.cookie = "customerAliskaId=; expires=" + date.toUTCString();
+                                        Ext.speak();
+                                    }
                             }
                         ]
                     },

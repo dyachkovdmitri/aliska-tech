@@ -16,7 +16,6 @@ public class MonologController {
     @Autowired
     LoadFileService loadFileService;
 
-
     @Autowired
     RegService regService;
 
@@ -27,7 +26,7 @@ public class MonologController {
         BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
             if (word.contains("@") && word.contains(".")) {
-                response.setAliskaMonolog(regService.registerNewCustomer(word));
+                response.setAliskaMonolog(regService.registerNewCustomer(word, customerAliskaId));
             } else {
             response.setAliskaMonolog(loadFileService.checkWord(word, customerAliskaId));}
         } catch (Exception e) {
