@@ -4,7 +4,7 @@ Ext.define('ALISKA.view.PricePanel', {
     initComponent: function () {
         var self = this;
 
-        var states = Ext.create('Ext.data.Store', {
+        var availablePrice = Ext.create('Ext.data.Store', {
             fields: ['id', 'priceName'],
             storeId: 'PriceStore',
             autoload: true,
@@ -35,7 +35,6 @@ Ext.define('ALISKA.view.PricePanel', {
                             align: 'stretch'
                         },
                         items: [
-
                             {
                                 xtype: 'container',
                                 style: "border:1px double gray",
@@ -48,16 +47,18 @@ Ext.define('ALISKA.view.PricePanel', {
                                     {
                                         xtype: 'textfield',
                                         padding: 4,
+                                        id: 'newPriceNameId',
                                         fieldLabel: 'Имя прайса',
                                         labelWidth: 40,
                                         width: 140
                                     },
+                                    // {
+                                    //     xtype: 'checkbox',
+                                    //     padding: 4,
+                                    //     boxLabel: 'виденВсем',
+                                    //     id: 'allVisible'
+                                    // },
                                     {
-                                        xtype: 'checkbox',
-                                        padding: 4,
-                                        boxLabel: 'виденВсем',
-                                        id: 'allVisible'
-                                    }, {
                                         xtype: 'filefield',
                                         id: 'uploadPrice',
                                         padding: 4,
@@ -67,21 +68,21 @@ Ext.define('ALISKA.view.PricePanel', {
                                         hideLabel: true,
                                         listeners: {
                                             'change': function (fb) {
-                                                console.log("afd");
                                                 self.fireEvent('fileupload', fb);
+                                                availablePrice.load();
                                             }
                                         }
                                     }]
                             }]
                     },
-                    {
-                        xtype: 'button',
-                        margin: 15,
-                        text: 'Обновить'
-                    },
+                    // {
+                    //     xtype: 'button',
+                    //     margin: 15,
+                    //     text: 'Обновить'
+                    // },
                     Ext.create('Ext.form.ComboBox', {
                         fieldLabel: 'Прайсы',
-                        store: states,
+                        store: availablePrice,
                         padding: 15,
                         displayField: 'priceName',
                         valueField: 'id',
@@ -89,7 +90,7 @@ Ext.define('ALISKA.view.PricePanel', {
                         'select': function(value, record){
                             document.cookie = "priceId=" + record[0].data.id;
                             Ext.getStore('ItemPriceStore').load();
-                            console.log(record);}
+                        }
                     }
                     })
 

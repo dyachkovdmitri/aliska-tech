@@ -25,8 +25,8 @@ public class CustomerService {
             customer.setAmmount(1);
             customer.setId((long)(Math.random() * Long.MAX_VALUE));
             customer.setName(createCustomerName());
-            customer.setAliskaMonolog("- Привет! Я - Алиска. Я - обучающаяся нейронная сеть. Я делаю счета на лампы. Ты можешь больше узнать обо мне в разделе FAQ. А пока просто нажми ЗАГРУЗИТЬ ЗАЯВКУ и посмотри что получится!");
-            customer.addAliskaMonolog("</br> - Пока ты не зарегался, я буду называть тебя " + customer.getName() + "!");
+            customer.addAliskaMonolog(true, "Привет! Я - Алиска. Я - обучающаяся нейронная сеть. Я делаю счета на лампы. Ты можешь больше узнать обо мне в разделе FAQ. А пока просто нажми ЗАГРУЗИТЬ ЗАЯВКУ и посмотри что получится!");
+            customer.addAliskaMonolog(true, "Пока ты не зарегался, я буду называть тебя " + customer.getName() + "!");
         }
         return customerRepo.saveAndFlush(customer);
     }
@@ -38,7 +38,7 @@ public class CustomerService {
     public Customer addMonolog(String monolog, Long customerAliskaId) {
         Customer customer = customerRepo.findById(customerAliskaId);
         String oldMonolog = customer.getAliskaMonolog();
-        customer.setAliskaMonolog(oldMonolog + "<br/>" + monolog);
+        customer.addAliskaMonolog(true,monolog);
         return customerRepo.saveAndFlush(customer);
     }
 

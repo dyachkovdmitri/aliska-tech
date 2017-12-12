@@ -32,18 +32,18 @@ public class ItemController {
 
     @RequestMapping(value = "/loadfile/**", method = RequestMethod.POST, produces ="application/json;charset=UTF-8", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseBody
-    public BaseMsgResponce loadOrder(@RequestParam("file") MultipartFile file,@RequestParam(value="priceName", required=false)String priceName, @RequestParam(value="allVisible", required=false)Boolean allVisible, @CookieValue(value = "customerAliskaId", required=false) Long customerAliskaId) {
+    public BaseMsgResponce loadOrder(@RequestParam("file") MultipartFile file,@RequestParam(value="priceName", required=false)String priceName, @RequestParam(value="allVisible", required=false)Boolean allVisible, @CookieValue(value = "customerAliskaId") Long customerAliskaId) {
         BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
-            Customer customer = customerService.createOrUpdateCustomer(customerAliskaId);
-            Price price = priceService.createNewPrice(priceName,allVisible, customerAliskaId);
-            response.setMsg(itemService.loadPrice(file, price.getId()).toString());
+            customerService.createOrUpdateCustomer(customerAliskaId);
+            Price price = priceService.createNewPrice(priceName, allVisible, customerAliskaId);
+            response.setMsg(itemService.loadPrice(file, price.getId(),customerAliskaId).toString());
         }
         catch (Exception e) {
             response.setStatus(ResponceStatus.ERROR);
-            String msg = "При обработке файла произошла ошибка.";
-            response.setMsg(msg);
-            response.setAliskaMonolog("Чо за грязь ты мне прислал!? Я ничо не поняла! Над колокной с намиенование напиши \"наименование\"! Над колонкой с количеством которое тебе надо напиши \"кол-во\"! может тогда я пойму! Но это неточно...");
+            //String msg = "При обработке файла произошла ошибка.";
+            response.setMsg("При обработке файла произошла ошибка.");
+            //response.setAliskaMonolog("Чо за грязь ты мне прислал!? Я ничо не поняла! Над колокной с намиенование напиши \"наименование\"! Над колонкой с количеством которое тебе надо напиши \"кол-во\"! может тогда я пойму! Но это неточно...");
         }
         return response;
     }

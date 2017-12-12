@@ -38,12 +38,13 @@ Ext.define('ALISKA.view.MainPanel', {
                             //     height: 100,
                             //     style: "border-radius: 30px"
                             // }
-                            {xtype: 'panel',
+                            {
+                                xtype: 'panel',
                                 width: 630,
                                 padding: 10,
-                                autoScroll:true,
-                                height:800,
-                                items:[
+                                autoScroll: true,
+                                height: 800,
+                                items: [
                                     {
                                         xtype: 'displayfield',
                                         padding: 10,
@@ -54,7 +55,8 @@ Ext.define('ALISKA.view.MainPanel', {
                                         // preventScrollbars: true,
                                         value: ' - Привет!  Я - Алиска.  Я - обучающаяся нейронная сеть. Я делаю счета на лампы.\r\n  ' +
                                         'Ты можешь больше узнать обо мне в разделе FAQ.\r\n \r\n  А пока просто нажми "ЗАГРУЗИТЬ ЗАЯВКУ" и посмотри что получится!',
-                                    },]},
+                                    },]
+                            },
 
                             {
                                 xtype: 'container',
@@ -83,7 +85,6 @@ Ext.define('ALISKA.view.MainPanel', {
                                         listeners: {
                                             afterrender: function (first, second) {
                                                 if (!document.cookie.includes("customerAliskaId")) {
-                                                    console.log(document.cookie);
                                                     Ext.Ajax.request({
                                                         url: '/customer/getCookie',
                                                         async: false,
@@ -124,17 +125,20 @@ Ext.define('ALISKA.view.MainPanel', {
                                         listeners: {
                                             'keypress': function (field, event) {
                                                 if (event.getKey() == event.ENTER && field.value.length > 3) {
-                                                    console.log(document.cookie);
-                                                    console.log(field);
+
+                                                    var valueField = field.value;
+                                                    field.setValue("...");
                                                     Ext.Ajax.request({
                                                         url: '/monolog/checkWord',
                                                         params: {
-                                                            word: field.value
+                                                            word: valueField
                                                         },
                                                         success: function (response, options) {
+                                                            if (response.responseText.includes("customerAliskaId")) {
+                                                                document.cookie = JSON.parse(response.responseText).msg
+                                                            }
+                                                            field.setValue("");
                                                             Ext.speak();
-                                                            // var aliskaMonolog = JSON.parse(response.responseText).aliskaMonolog;
-                                                            // Ext.getCmp('aliskaMonolog').setValue(aliskaMonolog);
                                                         },
                                                         failure: function (response, options) {
                                                             console.log(response);
@@ -164,17 +168,17 @@ Ext.define('ALISKA.view.MainPanel', {
                                         }
                                     }]
                             },
-                            {
-                                xtype: 'button',
-                                text: 'выйти',
-                                width: 30,
-                                handler:
-                                    function () {
-                                        var date = new Date(0);
-                                        document.cookie = "customerAliskaId=; expires=" + date.toUTCString();
-                                        Ext.speak();
-                                    }
-                            }
+                            // {
+                            //     xtype: 'button',
+                            //     text: 'выйти',
+                            //     width: 30,
+                            //     handler:
+                            //         function () {
+                            //             var date = new Date(0);
+                            //             document.cookie = "customerAliskaId=; expires=" + date.toUTCString();
+                            //             Ext.speak();
+                            //         }
+                            // }
                         ]
                     },
                     Ext.create('Ext.TabPanel', {

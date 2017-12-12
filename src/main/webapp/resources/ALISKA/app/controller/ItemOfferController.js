@@ -13,7 +13,7 @@ Ext.define('ALISKA.controller.ItemOfferController', {
     },
 
     uploadFileAction: function (fb) {
-        console.log("afd2");
+  //Ext.toast("Начался расчет...");
         var self = this;
         var file = fb.fileInputEl.dom.files[0];
         // if (!(/\.(xlsx)$/i).test(file.name)) {
@@ -25,7 +25,7 @@ Ext.define('ALISKA.controller.ItemOfferController', {
     },
 
     uploadFile: function (file) {
-        Ext.getCmp('aliskaMonolog').setValue("Ничего себе какой длинный! Заказ! Уже работаю! Ждите...");
+        //Ext.getCmp('aliskaMonolog').setValue("Ничего себе какой длинный! Заказ! Уже работаю! Ждите...");
         var xhr = new XMLHttpRequest();
         var url = "customerRequest/loadfile/";
         xhr.onload = xhr.onerror = function () {
@@ -42,7 +42,6 @@ Ext.define('ALISKA.controller.ItemOfferController', {
             var possible = "0123456789";
             for (var i = 0; i < 6; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
-
             return text;
         };
         if (!document.cookie.includes("customerAliskaId")) {
@@ -52,10 +51,11 @@ Ext.define('ALISKA.controller.ItemOfferController', {
         xhr.open("POST", url, true);
         var formData = new FormData();
         formData.append("file", file);
-        //console.log(Ext.getCmp("checkboxBrand").getValue());
         formData.append("brandImportant", Ext.getCmp("checkboxBrand").getValue());
         formData.append("accuracy", Ext.getCmp("accuracyNumber").getValue());
+        //formData.append("priceItemId", Ext.getCmp("priceItemId").getValue());
         formData.append("priceItemId", Ext.getCmp("priceItemId").getValue());
+        console.log(Ext.getCmp("priceItemId"));
         xhr.send(formData);
     }
 });

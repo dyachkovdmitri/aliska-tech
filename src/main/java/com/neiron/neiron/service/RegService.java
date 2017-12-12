@@ -37,15 +37,16 @@ public class RegService {
         mailMessage.setText("Привет");
         mailSender.send(mailMessage);
             customer.setEmail(word);
-            customer.addAliskaMonolog("<div> "+word+"</div>");
-            customer.addAliskaMonolog("<div> Приятно познакомиться! На "+word+" я отправила уникальный номер. В следующий раз, если я тебя не узнаю просто введи его сюда. Или снова напиши свою почту и я отправлю тебе его снова.</div>");
+            customer.addAliskaMonolog(false,word);
+            customer.addAliskaMonolog(true,"Приятно познакомиться! На "+word+" я отправила уникальный номер. В следующий раз, если я тебя не узнаю просто введи его сюда. Или снова напиши свою почту и я отправлю тебе его снова.");
             customerRepo.saveAndFlush(customer);
         } catch (Exception e){
-            customer.addAliskaMonolog("<div>На "+word+" не удалось отправить письмо</div>");
+            customer.addAliskaMonolog(true,"На "+word+" не удалось отправить письмо");
             customerRepo.saveAndFlush(customer);
         }
         return "жопа";
 
     }
+
 }
 

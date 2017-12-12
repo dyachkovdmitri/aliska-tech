@@ -77,6 +77,20 @@ Ext.define('ALISKA.view.GetOfferPanel', {
 
     //store: store,
     initComponent: function () {
+        var availablePrice2 = Ext.create('Ext.data.Store', {
+            fields: ['id', 'priceName'],
+            storeId: 'AvailablePriceStore',
+            autoload: true,
+            proxy: {
+                type: 'ajax',
+                url: 'price/getAvailable',
+                reader: {
+                    type: 'json',
+                    root: 'data',
+                    successProperty: 'status'
+                }
+            }
+        });
         var self = this;
         this.tbar = [{
             xtype: 'filefield',
@@ -84,6 +98,8 @@ Ext.define('ALISKA.view.GetOfferPanel', {
             margin: '10 10 10 10',
             buttonOnly: true,
             padding: 15,
+            //buttonConfig: { style: { background-color: 'orange'}},
+            waitMsg: 'Работаю...',
             buttonText: 'Загрузить заявку',
             hideLabel: true,
             name: 'LoadFile',
@@ -92,15 +108,16 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                     self.fireEvent('fileupload', fb);
                 }
             }
-        }, {
-            xtype: 'button',
-            text: 'Пересчитать заново'
         },
-            {
-                xtype: 'button',
-                text: 'Скачать ТКП'
-
-            },
+        //     {
+        //     xtype: 'button',
+        //     text: 'Пересчитать заново'
+        // },
+        //     {
+        //         xtype: 'button',
+        //         text: 'Скачать ТКП'
+        //
+        //     },
 
 
             {
@@ -110,25 +127,32 @@ Ext.define('ALISKA.view.GetOfferPanel', {
                 inputValue: '1',
                 id: 'checkboxBrand'
             },
-            {
-                xtype: 'numberfield',
-                fieldLabel: 'Точность',
-                value: 3,
-                maxValue: 7,
-                minValue: 0,
+            // {
+            //     xtype: 'numberfield',
+            //     fieldLabel: 'Точность',
+            //     value: 3,
+            //     maxValue: 7,
+            //     minValue: 0,
+            //     padding: 15,
+            //     id: 'accuracyNumber',
+            //     labelWidth: 60,
+            //     width: 110
+            // },
+            Ext.create('Ext.form.ComboBox', {
+                fieldLabel: 'Искать в прайсе',
+                labelWidth: '350px',
+                width: '300px',
+                store: availablePrice2,
                 padding: 15,
-                id: 'accuracyNumber',
-                labelWidth: 60,
-                width: 110
-            },
-            {
-                xtype: 'combobox',
-                fieldLabel: 'Прайс',
-                padding: 15,
-                id: 'priceItemId',
-                labelWidth: 45,
-                width: 200
-            }
+                id:'priceItemId',
+                displayField: 'priceName',
+                valueField: 'id',
+                listeners:{
+                    'select': function(value, record){
+                        console.log("value");
+                    }
+                }
+            })
 
 
         ];

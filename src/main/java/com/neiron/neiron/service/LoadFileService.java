@@ -48,11 +48,13 @@ public class LoadFileService {
     @Autowired
     CustomerRepo customerRepo;
 
+    @Autowired
+    CustomerService customerService;
+
 
     @Transactional(rollbackFor = Exception.class)
-    public BaseMsgResponce loadOrder(MultipartFile file, Boolean brandImportant) throws Exception {
+    public BaseMsgResponce loadOrder(MultipartFile file, Boolean brandImportant, Long customerAliskaId) throws Exception {
         long time = System.currentTimeMillis();
-        String aliskaMonolog = "";
         BaseMsgResponce responce = new BaseMsgResponce();
         CustomerRequest customerRequest = new CustomerRequest();
         try {
@@ -64,7 +66,7 @@ public class LoadFileService {
             requestLineRepo.save(requestLines);
             customerRequest.setStatus(2);
             customerRequestRepo.saveAndFlush(customerRequest);
-            responce.setAliskaMonolog(fillAliskaMonolog(requestLines, time, lc.getAliskaMonolog()));
+            fillAliskaMonolog(requestLines, time, lc.getAliskaMonolog(),customerAliskaId);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,14 +98,14 @@ public class LoadFileService {
                 result +=  analogs.get(i).getUnparsedLine()+" Сходство:"+compareItems(analogs.get(i),item)+"\r\n";
                 if(i>6){result+="...";break;}
             }
-            customer.addAliskaMonolog("<div> <br/> Я:"+ word+"</div>");
-            customer.addAliskaMonolog("<div><br/> <b>Алиска:"+ result+"</b></div>");
+            customer.addAliskaMonolog(false,word);
+            customer.addAliskaMonolog(true,result);
             customerRepo.saveAndFlush(customer);
             return result;
 
         } else {
-            customer.addAliskaMonolog("<div> Я: "+ word+"</div>");
-            customer.addAliskaMonolog("<div><b>Алиска: Я ничо не понимаю(((</b></div>");
+            customer.addAliskaMonolog(false,word);
+            customer.addAliskaMonolog(true,"Я ничо не понимаю(");
             customerRepo.saveAndFlush(customer);
             return "Я ничо не понимаю";}
     }
@@ -128,7 +130,7 @@ public class LoadFileService {
         return result+"... ";
     }
 
-    private String fillAliskaMonolog(ArrayList<RequestLine> requestLines, Long time, String extra) {
+    private String fillAliskaMonolog(ArrayList<RequestLine> requestLines, Long time, String extra, Long customerAliskaMonolog) {
         String aliskaMonolog = "";
         if (requestLines.size() == 1) {
             aliskaMonolog += "Фуух! Готово! В заявке найдена всего одна строкa!";
@@ -146,6 +148,7 @@ public class LoadFileService {
         aliskaMonolog += extra;
         aliskaMonolog += " Я потратила " + (System.currentTimeMillis() - time) + " мс своего ценного времени на обсчет! ";
         aliskaMonolog += " Это " + ((Long) ((System.currentTimeMillis() - time) / requestLines.size())) + " мс на одно наименование! ";
+        customerService.addMonolog(aliskaMonolog,customerAliskaMonolog);
         return aliskaMonolog;
     }
 

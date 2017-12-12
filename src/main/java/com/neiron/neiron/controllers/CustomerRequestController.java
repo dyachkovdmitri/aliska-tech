@@ -27,10 +27,10 @@ public class CustomerRequestController {
 
     @RequestMapping(value = "/loadfile/**", method = RequestMethod.POST, produces ="application/json;charset=UTF-8", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseBody
-    public BaseMsgResponce loadOrder(@RequestParam("file") MultipartFile file, @RequestParam("brandImportant")Boolean brandImportant) {
+    public BaseMsgResponce loadOrder(@RequestParam("file") MultipartFile file, @RequestParam("brandImportant")Boolean brandImportant, @CookieValue(value = "customerAliskaId") Long customerAliskaId) {
         BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {
-           return loadFileService.loadOrder(file, brandImportant);
+           return loadFileService.loadOrder(file, brandImportant,customerAliskaId );
         }
         catch (Exception e) {
             response.setStatus(ResponceStatus.ERROR);
@@ -42,7 +42,7 @@ public class CustomerRequestController {
 
     @RequestMapping(value = "/getOffer", method = RequestMethod.GET, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public BaseMsgResponce getOffer(@CookieValue(value = "customerRequestId") Long customerRequestId) {
+    public BaseMsgResponce getOffer(@CookieValue(value = "customerRequestId") Long customerRequestId, @CookieValue(value = "customerAliskaId") Long customerAliskaId) {
 
         BaseMsgResponce<RequestLine> response = new BaseMsgResponce(ResponceStatus.OK, "Данные успешно загружены");
         try {

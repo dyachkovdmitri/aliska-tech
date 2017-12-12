@@ -49,7 +49,7 @@ public class AliskaParser {
         return result;
     }
 
-    public ArrayList<Item> parsePrice(Long priceId, ArrayList<RequestLine> lines) {
+    public ArrayList<Item> parsePrice(Long priceId, ArrayList<RequestLine> lines, Long customerAliskaId) {
         ArrayList<Item> items = new ArrayList<>();
         for (RequestLine requestLine : lines) {
             Item item = parseLine(priceId, requestLine.getUnparsedLine());
@@ -69,98 +69,9 @@ public class AliskaParser {
         }
         System.out.println("AVERAGE-ACCURACY=" + count / items.size());
     }
-//
-//        Integer count = 0;
-//        Integer countVoltage = 0;
-//        Integer countWattage = 0;
-//        Integer countConnectorType = 0;
-//        Integer countBrand = 0;
-//        Integer countBulbType = 0;
-//        Integer countType1 = 0;
-//        Integer countType2 = 0;
-//        Integer countType3 = 0;
-//        Integer countType4 = 0;
-//        Integer countType5 = 0;
-//        for (Item item : items) {
-//            Integer exact = 0;
-//            if (item.getType5() != null) {
-//                count++;
-//                countType5++;
-//            }
-//            if (item.getType4() != null) {
-//                count++;
-//                countType4++;
-//            }
-//            if (item.getType3() != null) {
-//                count++;
-//                countType3++;
-//            }
-//            if (item.getType2() != null) {
-//                count++;
-//                countType2++;
-//            }
-//            if (item.getType1() != null) {
-//                count++;
-//                countType1++;
-//            }
-//            if (item.getConnectorType() != null) {
-//                count++;
-//                countConnectorType++;
-//                exact++;
-//            }
-//            if (item.getWattage() != null) {
-//                count++;
-//                countWattage++;
-//                exact++;
-//            }
-//            if (item.getBrand() != null) {
-//                count++;
-//                countBrand++;
-//            }
-//            if (item.getBulbType() != null) {
-//                count++;
-//                countBulbType++;
-//                exact++;
-//            }
-//            if (item.getVoltage() != null) {
-//                count++;
-//                countVoltage++;
-//                exact++;
-//            }
-//
-//            if (item.getBulbType() == null) {
-//               //  System.out.println(item.getUnparsedLine() + " ----- " + exact);
-//            }
-//        }
-//        System.out.println("!!!!!!!!ПРОЦЕНТ РАСПАРШЕННОСТИ!!!!!!!");
-////        System.out.println("countType5: "+ countType5/items.size());
-////        System.out.println("countType4: "+ countType4/items.size());
-////        System.out.println("countType2: "+ countType3/items.size());
-////        System.out.println("countType2: "+ countType2/items.size());
-////        System.out.println("countType1: "+ countType1/items.size());
-////        System.out.println("countBulbType: "+ countBulbType/items.size());
-////        System.out.println("countBrand: "+ countBrand/items.size());
-////        System.out.println("countConnectorType: "+ countConnectorType/items.size());
-////        System.out.println("countBulbType: "+ countWattage/items.size());
-////        System.out.println("countVoltage: "+ countVoltage/items.size());
-////        System.out.println("Общий: "+ count/items.size()/10);
-////
-////        System.out.println("!!!!!!!ВСЕГО РАСПАРШЕННОСТИ!!!!!!!");
-////        System.out.println("countType5: "+ countType5);
-////        System.out.println("countType4: "+ countType4);
-////        System.out.println("countType3: "+ countType3);
-////        System.out.println("countType2: "+ countType2);
-////        System.out.println("countType1: "+ countType1);
-//        System.out.println("countBulbType: " + countBulbType);
-//        // System.out.println("countBrand: "+ countBrand);
-//        System.out.println("countConnectorType: " + countConnectorType);
-//        System.out.println("countWattage: " + countWattage);
-//        System.out.println("countVoltage: " + countVoltage);
-//        System.out.println("Общий: " + items.size());
-//    }
+
 
     public Item parseLine(Long companyId, String unparsedLine) {
-        // if(unparsedLine.equals("")){System.out.print("Ошибка! ");}
         Item item = new Item();
         item.setPriceId(companyId);
 

@@ -8,11 +8,11 @@ Ext.define('ALISKA.controller.ItemPriceController', {
             'pricePanel': {
                 fileupload: this.uploadPriceAction
             }
-
         });
     },
 
     uploadPriceAction: function (fb) {
+        //Ext.toast("Начался расчет...");
         var self = this;
         var file = fb.fileInputEl.dom.files[0];
         self.uploadPrice(file);
@@ -26,7 +26,7 @@ Ext.define('ALISKA.controller.ItemPriceController', {
             if (this.status == 200) {
                 var data = JSON.parse(xhr.responseText);
                 document.cookie = "priceId="+data.msg;
-                console.log(xhr.responseText);
+                Ext.speak();
                 Ext.getStore('ItemPriceStore').load();
             }
         };
@@ -46,6 +46,7 @@ Ext.define('ALISKA.controller.ItemPriceController', {
         xhr.open("POST", url, true);
         var formData = new FormData();
         formData.append("file", file);
+        formData.append("priceName", Ext.getCmp("newPriceNameId").getValue());
         xhr.send(formData);
     }
 });

@@ -72,7 +72,6 @@ Ext.define('ALISKA.view.AddPrice', {
                 flex: 1
             }
         ];
-        console.log(Ext.getStore('PriceStore'));
         this.callParent(arguments);
     }
 
