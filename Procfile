@@ -1,1 +1,1 @@
-web: sh target/bin/webapp
+web: java -jar target/neiron-0.0.1-SNAPSHOT.jar
