@@ -48,12 +48,19 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
     @Bean(name = "dataSource")
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+//        driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
+//        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/dd");
+//        driverManagerDataSource.setUsername("postgres");
+//        driverManagerDataSource.setPassword("postgres");
+
         driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
-        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/dd");
-        driverManagerDataSource.setUsername("postgres");
-        driverManagerDataSource.setPassword("postgres");
+        driverManagerDataSource.setUrl("jdbc:postgresql://ec2-107-22-165-47.compute-1.amazonaws.com:5432/d726pn04csmqqc");
+        driverManagerDataSource.setUsername("vhfaivnimxdhsl");
+        driverManagerDataSource.setPassword("375a8eeff896bb7a74202c45d188ce27a2272c534a229322579cc6f4af2e6ec3");
         return driverManagerDataSource;
     }
+
+
 
     @Bean
     MailSender mailSender() {
