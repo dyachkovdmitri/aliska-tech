@@ -61,10 +61,10 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
 //        driverManagerDataSource.setUsername("postgres");
 //        driverManagerDataSource.setPassword("postgres");
         logger.error("DATA SOTCE INITIALIZED");
-////        driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
-////        driverManagerDataSource.setUrl("jdbc:postgresql://ec2-107-22-165-47.compute-1.amazonaws.com:5432/d726pn04csmqqc");
-////        driverManagerDataSource.setUsername("vhfaivnimxdhsl");
-////        driverManagerDataSource.setPassword("375a8eeff896bb7a74202c45d188ce27a2272c534a229322579cc6f4af2e6ec3");
+        driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
+        driverManagerDataSource.setUrl("jdbc:postgresql://ec2-107-22-165-47.compute-1.amazonaws.com:5432/d726pn04csmqqc");
+        driverManagerDataSource.setUsername("vhfaivnimxdhsl");
+        driverManagerDataSource.setPassword("375a8eeff896bb7a74202c45d188ce27a2272c534a229322579cc6f4af2e6ec3");
         return driverManagerDataSource;
     }
 
