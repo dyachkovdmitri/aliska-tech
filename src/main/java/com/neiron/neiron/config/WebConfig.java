@@ -1,5 +1,8 @@
 package com.neiron.neiron.config;
 
+import com.neiron.neiron.controllers.CustomerController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +27,8 @@ import java.util.Properties;
 @ComponentScan("com.neiron.neiron.*")
 @Import({ AppSecurityConfig.class })
 public class WebConfig  extends WebMvcConfigurerAdapter {
+
+    private static Logger logger = LoggerFactory.getLogger(WebConfig.class);
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")
@@ -35,6 +40,7 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/")
                 .setViewName("index");
+        logger.error("InternalResourceViewResolver INITIALIZED");
     }
     @Bean
     public InternalResourceViewResolver viewResolver() {
@@ -42,21 +48,25 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setPrefix("/WEB-INF/views/");
         viewResolver.setSuffix(".html");
+        logger.error("InternalResourceViewResolver INITIALIZED");
         return viewResolver;
     }
 
     @Bean(name = "dataSource")
     public DriverManagerDataSource dataSource() {
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-//        driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
-//        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/dd");
-//        driverManagerDataSource.setUsername("postgres");
-//        driverManagerDataSource.setPassword("postgres");
 
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
         driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
-        driverManagerDataSource.setUrl("jdbc:postgresql://ec2-107-22-165-47.compute-1.amazonaws.com:5432/d726pn04csmqqc");
-        driverManagerDataSource.setUsername("vhfaivnimxdhsl");
-        driverManagerDataSource.setPassword("375a8eeff896bb7a74202c45d188ce27a2272c534a229322579cc6f4af2e6ec3");
+        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/dd");
+        driverManagerDataSource.setUsername("postgres");
+        driverManagerDataSource.setPassword("postgres");
+        logger.error("DATA SOTCE INITIALIZED");
+
+
+//        driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
+//        driverManagerDataSource.setUrl("jdbc:postgresql://ec2-107-22-165-47.compute-1.amazonaws.com:5432/d726pn04csmqqc");
+//        driverManagerDataSource.setUsername("vhfaivnimxdhsl");
+//        driverManagerDataSource.setPassword("375a8eeff896bb7a74202c45d188ce27a2272c534a229322579cc6f4af2e6ec3");
         return driverManagerDataSource;
     }
 
